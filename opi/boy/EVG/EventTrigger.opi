@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display typeId="org.csstudio.opibuilder.Display" version="1.0.0">
+  <show_close_button>true</show_close_button>
+  <rules />
+  <wuid>4a318208:14de1f4e024:220</wuid>
+  <show_grid>true</show_grid>
+  <auto_zoom_to_fit_all>false</auto_zoom_to_fit_all>
+  <scripts />
+  <height>600</height>
+  <macros>
+    <include_parent_macros>true</include_parent_macros>
+  </macros>
+  <boy_version>3.2.16.20140409</boy_version>
+  <show_edit_range>true</show_edit_range>
+  <widget_type>Display</widget_type>
+  <auto_scale_widgets>
+    <auto_scale_widgets>false</auto_scale_widgets>
+    <min_width>-1</min_width>
+    <min_height>-1</min_height>
+  </auto_scale_widgets>
+  <background_color>
+    <color red="240" green="240" blue="240" />
+  </background_color>
+  <width>800</width>
+  <x>-1</x>
+  <name></name>
+  <grid_space>6</grid_space>
+  <show_ruler>true</show_ruler>
+  <y>-1</y>
+  <snap_to_geometry>true</snap_to_geometry>
+  <foreground_color>
+    <color red="192" green="192" blue="192" />
+  </foreground_color>
+  <actions hook="false" hook_all="false" />
+  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
+    <border_style>0</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <rules />
+    <bit>0</bit>
+    <enabled>true</enabled>
+    <wuid>4a318208:14de1f4e024:481</wuid>
+    <selected_color>
+      <color red="77" green="77" blue="77" />
+    </selected_color>
+    <pv_value />
+    <auto_size>false</auto_size>
+    <scripts />
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>false</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <pv_name>$(mrf_evg_prefix)Event:EvTrig$(mrf_evg_event_trigger_num):Enabled</pv_name>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <label></label>
+    <widget_type>Check Box</widget_type>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="240" green="240" blue="240" />
+    </background_color>
+    <width>20</width>
+    <x>46</x>
+    <name>Check Box_18</name>
+    <y>11</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>2</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>4a318208:14de1f4e024:49b</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>$(mrf_evg_event_trigger_num)</text>
+    <scripts />
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>13</width>
+    <x>11</x>
+    <name>Label</name>
+    <y>11</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.combo" version="1.0.0">
+    <border_style>0</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>4a318208:14de1f4e024:4fc</wuid>
+    <pv_value />
+    <scripts>
+      <path pathString="EmbeddedJs" checkConnect="true" sfe="false" seoe="false">
+        <scriptName>Update type on event code change</scriptName>
+        <scriptText><![CDATA[importPackage(Packages.org.csstudio.opibuilder.scriptUtil);
+
+var pvEventCodeNumber = pvs[0];
+var pvEventCodeType = pvs[1];
+
+var eventCode = PVUtil.getDouble(pvEventCodeNumber);
+var eventCodeType;
+switch(eventCode) {
+case 0x00:
+  eventCodeType = "Null";
+  break;
+case 0x70:
+  eventCodeType = "Seconds 0";
+  break;
+case 0x71:
+  eventCodeType = "Seconds 1";
+  break;
+case 0x7a:
+  eventCodeType = "Heartbeat";
+  break;
+case 0x7b:
+  eventCodeType = "Synchronize Prescalers";
+  break;
+case 0x7c:
+  eventCodeType = "Timestamp Counter Increment";
+  break;
+case 0x7d:
+  eventCodeType = "Timestamp Counter Reset";
+  break;
+case 0x7f:
+  eventCodeType = "End of Sequence";
+  break;
+default:
+  eventCodeType = "User Defined";
+}
+
+PVUtil.writePV(pvEventCodeType.getName(), eventCodeType);
+]]></scriptText>
+        <pv trig="true">$(mrf_evg_prefix)Event:EvTrig$(mrf_evg_event_trigger_num):EventCode</pv>
+        <pv trig="false">$(pv_name)</pv>
+      </path>
+    </scripts>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <height>30</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>false</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <items_from_pv>false</items_from_pv>
+    <visible>true</visible>
+    <pv_name>loc://$(mrf_evg_prefix)Event:EvTrig$(mrf_evg_event_trigger_num):EventCodeType_$(DID)&lt;VString&gt;("Null")</pv_name>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Combo</widget_type>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>124</width>
+    <x>108</x>
+    <name>rowEventCodeType</name>
+    <y>6</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="true" />
+    <items>
+      <s>User Defined</s>
+      <s>Null</s>
+      <s>Seconds 0</s>
+      <s>Seconds 1</s>
+      <s>Heartbeat</s>
+      <s>Synchronize Prescalers</s>
+      <s>Timestamp Counter Increment</s>
+      <s>Timestamp Counter Reset</s>
+      <s>End of Sequence</s>
+    </items>
+    <font>
+      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.TextInput" version="2.0.0">
+    <precision>0</precision>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <horizontal_alignment>2</horizontal_alignment>
+    <rules>
+      <rule name="Enable for user defined event" prop_id="enabled" out_exp="false">
+        <exp bool_exp="pvStr0 == &quot;User Defined&quot;">
+          <value>true</value>
+        </exp>
+        <pv trig="true">loc://$(mrf_evg_prefix)Event:EvTrig$(mrf_evg_event_trigger_num):EventCodeType_$(DID)&lt;VString&gt;("Null")</pv>
+      </rule>
+    </rules>
+    <pv_value />
+    <auto_size>false</auto_size>
+    <text></text>
+    <rotation_angle>0.0</rotation_angle>
+    <show_units>false</show_units>
+    <height>20</height>
+    <multiline_input>false</multiline_input>
+    <border_width>1</border_width>
+    <visible>true</visible>
+    <pv_name>$(mrf_evg_prefix)Event:EvTrig$(mrf_evg_event_trigger_num):EventCode</pv_name>
+    <selector_type>0</selector_type>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <precision_from_pv>false</precision_from_pv>
+    <widget_type>Text Input</widget_type>
+    <confirm_message></confirm_message>
+    <name>rowEventCodeNumber</name>
+    <style>0</style>
+    <actions hook="false" hook_all="false" />
+    <border_style>3</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <enabled>false</enabled>
+    <wuid>4a318208:14de1f4e024:4fd</wuid>
+    <transparent>false</transparent>
+    <scripts>
+      <path pathString="EmbeddedJs" checkConnect="true" sfe="true" seoe="false">
+        <scriptName>Update event code on type change</scriptName>
+        <scriptText><![CDATA[importPackage(Packages.org.csstudio.opibuilder.scriptUtil);
+
+var eventCodeType = PVUtil.getString(pvs[0]);
+var setEventCodeNumber = true;
+var eventCodeNumber;
+
+if (eventCodeType == "Null") {
+  eventCodeNumber = 0x00;
+} else if (eventCodeType == "Seconds 0") {
+  eventCodeNumber = 0x70;
+} else if (eventCodeType == "Seconds 1") {
+  eventCodeNumber = 0x71;
+} else if (eventCodeType == "Heartbeat") {
+  eventCodeNumber = 0x7a;
+} else if (eventCodeType == "Synchronize Prescalers") {
+  eventCodeNumber = 0x7b;
+} else if (eventCodeType == "Timestamp Counter Increment") {
+  eventCodeNumber = 0x7c;
+} else if (eventCodeType == "Timestamp Counter Reset") {
+  eventCodeNumber = 0x7d;
+} else if (eventCodeType == "End of Sequence") {
+  eventCodeNumber = 0x7f;
+} else {
+  setEventCodeNumber = false;
+}
+
+if (setEventCodeNumber) {
+  PVUtil.writePV(pvs[1].getName(), eventCodeNumber);
+}
+]]></scriptText>
+        <pv trig="true">loc://$(mrf_evg_prefix)Event:EvTrig$(mrf_evg_event_trigger_num):EventCodeType_$(DID)&lt;VString&gt;("Null")</pv>
+        <pv trig="false">$(pv_name)</pv>
+      </path>
+    </scripts>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <format_type>1</format_type>
+    <limits_from_pv>false</limits_from_pv>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>64</width>
+    <x>237</x>
+    <y>11</y>
+    <maximum>1.7976931348623157E308</maximum>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <minimum>-1.7976931348623157E308</minimum>
+    <font>
+      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.TextUpdate" version="1.0.0">
+    <border_style>0</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <precision>0</precision>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <horizontal_alignment>2</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>4a318208:14de1f4e024:4fe</wuid>
+    <transparent>false</transparent>
+    <pv_value />
+    <auto_size>false</auto_size>
+    <text>######</text>
+    <rotation_angle>0.0</rotation_angle>
+    <scripts>
+      <path pathString="EmbeddedJs" checkConnect="true" sfe="false" seoe="false">
+        <scriptName>Update Value</scriptName>
+        <scriptText><![CDATA[importPackage(Packages.org.csstudio.opibuilder.scriptUtil);
+
+var eventCode = PVUtil.getLong(pvs[0]);
+if (eventCode > 255) {
+  eventCode %= 256;
+}
+if (eventCode < 0) {
+  eventCode = eventCode + 256;
+}
+widget.setPropertyValue("text", "0x" + Math.floor(eventCode / 16).toString(16) + (eventCode % 16).toString(16));
+]]></scriptText>
+        <pv trig="true">$(mrf_evg_prefix)Event:EvTrig$(mrf_evg_event_trigger_num):EventCode</pv>
+      </path>
+    </scripts>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <show_units>true</show_units>
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <pv_name></pv_name>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <precision_from_pv>true</precision_from_pv>
+    <widget_type>Text Update</widget_type>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <wrap_words>false</wrap_words>
+    <format_type>4</format_type>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>106</width>
+    <x>312</x>
+    <name>Text Update</name>
+    <y>11</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
+    </font>
+  </widget>
+</display>

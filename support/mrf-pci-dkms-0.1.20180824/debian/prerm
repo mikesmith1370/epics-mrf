@@ -1,0 +1,28 @@
+#!/bin/sh
+
+NAME=mrf-pci
+VERSION=0.1.20180824
+
+set -e
+
+case "$1" in
+    remove|upgrade|deconfigure)
+      if [  "`dkms status -m $NAME`" ]; then
+         dkms remove -m $NAME -v $VERSION --all
+      fi
+    ;;
+
+    failed-upgrade)
+    ;;
+
+    *)
+        echo "prerm called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
+
+#DEBHELPER#
+
+exit 0
+
+

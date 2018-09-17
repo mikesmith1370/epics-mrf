@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display typeId="org.csstudio.opibuilder.Display" version="1.0.0">
+  <show_close_button>true</show_close_button>
+  <rules />
+  <wuid>4a318208:14de1f4e024:-791e</wuid>
+  <show_grid>true</show_grid>
+  <auto_zoom_to_fit_all>false</auto_zoom_to_fit_all>
+  <scripts />
+  <height>600</height>
+  <macros>
+    <include_parent_macros>true</include_parent_macros>
+  </macros>
+  <boy_version>3.2.16.20140409</boy_version>
+  <show_edit_range>true</show_edit_range>
+  <widget_type>Display</widget_type>
+  <auto_scale_widgets>
+    <auto_scale_widgets>false</auto_scale_widgets>
+    <min_width>-1</min_width>
+    <min_height>-1</min_height>
+  </auto_scale_widgets>
+  <background_color>
+    <color red="240" green="240" blue="240" />
+  </background_color>
+  <width>800</width>
+  <x>-1</x>
+  <name></name>
+  <grid_space>6</grid_space>
+  <show_ruler>true</show_ruler>
+  <y>-1</y>
+  <snap_to_geometry>true</snap_to_geometry>
+  <foreground_color>
+    <color red="192" green="192" blue="192" />
+  </foreground_color>
+  <actions hook="false" hook_all="false" />
+  <widget typeId="org.csstudio.opibuilder.widgets.combo" version="1.0.0">
+    <border_style>0</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>4a318208:14de1f4e024:-3f79</wuid>
+    <pv_value />
+    <scripts>
+      <path pathString="EmbeddedJs" checkConnect="true" sfe="false" seoe="false">
+        <scriptName>Read from real PV</scriptName>
+        <scriptText><![CDATA[importPackage(Packages.org.csstudio.opibuilder.scriptUtil);
+
+var pvMappingCode = pvs[0];
+var pvMappingString = pvs[1];
+
+// PVUtil.getLong() returns a boxed Long which is not automatically converted by Rhino. Therefore, we have to convert explicitly.
+var mappingCode = PVUtil.getLong(pvMappingCode).longValue();
+var mappingString;
+
+switch (mappingCode) {
+case 0:
+  mappingString = "Pulse Generator 0";
+  break;
+case 1:
+  mappingString = "Pulse Generator 1";
+  break;
+case 2:
+  mappingString = "Pulse Generator 2";
+  break;
+case 3:
+  mappingString = "Pulse Generator 3";
+  break;
+case 4:
+  mappingString = "Pulse Generator 4";
+  break;
+case 5:
+  mappingString = "Pulse Generator 5";
+  break;
+case 6:
+  mappingString = "Pulse Generator 6";
+  break;
+case 7:
+  mappingString = "Pulse Generator 7";
+  break;
+case 8:
+  mappingString = "Pulse Generator 8";
+  break;
+case 9:
+  mappingString = "Pulse Generator 9";
+  break;
+case 10:
+  mappingString = "Pulse Generator 10";
+  break;
+case 11:
+  mappingString = "Pulse Generator 11";
+  break;
+case 12:
+  mappingString = "Pulse Generator 12";
+  break;
+case 13:
+  mappingString = "Pulse Generator 13";
+  break;
+case 14:
+  mappingString = "Pulse Generator 14";
+  break;
+case 15:
+  mappingString = "Pulse Generator 15";
+  break;
+case 32:
+  mappingString = "Dist. Bus Bit 0";
+  break;
+case 33:
+  mappingString = "Dist. Bus Bit 1";
+  break;
+case 34:
+  mappingString = "Dist. Bus Bit 2";
+  break;
+case 35:
+  mappingString = "Dist. Bus Bit 3";
+  break;
+case 36:
+  mappingString = "Dist. Bus Bit 4";
+  break;
+case 37:
+  mappingString = "Dist. Bus Bit 5";
+  break;
+case 38:
+  mappingString = "Dist. Bus Bit 6";
+  break;
+case 39:
+  mappingString = "Dist. Bus Bit 7";
+  break;
+case 40:
+  mappingString = "Prescaler 0";
+  break;
+case 41:
+  mappingString = "Prescaler 1";
+  break;
+case 42:
+  mappingString = "Prescaler 2";
+  break;
+case 62:
+  mappingString = "Force High";
+  break;
+case 63:
+  mappingString = "Force Low";
+  break;
+default:
+  mappingString = "";
+}
+
+PVUtil.writePV(pvMappingString.getName(), mappingString);
+]]></scriptText>
+        <pv trig="true">$(mrf_evr_output_prefix)$(mrf_evr_output_num):Map</pv>
+        <pv trig="false">$(pv_name)</pv>
+      </path>
+      <path pathString="EmbeddedJs" checkConnect="true" sfe="true" seoe="false">
+        <scriptName>Write to real PV</scriptName>
+        <scriptText><![CDATA[importPackage(Packages.org.csstudio.opibuilder.scriptUtil);
+
+var pvMappingCode = pvs[0];
+var pvMappingString = pvs[1];
+
+var mappingString = PVUtil.getString(pvMappingString);
+var mappingCode;
+
+if (mappingString == "Pulse Generator 0") {
+  mappingCode = 0;
+} else if (mappingString == "Pulse Generator 1") {
+  mappingCode = 1;
+} else if (mappingString == "Pulse Generator 2") {
+  mappingCode = 2;
+} else if (mappingString == "Pulse Generator 3") {
+  mappingCode = 3;
+} else if (mappingString == "Pulse Generator 4") {
+  mappingCode = 4;
+} else if (mappingString == "Pulse Generator 5") {
+  mappingCode = 5;
+} else if (mappingString == "Pulse Generator 6") {
+  mappingCode = 6;
+} else if (mappingString == "Pulse Generator 7") {
+  mappingCode = 7;
+} else if (mappingString == "Pulse Generator 8") {
+  mappingCode = 8;
+} else if (mappingString == "Pulse Generator 9") {
+  mappingCode = 9;
+} else if (mappingString == "Pulse Generator 10") {
+  mappingCode = 10;
+} else if (mappingString == "Pulse Generator 11") {
+  mappingCode = 11;
+} else if (mappingString == "Pulse Generator 12") {
+  mappingCode = 12;
+} else if (mappingString == "Pulse Generator 13") {
+  mappingCode = 13;
+} else if (mappingString == "Pulse Generator 14") {
+  mappingCode = 14;
+} else if (mappingString == "Pulse Generator 15") {
+  mappingCode = 15;
+} else if (mappingString == "Dist. Bus Bit 0") {
+  mappingCode = 32;
+} else if (mappingString == "Dist. Bus Bit 1") {
+  mappingCode = 33;
+} else if (mappingString == "Dist. Bus Bit 2") {
+  mappingCode = 34;
+} else if (mappingString == "Dist. Bus Bit 3") {
+  mappingCode = 35;
+} else if (mappingString == "Dist. Bus Bit 4") {
+  mappingCode = 36;
+} else if (mappingString == "Dist. Bus Bit 5") {
+  mappingCode = 37;
+} else if (mappingString == "Dist. Bus Bit 6") {
+  mappingCode = 38;
+} else if (mappingString == "Dist. Bus Bit 7") {
+  mappingCode = 39;
+} else if (mappingString == "Prescaler 0") {
+  mappingCode = 40;
+} else if (mappingString == "Prescaler 1") {
+  mappingCode = 41;
+} else if (mappingString == "Prescaler 2") {
+  mappingCode = 42;
+} else if (mappingString == "Force High") {
+  mappingCode = 62;
+} else if (mappingString == "Force Low") {
+  mappingCode = 63;
+} else {
+  // We do not touch the mapping code if we cannot not recognize the string.
+  mappingCode = -1;
+}
+
+if (mappingCode >= 0) {
+  PVUtil.writePV(pvMappingCode.getName(), mappingCode);
+}
+]]></scriptText>
+        <pv trig="false">$(mrf_evr_output_prefix)$(mrf_evr_output_num):Map</pv>
+        <pv trig="true">$(pv_name)</pv>
+      </path>
+      <path pathString="EmbeddedJs" checkConnect="true" sfe="false" seoe="false">
+        <scriptName>Show / hide</scriptName>
+        <scriptText><![CDATA[importPackage(Packages.org.csstudio.opibuilder.scriptUtil); 
+var pv0 = PVUtil.getDouble(pvs[0]);
+if(pv0 == 0)
+	widget.setPropertyValue("visible",false);
+else
+	widget.setPropertyValue("visible",true);
+]]></scriptText>
+        <pv trig="true">$(mrf_evr_output_prefix)$(mrf_evr_output_num):Installed</pv>
+      </path>
+    </scripts>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <height>30</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>false</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <items_from_pv>false</items_from_pv>
+    <visible>true</visible>
+    <pv_name>loc://$(mrf_evr_output_prefix)$(mrf_evr_output_num):Mapping_$(DID)&lt;VString&gt;("")</pv_name>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Combo</widget_type>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>163</width>
+    <x>42</x>
+    <name>Combo</name>
+    <y>7</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <items>
+      <s>Pulse Generator 0</s>
+      <s>Pulse Generator 1</s>
+      <s>Pulse Generator 2</s>
+      <s>Pulse Generator 3</s>
+      <s>Pulse Generator 4</s>
+      <s>Pulse Generator 5</s>
+      <s>Pulse Generator 6</s>
+      <s>Pulse Generator 7</s>
+      <s>Pulse Generator 8</s>
+      <s>Pulse Generator 9</s>
+      <s>Pulse Generator 10</s>
+      <s>Pulse Generator 11</s>
+      <s>Pulse Generator 12</s>
+      <s>Pulse Generator 13</s>
+      <s>Pulse Generator 14</s>
+      <s>Pulse Generator 15</s>
+      <s>Dist. Bus Bit 0</s>
+      <s>Dist. Bus Bit 1</s>
+      <s>Dist. Bus Bit 2</s>
+      <s>Dist. Bus Bit 3</s>
+      <s>Dist. Bus Bit 4</s>
+      <s>Dist. Bus Bit 5</s>
+      <s>Dist. Bus Bit 6</s>
+      <s>Dist. Bus Bit 7</s>
+      <s>Prescaler 0</s>
+      <s>Prescaler 1</s>
+      <s>Prescaler 2</s>
+      <s>Force High</s>
+      <s>Force Low</s>
+    </items>
+    <font>
+      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>2</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>4a318208:14de1f4e024:-6423</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>$(mrf_evr_output_num)</text>
+    <scripts />
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>23</width>
+    <x>13</x>
+    <name>Label</name>
+    <y>12</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>1</horizontal_alignment>
+    <rules>
+      <rule name="Show / hide" prop_id="visible" out_exp="false">
+        <exp bool_exp="pv0 == 0">
+          <value>true</value>
+        </exp>
+        <pv trig="true">$(mrf_evr_output_prefix)$(mrf_evr_output_num):Installed</pv>
+      </rule>
+    </rules>
+    <enabled>true</enabled>
+    <wuid>-3a15dff4:14e25e56121:-47da</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>Not installed</text>
+    <scripts />
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>false</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>97</width>
+    <x>75</x>
+    <name>Label_1</name>
+    <y>12</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <border_style>0</border_style>
+    <tooltip></tooltip>
+    <horizontal_alignment>0</horizontal_alignment>
+    <rules />
+    <enabled>true</enabled>
+    <wuid>-3a15dff4:14e25e56121:-16a4</wuid>
+    <transparent>true</transparent>
+    <auto_size>false</auto_size>
+    <text>Fine Delay:</text>
+    <scripts>
+      <path pathString="EmbeddedJs" checkConnect="true" sfe="false" seoe="false">
+        <scriptName>Hide / show</scriptName>
+        <scriptText><![CDATA[importPackage(Packages.org.csstudio.opibuilder.scriptUtil); 
+var pv0 = PVUtil.getDouble(pvs[0]);
+var pv1 = PVUtil.getDouble(pvs[1]);
+if(pv0 == 0 || pv1 == 0)
+	widget.setPropertyValue("visible",false);
+else
+	widget.setPropertyValue("visible",true);
+]]></scriptText>
+        <pv trig="true">$(mrf_evr_output_prefix)$(mrf_evr_output_num):Installed</pv>
+        <pv trig="true">$(mrf_evr_output_prefix)$(mrf_evr_output_num):FineDelayAvailable</pv>
+      </path>
+    </scripts>
+    <height>20</height>
+    <border_width>1</border_width>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <visible>true</visible>
+    <vertical_alignment>1</vertical_alignment>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <widget_type>Label</widget_type>
+    <wrap_words>false</wrap_words>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>85</width>
+    <x>210</x>
+    <name>Label_2</name>
+    <y>12</y>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <actions hook="false" hook_all="false" />
+    <font>
+      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
+    </font>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.TextInput" version="2.0.0">
+    <precision>0</precision>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <horizontal_alignment>2</horizontal_alignment>
+    <rules />
+    <pv_value />
+    <auto_size>false</auto_size>
+    <text></text>
+    <rotation_angle>0.0</rotation_angle>
+    <show_units>true</show_units>
+    <height>19</height>
+    <multiline_input>false</multiline_input>
+    <border_width>1</border_width>
+    <visible>true</visible>
+    <pv_name>$(mrf_evr_output_prefix)$(mrf_evr_output_num):FineDelay</pv_name>
+    <selector_type>0</selector_type>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <precision_from_pv>true</precision_from_pv>
+    <widget_type>Text Input</widget_type>
+    <confirm_message></confirm_message>
+    <name>Text Input</name>
+    <style>0</style>
+    <actions hook="false" hook_all="false" />
+    <border_style>3</border_style>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <enabled>true</enabled>
+    <wuid>-3a15dff4:14e25e56121:-167b</wuid>
+    <transparent>false</transparent>
+    <scripts>
+      <path pathString="EmbeddedJs" checkConnect="true" sfe="false" seoe="false">
+        <scriptName>Hide / show</scriptName>
+        <scriptText><![CDATA[importPackage(Packages.org.csstudio.opibuilder.scriptUtil); 
+var pv0 = PVUtil.getDouble(pvs[0]);
+var pv1 = PVUtil.getDouble(pvs[1]);
+if(pv0 == 0 || pv1 == 0)
+	widget.setPropertyValue("visible",false);
+else
+	widget.setPropertyValue("visible",true);
+]]></scriptText>
+        <pv trig="true">$(mrf_evr_output_prefix)$(mrf_evr_output_num):Installed</pv>
+        <pv trig="true">$(mrf_evr_output_prefix)$(mrf_evr_output_num):FineDelayAvailable</pv>
+      </path>
+    </scripts>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <format_type>1</format_type>
+    <limits_from_pv>false</limits_from_pv>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <width>97</width>
+    <x>294</x>
+    <y>12</y>
+    <maximum>1.7976931348623157E308</maximum>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <minimum>-1.7976931348623157E308</minimum>
+    <font>
+      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
+    </font>
+  </widget>
+</display>

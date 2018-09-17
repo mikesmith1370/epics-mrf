@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# sh /home/jpietari/mrf/event/sw/linux-multi/module_load
+# sh /home/jpietari/mrf/event/sw/linux-multi/module_unload
+# cd /home/jpietari/mrf/event/sw/linux-multi
+
+#make modules_install
+#/sbin/depmod -a
+
+udev_rules_file="`dirname "$0"`/60-mrf-pci.rules"
+if [ -f "$udev_rules_file" -a ! -e "/etc/udev/rules.d/60-mrf-pci.rules" ]; then
+  cp "$udev_rules_file" "/etc/udev/rules.d/60-mrf-pci.rules"
+fi 
+
+/sbin/modprobe pci_mrfevg || exit 1
+/sbin/modprobe pci_mrfevr || exit 1
+
+majors=$(awk "\$2==\"mrfevg\" {print \$1}" /proc/devices)
+echo "Found" $(echo $majors | wc -w) "Event Generators."
+
+majors=$(awk "\$2==\"mrfevr\" {print \$1}" /proc/devices)
+echo "Found" $(echo $majors | wc -w) "Event Receivers."
+
+# dd if=/home/jpietari/mrf/event/fw/Evr/opb_pci9030/pxievr230.eep of=/dev/era0
+# dd if=/home/jpietari/mrf/event/fw/Evr/opb_pci9030/pxievg230.eep of=/dev/ega0
+# dd if=/home/jpietari/mrf/event/fw/Evr/build/cpcievr230/cpcievr230.bit of=/dev/era2
+# dd if=/home/jpietari/mrf/event/fw/Evg/build/cpcievg230/cpcievg230.bit of=/dev/ega2

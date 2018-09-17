@@ -1,0 +1,14 @@
+/.vscode
+/bin
+/configure/O.*
+/db
+/dbd
+/include
+/lib
+/mrfApp/Db/O.*
+/mrfApp/mrfCommonSrc/O.*
+/mrfApp/mrfEpicsMmapSrc/O.*
+/mrfApp/mrfEpicsSrc/O.*
+/mrfApp/mrfEpicsUdpIpSrc/O.*
+/mrfApp/mrfMmapSrc/O.*
+/mrfApp/mrfUdpIpSrc/O.*

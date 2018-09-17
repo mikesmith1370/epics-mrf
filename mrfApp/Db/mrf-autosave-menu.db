@@ -1,0 +1,1093 @@
+# This record file adds support for loading and saving device configurations
+# through Autosave's config menu. It directly uses subroutines from Autosave, so
+# it might not be compatible with all versions of Autosave. It should at least
+# work with Autosave 5.5 through 5.7.1. Paging is only supported with
+# Autosave 5.7 and newer, for older versions only the first page is going to be
+# used.
+#
+# In addition to Autosave, the busy and sseq records are needed.
+#
+# This file expects the following macros to bet:
+# P, R:
+#     Same as EVG / EVR to be loaded or saved.
+# CONFIG_PV_PREFIX:
+#     Prefix below the EVG / EVR namespace to be used for the records created by
+#     this file. For example, "CONFIG_PV_PREFIX=Presets:" will resul in the
+#     prefix "$(P)$(R)Presets:".
+# CONFIG_NAME:
+#     Name of the request file to be used (withouth the .req extension). This
+#     name must be unique for each device (handled by the same IOC). It is also
+#     used as the prefix for the saved files.
+# FIND_FILES_ON_INIT:
+#     When set to "YES", the list of available configuration files is updated
+#     when the IOC is started. If "NO", this update is suppressed. Defaults to
+#     "YES".
+
+record(stringin, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Name") {
+  field(DESC, "Name of current config")
+  field(PINI, "YES")
+  field(VAL,  "")
+}
+
+record(stringin, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Description") {
+  field(DESC, "Description of current config")
+  field(PINI, "YES")
+  field(VAL,  "")
+}
+
+# This record needs to be included in the save set so that Autosave
+# finds the description.
+record(stringout, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:Menu:currDesc") {
+}
+
+record(stringout, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ConfigName") {
+  field(VAL,  "$(CONFIG_NAME)")
+}
+
+# Having PINI set to YES will cause the list of available files to be populated
+# when the IOC is started.
+record(bo, "$(P)$(R)$(CONFIG_PV_PREFIX)FindFiles") {
+  field(DESC, "Refresh the list of available files")
+  # Field C of the aSub record needs to be set to one so that the subroutine
+  # knows it should refresh the file list (as opposed to paging through it). The
+  # flag is automatically reset by the subroutine.
+  field(DOL,  "1")
+  field(OUT,  "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoList.C PP")
+  field(PINI, "$(FIND_FILES_ON_INIT=YES)")
+  field(ZNAM, "Find")
+  field(ONAM, "Find")
+}
+
+record(longout, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:IsSaveOp") {
+}
+
+record(bo, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:SetLoadSaveBusy") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:SetLoadSaveBusy")
+  field(DISV, "0")
+  field(OUT,  "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveBusy PP")
+}
+
+record(bo, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ClearLoadSaveBusy") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ClearLoadSaveBusy")
+  field(DISV, "1")
+  field(OUT,  "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveBusy CA")
+}
+
+record(busy, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveBusy") {
+  field(ONAM, "Loading")
+}
+
+record(bo, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ExtendedBusy") {
+  field(ONAM, "Busy")
+}
+
+record(calcout, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:CalcBusy") {
+  field(CALC, "A == 1 || B == 1")
+  field(INPA, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveBusy CP")
+  field(INPB, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ExtendedBusy CP")
+  field(OUT,  "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:Busy PP")
+}
+
+record(bo, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:Busy") {
+  field(ONAM, "Busy")
+}
+
+record(longout, "$(P)$(R)$(CONFIG_PV_PREFIX)Page") {
+  field(DESC, "Selected page of files")
+  field(FLNK, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoList.PROC")
+  field(PINI, "$(FIND_FILES_ON_INIT=YES)")
+  field(VAL,  "0")
+}
+
+record(calcout, "$(P)$(R)$(CONFIG_PV_PREFIX)Page:Up") {
+  field(DESC, "Go to next page")
+  field(INPA, "$(P)$(R)$(CONFIG_PV_PREFIX)Page")
+  field(CALC, "max(0,a+1)")
+  field(OUT,  "$(P)$(R)$(CONFIG_PV_PREFIX)Page PP")
+}
+
+record(calcout, "$(P)$(R)$(CONFIG_PV_PREFIX)Page:Down") {
+  field(DESC, "Go to prev. page")
+  field(INPA, "$(P)$(R)$(CONFIG_PV_PREFIX)Page")
+  field(CALC, "max(0,a-1)")
+  field(OUT,  "$(P)$(R)$(CONFIG_PV_PREFIX)Page PP")
+}
+
+record(aSub,"$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoList") {
+  field(INAM, "configMenuList_init")
+  field(SNAM, "configMenuList_do")
+  field(EFLG, "ALWAYS")
+  field(FTA,  "STRING")
+  field(FTB,  "SHORT")
+  field(FTC,  "SHORT")
+  field(INPA, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ConfigName")
+  field(INPB, "$(P)$(R)$(CONFIG_PV_PREFIX)Page")
+  field(FTVA, "STRING")
+  field(FTVB, "STRING")
+  field(FTVC, "STRING")
+  field(FTVD, "STRING")
+  field(FTVE, "STRING")
+  field(FTVF, "STRING")
+  field(FTVG, "STRING")
+  field(FTVH, "STRING")
+  field(FTVI, "STRING")
+  field(FTVJ, "STRING")
+  field(FTVK, "STRING")
+  field(FTVL, "STRING")
+  field(FTVM, "STRING")
+  field(FTVN, "STRING")
+  field(FTVO, "STRING")
+  field(FTVP, "STRING")
+  field(FTVQ, "STRING")
+  field(FTVR, "STRING")
+  field(FTVS, "STRING")
+  field(FTVT, "STRING")
+  field(OUTA, "$(P)$(R)$(CONFIG_PV_PREFIX)File1:Name PP")
+  field(OUTB, "$(P)$(R)$(CONFIG_PV_PREFIX)File2:Name PP")
+  field(OUTC, "$(P)$(R)$(CONFIG_PV_PREFIX)File3:Name PP")
+  field(OUTD, "$(P)$(R)$(CONFIG_PV_PREFIX)File4:Name PP")
+  field(OUTE, "$(P)$(R)$(CONFIG_PV_PREFIX)File5:Name PP")
+  field(OUTF, "$(P)$(R)$(CONFIG_PV_PREFIX)File6:Name PP")
+  field(OUTG, "$(P)$(R)$(CONFIG_PV_PREFIX)File7:Name PP")
+  field(OUTH, "$(P)$(R)$(CONFIG_PV_PREFIX)File8:Name PP")
+  field(OUTI, "$(P)$(R)$(CONFIG_PV_PREFIX)File9:Name PP")
+  field(OUTJ, "$(P)$(R)$(CONFIG_PV_PREFIX)File10:Name PP")
+  field(OUTK, "$(P)$(R)$(CONFIG_PV_PREFIX)File1:Description PP")
+  field(OUTL, "$(P)$(R)$(CONFIG_PV_PREFIX)File2:Description PP")
+  field(OUTM, "$(P)$(R)$(CONFIG_PV_PREFIX)File3:Description PP")
+  field(OUTN, "$(P)$(R)$(CONFIG_PV_PREFIX)File4:Description PP")
+  field(OUTO, "$(P)$(R)$(CONFIG_PV_PREFIX)File5:Description PP")
+  field(OUTP, "$(P)$(R)$(CONFIG_PV_PREFIX)File6:Description PP")
+  field(OUTQ, "$(P)$(R)$(CONFIG_PV_PREFIX)File7:Description PP")
+  field(OUTR, "$(P)$(R)$(CONFIG_PV_PREFIX)File8:Description PP")
+  field(OUTS, "$(P)$(R)$(CONFIG_PV_PREFIX)File9:Description PP")
+  field(OUTT, "$(P)$(R)$(CONFIG_PV_PREFIX)File10:Description PP")
+}
+
+record(stringout, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ReqFile") {
+  field(VAL,  "$(CONFIG_NAME).req")
+}
+
+record(aSub,"$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave") {
+  field(INAM, "configMenu_init")
+  field(SNAM, "configMenu_do")
+  field(EFLG, "ALWAYS")
+  field(FTA,  "STRING")
+  field(FTB,  "LONG")
+  field(FTC,  "STRING")
+  field(FTD,  "LONG")
+  field(FTE,  "SHORT")
+  field(FTF,  "STRING")
+  field(FTG,  "STRING")
+  field(INPC, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveBusy")
+  field(INPE, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:IsSaveOp")
+  field(INPF, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ReqFile")
+  field(INPG, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ConfigName")
+  field(FTVA, "LONG")
+  field(FTVB, "LONG")
+  field(FTVC, "LONG")
+  field(OUTA, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:SetLoadSaveBusy PP")
+  field(OUTB, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ClearLoadSaveBusy PP")
+  field(OUTC, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveStatus PP")
+}
+
+record(bo, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveStatus") {
+  field(ZNAM, "Success")
+  field(ONAM, "Failure")
+}
+
+record(calcout, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:Status") {
+  field(CALC, "B==0 ? A : 2")
+  field(INPA, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveStatus CP")
+  field(INPB, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:Busy CP")
+  field(OUT,  "$(P)$(R)$(CONFIG_PV_PREFIX)Status PP")
+}
+
+record(mbbi, "$(P)$(R)$(CONFIG_PV_PREFIX)Status") {
+  field(DESC, "Status")
+  field(ZRVL, "0")
+  field(ZRST, "Success")
+  field(ONVL, "1")
+  field(ONST, "Failure")
+  field(TWVL, "2")
+  field(TWST, "Busy")
+}
+
+record(bo, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:SaveEnabled") {
+  field(DESC, "Allow saving files?")
+  field(DOL,  "$(ENABLE_SAVE=1)")
+  field(ZNAM, "No")
+  field(ONAM, "Yes")
+}
+
+record(calcout, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:SaveDisabled") {
+  field(INPA, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:Busy CP")
+  field(INPB, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:SaveEnabled CP")
+  field(CALC, "A==1 || B==0")
+  field(OUT,  "$(P)$(R)$(CONFIG_PV_PREFIX)SaveDisabled PP")
+}
+
+record(bi, "$(P)$(R)$(CONFIG_PV_PREFIX)SaveDisabled") {
+  field(DESC, "Save disabled?")
+  field(ZNAM, "Save enabled")
+  field(ZNAM, "Save disabled")
+}
+
+record(bi, "$(P)$(R)$(CONFIG_PV_PREFIX)LoadDisabled") {
+  field(DESC, "Load disabled?")
+  field(INP,  "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:Busy CP")
+  field(ZNAM, "Load enabled")
+  field(ONAM, "Load disabled")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:NamesToMenu") {
+  field(DOL1, "$(P)$(R)$(CONFIG_PV_PREFIX)File1:Name CP")
+  field(DOL2, "$(P)$(R)$(CONFIG_PV_PREFIX)File2:Name CP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)File3:Name CP")
+  field(DOL4, "$(P)$(R)$(CONFIG_PV_PREFIX)File4:Name CP")
+  field(DOL5, "$(P)$(R)$(CONFIG_PV_PREFIX)File5:Name CP")
+  field(DOL6, "$(P)$(R)$(CONFIG_PV_PREFIX)File6:Name CP")
+  field(DOL7, "$(P)$(R)$(CONFIG_PV_PREFIX)File7:Name CP")
+  field(DOL8, "$(P)$(R)$(CONFIG_PV_PREFIX)File8:Name CP")
+  field(DOL9, "$(P)$(R)$(CONFIG_PV_PREFIX)File9:Name CP")
+  field(DOLA, "$(P)$(R)$(CONFIG_PV_PREFIX)File10:Name CP")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Menu.ZRST")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Menu.ONST")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Menu.TWST")
+  field(LNK4, "$(P)$(R)$(CONFIG_PV_PREFIX)Menu.THST")
+  field(LNK5, "$(P)$(R)$(CONFIG_PV_PREFIX)Menu.FRST")
+  field(LNK6, "$(P)$(R)$(CONFIG_PV_PREFIX)Menu.FVST")
+  field(LNK7, "$(P)$(R)$(CONFIG_PV_PREFIX)Menu.SXST")
+  field(LNK8, "$(P)$(R)$(CONFIG_PV_PREFIX)Menu.SVST")
+  field(LNK9, "$(P)$(R)$(CONFIG_PV_PREFIX)Menu.EIST")
+  field(LNKA, "$(P)$(R)$(CONFIG_PV_PREFIX)Menu.NIST")
+}
+
+record(mbbo, "$(P)$(R)$(CONFIG_PV_PREFIX)Menu") {
+  field(ZRVL, "1")
+  field(ONVL, "2")
+  field(TWVL, "3")
+  field(THVL, "4")
+  field(FRVL, "5")
+  field(FVVL, "6")
+  field(SXVL, "7")
+  field(SVVL, "8")
+  field(EIVL, "9")
+  field(NIVL, "10")
+  field(OUT, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:MenuLoad.PROC PP")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:MenuLoad") {
+  field(SELM, "Specified")
+  field(SELL, "$(P)$(R)$(CONFIG_PV_PREFIX)Menu.RVAL")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)File1:Load.PROC PP")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)File2:Load.PROC PP")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)File3:Load.PROC PP")
+  field(LNK4, "$(P)$(R)$(CONFIG_PV_PREFIX)File4:Load.PROC PP")
+  field(LNK5, "$(P)$(R)$(CONFIG_PV_PREFIX)File5:Load.PROC PP")
+  field(LNK6, "$(P)$(R)$(CONFIG_PV_PREFIX)File6:Load.PROC PP")
+  field(LNK7, "$(P)$(R)$(CONFIG_PV_PREFIX)File7:Load.PROC PP")
+  field(LNK8, "$(P)$(R)$(CONFIG_PV_PREFIX)File8:Load.PROC PP")
+  field(LNK9, "$(P)$(R)$(CONFIG_PV_PREFIX)File9:Load.PROC PP")
+  field(LNKA, "$(P)$(R)$(CONFIG_PV_PREFIX)File10:Load.PROC PP")
+}
+
+record(stringout, "$(P)$(R)$(CONFIG_PV_PREFIX)File1:Name") {
+  field(DESC, "Configuration name")
+}
+
+record(stringout, "$(P)$(R)$(CONFIG_PV_PREFIX)File1:Description") {
+  field(DESC, "Configuration description")
+}
+
+record(bo, "$(P)$(R)$(CONFIG_PV_PREFIX)File1:Load") {
+  field(DESC, "Load configuration")
+  field(FLNK, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadFile1")
+  field(ZNAM, "Load")
+  field(ONAM, "Load")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadFile1") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)LoadDisabled")
+  field(DISV, "1")
+  field(DOL1, "1")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ExtendedBusy PP")
+  field(DOL2, "0")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:IsSaveOp NPP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)File1:Name")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.A NPP")
+  field(LNK4, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.PROC CA")
+  field(WAIT4, "Wait")
+  field(DOL5, "0")
+  field(LNK5, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:WriteAllCopyNameAndDesc1.PROC CA")
+  field(WAIT5, "Wait")
+  field(DOL6, "0")
+  field(LNK6, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ExtendedBusy PP")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:WriteAllCopyNameAndDesc1") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveStatus")
+  field(DISV, "1")
+  field(DOL1, "0")
+  field(LNK1, "$(P)$(R)WriteAll.PROC CA")
+  field(WAIT1, "Wait")
+  field(DOL2, "$(P)$(R)$(CONFIG_PV_PREFIX)File1:Name")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Name PP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:Menu:currDesc")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Description PP")
+}
+
+record(bo, "$(P)$(R)$(CONFIG_PV_PREFIX)File1:Save") {
+  field(DESC, "Save configuration")
+  field(FLNK, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:SaveFile1")
+  field(ZNAM, "Save")
+  field(ONAM, "Save")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:SaveFile1") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)SaveDisabled PP")
+  field(DISV, "1")
+  # We have to copy the description to the special "Menu:currDesc" record. This
+  # is necessary because Autosave looks for this name when extracting the
+  # description from the file.
+  field(DOL1, "$(P)$(R)$(CONFIG_PV_PREFIX)File1:Description")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:Menu:currDesc PP")
+  field(DOL2, "1")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:IsSaveOp NPP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)File1:Name")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.A NPP")
+  field(DOL4, "0")
+  field(LNK4, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.PROC CA")
+  field(WAIT4, "Wait")
+  field(DOL5, "0")
+  field(LNK5, "$(P)$(R)$(CONFIG_PV_PREFIX)IntrnlCopyNameAndDesc1.PROC")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)IntrnlCopyNameAndDesc1") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveStatus")
+  field(DISV, "1")
+  field(DOL1, "$(P)$(R)$(CONFIG_PV_PREFIX)File1:Name")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Name PP")
+  field(DOL2, "$(P)$(R)$(CONFIG_PV_PREFIX)File1:Description")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Description PP")
+}
+
+record(stringout, "$(P)$(R)$(CONFIG_PV_PREFIX)File2:Name") {
+  field(DESC, "Configuration name")
+}
+
+record(stringout, "$(P)$(R)$(CONFIG_PV_PREFIX)File2:Description") {
+  field(DESC, "Configuration description")
+}
+
+record(bo, "$(P)$(R)$(CONFIG_PV_PREFIX)File2:Load") {
+  field(DESC, "Load configuration")
+  field(FLNK, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadFile2")
+  field(ZNAM, "Load")
+  field(ONAM, "Load")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadFile2") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)LoadDisabled")
+  field(DISV, "1")
+  field(DOL1, "1")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ExtendedBusy PP")
+  field(DOL2, "0")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:IsSaveOp NPP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)File2:Name")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.A NPP")
+  field(LNK4, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.PROC CA")
+  field(WAIT4, "Wait")
+  field(DOL5, "0")
+  field(LNK5, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:WriteAllCopyNameAndDesc2.PROC CA")
+  field(WAIT5, "Wait")
+  field(DOL6, "0")
+  field(LNK6, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ExtendedBusy PP")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:WriteAllCopyNameAndDesc2") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveStatus")
+  field(DISV, "1")
+  field(DOL1, "0")
+  field(LNK1, "$(P)$(R)WriteAll.PROC CA")
+  field(WAIT1, "Wait")
+  field(DOL2, "$(P)$(R)$(CONFIG_PV_PREFIX)File2:Name")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Name PP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:Menu:currDesc")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Description PP")
+}
+
+record(bo, "$(P)$(R)$(CONFIG_PV_PREFIX)File2:Save") {
+  field(DESC, "Save configuration")
+  field(FLNK, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:SaveFile2")
+  field(ZNAM, "Save")
+  field(ONAM, "Save")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:SaveFile2") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)SaveDisabled PP")
+  field(DISV, "1")
+  # We have to copy the description to the special "Menu:currDesc" record. This
+  # is necessary because Autosave looks for this name when extracting the
+  # description from the file.
+  field(DOL1, "$(P)$(R)$(CONFIG_PV_PREFIX)File2:Description")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:Menu:currDesc PP")
+  field(DOL2, "1")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:IsSaveOp NPP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)File2:Name")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.A NPP")
+  field(DOL4, "0")
+  field(LNK4, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.PROC CA")
+  field(WAIT4, "Wait")
+  field(DOL5, "0")
+  field(LNK5, "$(P)$(R)$(CONFIG_PV_PREFIX)IntrnlCopyNameAndDesc2.PROC")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)IntrnlCopyNameAndDesc2") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveStatus")
+  field(DISV, "1")
+  field(DOL1, "$(P)$(R)$(CONFIG_PV_PREFIX)File2:Name")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Name PP")
+  field(DOL2, "$(P)$(R)$(CONFIG_PV_PREFIX)File2:Description")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Description PP")
+}
+
+record(stringout, "$(P)$(R)$(CONFIG_PV_PREFIX)File3:Name") {
+  field(DESC, "Configuration name")
+}
+
+record(stringout, "$(P)$(R)$(CONFIG_PV_PREFIX)File3:Description") {
+  field(DESC, "Configuration description")
+}
+
+record(bo, "$(P)$(R)$(CONFIG_PV_PREFIX)File3:Load") {
+  field(DESC, "Load configuration")
+  field(FLNK, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadFile3")
+  field(ZNAM, "Load")
+  field(ONAM, "Load")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadFile3") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)LoadDisabled")
+  field(DISV, "1")
+  field(DOL1, "1")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ExtendedBusy PP")
+  field(DOL2, "0")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:IsSaveOp NPP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)File3:Name")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.A NPP")
+  field(LNK4, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.PROC CA")
+  field(WAIT4, "Wait")
+  field(DOL5, "0")
+  field(LNK5, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:WriteAllCopyNameAndDesc3.PROC CA")
+  field(WAIT5, "Wait")
+  field(DOL6, "0")
+  field(LNK6, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ExtendedBusy PP")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:WriteAllCopyNameAndDesc3") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveStatus")
+  field(DISV, "1")
+  field(DOL1, "0")
+  field(LNK1, "$(P)$(R)WriteAll.PROC CA")
+  field(WAIT1, "Wait")
+  field(DOL2, "$(P)$(R)$(CONFIG_PV_PREFIX)File3:Name")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Name PP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:Menu:currDesc")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Description PP")
+}
+
+record(bo, "$(P)$(R)$(CONFIG_PV_PREFIX)File3:Save") {
+  field(DESC, "Save configuration")
+  field(FLNK, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:SaveFile3")
+  field(ZNAM, "Save")
+  field(ONAM, "Save")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:SaveFile3") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)SaveDisabled PP")
+  field(DISV, "1")
+  # We have to copy the description to the special "Menu:currDesc" record. This
+  # is necessary because Autosave looks for this name when extracting the
+  # description from the file.
+  field(DOL1, "$(P)$(R)$(CONFIG_PV_PREFIX)File3:Description")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:Menu:currDesc PP")
+  field(DOL2, "1")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:IsSaveOp NPP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)File3:Name")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.A NPP")
+  field(DOL4, "0")
+  field(LNK4, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.PROC CA")
+  field(WAIT4, "Wait")
+  field(DOL5, "0")
+  field(LNK5, "$(P)$(R)$(CONFIG_PV_PREFIX)IntrnlCopyNameAndDesc3.PROC")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)IntrnlCopyNameAndDesc3") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveStatus")
+  field(DISV, "1")
+  field(DOL1, "$(P)$(R)$(CONFIG_PV_PREFIX)File3:Name")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Name PP")
+  field(DOL2, "$(P)$(R)$(CONFIG_PV_PREFIX)File3:Description")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Description PP")
+}
+
+record(stringout, "$(P)$(R)$(CONFIG_PV_PREFIX)File4:Name") {
+  field(DESC, "Configuration name")
+}
+
+record(stringout, "$(P)$(R)$(CONFIG_PV_PREFIX)File4:Description") {
+  field(DESC, "Configuration description")
+}
+
+record(bo, "$(P)$(R)$(CONFIG_PV_PREFIX)File4:Load") {
+  field(DESC, "Load configuration")
+  field(FLNK, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadFile4")
+  field(ZNAM, "Load")
+  field(ONAM, "Load")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadFile4") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)LoadDisabled")
+  field(DISV, "1")
+  field(DOL1, "1")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ExtendedBusy PP")
+  field(DOL2, "0")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:IsSaveOp NPP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)File4:Name")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.A NPP")
+  field(LNK4, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.PROC CA")
+  field(WAIT4, "Wait")
+  field(DOL5, "0")
+  field(LNK5, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:WriteAllCopyNameAndDesc4.PROC CA")
+  field(WAIT5, "Wait")
+  field(DOL6, "0")
+  field(LNK6, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ExtendedBusy PP")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:WriteAllCopyNameAndDesc4") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveStatus")
+  field(DISV, "1")
+  field(DOL1, "0")
+  field(LNK1, "$(P)$(R)WriteAll.PROC CA")
+  field(WAIT1, "Wait")
+  field(DOL2, "$(P)$(R)$(CONFIG_PV_PREFIX)File4:Name")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Name PP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:Menu:currDesc")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Description PP")
+}
+
+record(bo, "$(P)$(R)$(CONFIG_PV_PREFIX)File4:Save") {
+  field(DESC, "Save configuration")
+  field(FLNK, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:SaveFile4")
+  field(ZNAM, "Save")
+  field(ONAM, "Save")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:SaveFile4") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)SaveDisabled PP")
+  field(DISV, "1")
+  # We have to copy the description to the special "Menu:currDesc" record. This
+  # is necessary because Autosave looks for this name when extracting the
+  # description from the file.
+  field(DOL1, "$(P)$(R)$(CONFIG_PV_PREFIX)File4:Description")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:Menu:currDesc PP")
+  field(DOL2, "1")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:IsSaveOp NPP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)File4:Name")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.A NPP")
+  field(DOL4, "0")
+  field(LNK4, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.PROC CA")
+  field(WAIT4, "Wait")
+  field(DOL5, "0")
+  field(LNK5, "$(P)$(R)$(CONFIG_PV_PREFIX)IntrnlCopyNameAndDesc4.PROC")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)IntrnlCopyNameAndDesc4") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveStatus")
+  field(DISV, "1")
+  field(DOL1, "$(P)$(R)$(CONFIG_PV_PREFIX)File4:Name")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Name PP")
+  field(DOL2, "$(P)$(R)$(CONFIG_PV_PREFIX)File4:Description")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Description PP")
+}
+
+record(stringout, "$(P)$(R)$(CONFIG_PV_PREFIX)File5:Name") {
+  field(DESC, "Configuration name")
+}
+
+record(stringout, "$(P)$(R)$(CONFIG_PV_PREFIX)File5:Description") {
+  field(DESC, "Configuration description")
+}
+
+record(bo, "$(P)$(R)$(CONFIG_PV_PREFIX)File5:Load") {
+  field(DESC, "Load configuration")
+  field(FLNK, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadFile5")
+  field(ZNAM, "Load")
+  field(ONAM, "Load")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadFile5") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)LoadDisabled")
+  field(DISV, "1")
+  field(DOL1, "1")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ExtendedBusy PP")
+  field(DOL2, "0")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:IsSaveOp NPP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)File5:Name")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.A NPP")
+  field(LNK4, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.PROC CA")
+  field(WAIT4, "Wait")
+  field(DOL5, "0")
+  field(LNK5, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:WriteAllCopyNameAndDesc5.PROC CA")
+  field(WAIT5, "Wait")
+  field(DOL6, "0")
+  field(LNK6, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ExtendedBusy PP")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:WriteAllCopyNameAndDesc5") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveStatus")
+  field(DISV, "1")
+  field(DOL1, "0")
+  field(LNK1, "$(P)$(R)WriteAll.PROC CA")
+  field(WAIT1, "Wait")
+  field(DOL2, "$(P)$(R)$(CONFIG_PV_PREFIX)File5:Name")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Name PP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:Menu:currDesc")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Description PP")
+}
+
+record(bo, "$(P)$(R)$(CONFIG_PV_PREFIX)File5:Save") {
+  field(DESC, "Save configuration")
+  field(FLNK, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:SaveFile5")
+  field(ZNAM, "Save")
+  field(ONAM, "Save")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:SaveFile5") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)SaveDisabled PP")
+  field(DISV, "1")
+  # We have to copy the description to the special "Menu:currDesc" record. This
+  # is necessary because Autosave looks for this name when extracting the
+  # description from the file.
+  field(DOL1, "$(P)$(R)$(CONFIG_PV_PREFIX)File5:Description")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:Menu:currDesc PP")
+  field(DOL2, "1")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:IsSaveOp NPP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)File5:Name")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.A NPP")
+  field(DOL4, "0")
+  field(LNK4, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.PROC CA")
+  field(WAIT4, "Wait")
+  field(DOL5, "0")
+  field(LNK5, "$(P)$(R)$(CONFIG_PV_PREFIX)IntrnlCopyNameAndDesc5.PROC")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)IntrnlCopyNameAndDesc5") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveStatus")
+  field(DISV, "1")
+  field(DOL1, "$(P)$(R)$(CONFIG_PV_PREFIX)File5:Name")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Name PP")
+  field(DOL2, "$(P)$(R)$(CONFIG_PV_PREFIX)File5:Description")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Description PP")
+}
+
+record(stringout, "$(P)$(R)$(CONFIG_PV_PREFIX)File6:Name") {
+  field(DESC, "Configuration name")
+}
+
+record(stringout, "$(P)$(R)$(CONFIG_PV_PREFIX)File6:Description") {
+  field(DESC, "Configuration description")
+}
+
+record(bo, "$(P)$(R)$(CONFIG_PV_PREFIX)File6:Load") {
+  field(DESC, "Load configuration")
+  field(FLNK, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadFile6")
+  field(ZNAM, "Load")
+  field(ONAM, "Load")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadFile6") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)LoadDisabled")
+  field(DISV, "1")
+  field(DOL1, "1")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ExtendedBusy PP")
+  field(DOL2, "0")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:IsSaveOp NPP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)File6:Name")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.A NPP")
+  field(LNK4, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.PROC CA")
+  field(WAIT4, "Wait")
+  field(DOL5, "0")
+  field(LNK5, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:WriteAllCopyNameAndDesc6.PROC CA")
+  field(WAIT5, "Wait")
+  field(DOL6, "0")
+  field(LNK6, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ExtendedBusy PP")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:WriteAllCopyNameAndDesc6") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveStatus")
+  field(DISV, "1")
+  field(DOL1, "0")
+  field(LNK1, "$(P)$(R)WriteAll.PROC CA")
+  field(WAIT1, "Wait")
+  field(DOL2, "$(P)$(R)$(CONFIG_PV_PREFIX)File6:Name")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Name PP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:Menu:currDesc")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Description PP")
+}
+
+record(bo, "$(P)$(R)$(CONFIG_PV_PREFIX)File6:Save") {
+  field(DESC, "Save configuration")
+  field(FLNK, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:SaveFile6")
+  field(ZNAM, "Save")
+  field(ONAM, "Save")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:SaveFile6") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)SaveDisabled PP")
+  field(DISV, "1")
+  # We have to copy the description to the special "Menu:currDesc" record. This
+  # is necessary because Autosave looks for this name when extracting the
+  # description from the file.
+  field(DOL1, "$(P)$(R)$(CONFIG_PV_PREFIX)File6:Description")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:Menu:currDesc PP")
+  field(DOL2, "1")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:IsSaveOp NPP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)File6:Name")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.A NPP")
+  field(DOL4, "0")
+  field(LNK4, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.PROC CA")
+  field(WAIT4, "Wait")
+  field(DOL5, "0")
+  field(LNK5, "$(P)$(R)$(CONFIG_PV_PREFIX)IntrnlCopyNameAndDesc6.PROC")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)IntrnlCopyNameAndDesc6") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveStatus")
+  field(DISV, "1")
+  field(DOL1, "$(P)$(R)$(CONFIG_PV_PREFIX)File6:Name")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Name PP")
+  field(DOL2, "$(P)$(R)$(CONFIG_PV_PREFIX)File6:Description")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Description PP")
+}
+
+record(stringout, "$(P)$(R)$(CONFIG_PV_PREFIX)File7:Name") {
+  field(DESC, "Configuration name")
+}
+
+record(stringout, "$(P)$(R)$(CONFIG_PV_PREFIX)File7:Description") {
+  field(DESC, "Configuration description")
+}
+
+record(bo, "$(P)$(R)$(CONFIG_PV_PREFIX)File7:Load") {
+  field(DESC, "Load configuration")
+  field(FLNK, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadFile7")
+  field(ZNAM, "Load")
+  field(ONAM, "Load")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadFile7") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)LoadDisabled")
+  field(DISV, "1")
+  field(DOL1, "1")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ExtendedBusy PP")
+  field(DOL2, "0")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:IsSaveOp NPP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)File7:Name")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.A NPP")
+  field(LNK4, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.PROC CA")
+  field(WAIT4, "Wait")
+  field(DOL5, "0")
+  field(LNK5, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:WriteAllCopyNameAndDesc7.PROC CA")
+  field(WAIT5, "Wait")
+  field(DOL6, "0")
+  field(LNK6, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ExtendedBusy PP")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:WriteAllCopyNameAndDesc7") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveStatus")
+  field(DISV, "1")
+  field(DOL1, "0")
+  field(LNK1, "$(P)$(R)WriteAll.PROC CA")
+  field(WAIT1, "Wait")
+  field(DOL2, "$(P)$(R)$(CONFIG_PV_PREFIX)File7:Name")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Name PP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:Menu:currDesc")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Description PP")
+}
+
+record(bo, "$(P)$(R)$(CONFIG_PV_PREFIX)File7:Save") {
+  field(DESC, "Save configuration")
+  field(FLNK, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:SaveFile7")
+  field(ZNAM, "Save")
+  field(ONAM, "Save")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:SaveFile7") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)SaveDisabled PP")
+  field(DISV, "1")
+  # We have to copy the description to the special "Menu:currDesc" record. This
+  # is necessary because Autosave looks for this name when extracting the
+  # description from the file.
+  field(DOL1, "$(P)$(R)$(CONFIG_PV_PREFIX)File7:Description")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:Menu:currDesc PP")
+  field(DOL2, "1")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:IsSaveOp NPP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)File7:Name")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.A NPP")
+  field(DOL4, "0")
+  field(LNK4, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.PROC CA")
+  field(WAIT4, "Wait")
+  field(DOL5, "0")
+  field(LNK5, "$(P)$(R)$(CONFIG_PV_PREFIX)IntrnlCopyNameAndDesc7.PROC")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)IntrnlCopyNameAndDesc7") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveStatus")
+  field(DISV, "1")
+  field(DOL1, "$(P)$(R)$(CONFIG_PV_PREFIX)File7:Name")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Name PP")
+  field(DOL2, "$(P)$(R)$(CONFIG_PV_PREFIX)File7:Description")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Description PP")
+}
+
+record(stringout, "$(P)$(R)$(CONFIG_PV_PREFIX)File8:Name") {
+  field(DESC, "Configuration name")
+}
+
+record(stringout, "$(P)$(R)$(CONFIG_PV_PREFIX)File8:Description") {
+  field(DESC, "Configuration description")
+}
+
+record(bo, "$(P)$(R)$(CONFIG_PV_PREFIX)File8:Load") {
+  field(DESC, "Load configuration")
+  field(FLNK, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadFile8")
+  field(ZNAM, "Load")
+  field(ONAM, "Load")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadFile8") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)LoadDisabled")
+  field(DISV, "1")
+  field(DOL1, "1")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ExtendedBusy PP")
+  field(DOL2, "0")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:IsSaveOp NPP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)File8:Name")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.A NPP")
+  field(LNK4, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.PROC CA")
+  field(WAIT4, "Wait")
+  field(DOL5, "0")
+  field(LNK5, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:WriteAllCopyNameAndDesc8.PROC CA")
+  field(WAIT5, "Wait")
+  field(DOL6, "0")
+  field(LNK6, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ExtendedBusy PP")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:WriteAllCopyNameAndDesc8") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveStatus")
+  field(DISV, "1")
+  field(DOL1, "0")
+  field(LNK1, "$(P)$(R)WriteAll.PROC CA")
+  field(WAIT1, "Wait")
+  field(DOL2, "$(P)$(R)$(CONFIG_PV_PREFIX)File8:Name")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Name PP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:Menu:currDesc")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Description PP")
+}
+
+record(bo, "$(P)$(R)$(CONFIG_PV_PREFIX)File8:Save") {
+  field(DESC, "Save configuration")
+  field(FLNK, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:SaveFile8")
+  field(ZNAM, "Save")
+  field(ONAM, "Save")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:SaveFile8") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)SaveDisabled PP")
+  field(DISV, "1")
+  # We have to copy the description to the special "Menu:currDesc" record. This
+  # is necessary because Autosave looks for this name when extracting the
+  # description from the file.
+  field(DOL1, "$(P)$(R)$(CONFIG_PV_PREFIX)File8:Description")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:Menu:currDesc PP")
+  field(DOL2, "1")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:IsSaveOp NPP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)File8:Name")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.A NPP")
+  field(DOL4, "0")
+  field(LNK4, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.PROC CA")
+  field(WAIT4, "Wait")
+  field(DOL5, "0")
+  field(LNK5, "$(P)$(R)$(CONFIG_PV_PREFIX)IntrnlCopyNameAndDesc8.PROC")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)IntrnlCopyNameAndDesc8") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveStatus")
+  field(DISV, "1")
+  field(DOL1, "$(P)$(R)$(CONFIG_PV_PREFIX)File8:Name")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Name PP")
+  field(DOL2, "$(P)$(R)$(CONFIG_PV_PREFIX)File8:Description")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Description PP")
+}
+
+record(stringout, "$(P)$(R)$(CONFIG_PV_PREFIX)File9:Name") {
+  field(DESC, "Configuration name")
+}
+
+record(stringout, "$(P)$(R)$(CONFIG_PV_PREFIX)File9:Description") {
+  field(DESC, "Configuration description")
+}
+
+record(bo, "$(P)$(R)$(CONFIG_PV_PREFIX)File9:Load") {
+  field(DESC, "Load configuration")
+  field(FLNK, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadFile9")
+  field(ZNAM, "Load")
+  field(ONAM, "Load")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadFile9") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)LoadDisabled")
+  field(DISV, "1")
+  field(DOL1, "1")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ExtendedBusy PP")
+  field(DOL2, "0")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:IsSaveOp NPP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)File9:Name")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.A NPP")
+  field(LNK4, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.PROC CA")
+  field(WAIT4, "Wait")
+  field(DOL5, "0")
+  field(LNK5, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:WriteAllCopyNameAndDesc9.PROC CA")
+  field(WAIT5, "Wait")
+  field(DOL6, "0")
+  field(LNK6, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ExtendedBusy PP")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:WriteAllCopyNameAndDesc9") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveStatus")
+  field(DISV, "1")
+  field(DOL1, "0")
+  field(LNK1, "$(P)$(R)WriteAll.PROC CA")
+  field(WAIT1, "Wait")
+  field(DOL2, "$(P)$(R)$(CONFIG_PV_PREFIX)File9:Name")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Name PP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:Menu:currDesc")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Description PP")
+}
+
+record(bo, "$(P)$(R)$(CONFIG_PV_PREFIX)File9:Save") {
+  field(DESC, "Save configuration")
+  field(FLNK, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:SaveFile9")
+  field(ZNAM, "Save")
+  field(ONAM, "Save")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:SaveFile9") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)SaveDisabled PP")
+  field(DISV, "1")
+  # We have to copy the description to the special "Menu:currDesc" record. This
+  # is necessary because Autosave looks for this name when extracting the
+  # description from the file.
+  field(DOL1, "$(P)$(R)$(CONFIG_PV_PREFIX)File9:Description")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:Menu:currDesc PP")
+  field(DOL2, "1")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:IsSaveOp NPP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)File9:Name")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.A NPP")
+  field(DOL4, "0")
+  field(LNK4, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.PROC CA")
+  field(WAIT4, "Wait")
+  field(DOL5, "0")
+  field(LNK5, "$(P)$(R)$(CONFIG_PV_PREFIX)IntrnlCopyNameAndDesc9.PROC")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)IntrnlCopyNameAndDesc9") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveStatus")
+  field(DISV, "1")
+  field(DOL1, "$(P)$(R)$(CONFIG_PV_PREFIX)File9:Name")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Name PP")
+  field(DOL2, "$(P)$(R)$(CONFIG_PV_PREFIX)File9:Description")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Description PP")
+}
+
+record(stringout, "$(P)$(R)$(CONFIG_PV_PREFIX)File10:Name") {
+  field(DESC, "Configuration name")
+}
+
+record(stringout, "$(P)$(R)$(CONFIG_PV_PREFIX)File10:Description") {
+  field(DESC, "Configuration description")
+}
+
+record(bo, "$(P)$(R)$(CONFIG_PV_PREFIX)File10:Load") {
+  field(DESC, "Load configuration")
+  field(FLNK, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadFile10")
+  field(ZNAM, "Load")
+  field(ONAM, "Load")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadFile10") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)LoadDisabled")
+  field(DISV, "1")
+  field(DOL1, "1")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ExtendedBusy PP")
+  field(DOL2, "0")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:IsSaveOp NPP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)File10:Name")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.A NPP")
+  field(LNK4, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.PROC CA")
+  field(WAIT4, "Wait")
+  field(DOL5, "0")
+  field(LNK5, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:WriteAllCopyNameAndDesc10.PROC CA")
+  field(WAIT5, "Wait")
+  field(DOL6, "0")
+  field(LNK6, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:ExtendedBusy PP")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:WriteAllCopyNameAndDesc10") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveStatus")
+  field(DISV, "1")
+  field(DOL1, "0")
+  field(LNK1, "$(P)$(R)WriteAll.PROC CA")
+  field(WAIT1, "Wait")
+  field(DOL2, "$(P)$(R)$(CONFIG_PV_PREFIX)File10:Name")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Name PP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:Menu:currDesc")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Description PP")
+}
+
+record(bo, "$(P)$(R)$(CONFIG_PV_PREFIX)File10:Save") {
+  field(DESC, "Save configuration")
+  field(FLNK, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:SaveFile10")
+  field(ZNAM, "Save")
+  field(ONAM, "Save")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:SaveFile10") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)SaveDisabled PP")
+  field(DISV, "1")
+  # We have to copy the description to the special "Menu:currDesc" record. This
+  # is necessary because Autosave looks for this name when extracting the
+  # description from the file.
+  field(DOL1, "$(P)$(R)$(CONFIG_PV_PREFIX)File10:Description")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:Menu:currDesc PP")
+  field(DOL2, "1")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:IsSaveOp NPP")
+  field(DOL3, "$(P)$(R)$(CONFIG_PV_PREFIX)File10:Name")
+  field(LNK3, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.A NPP")
+  field(DOL4, "0")
+  field(LNK4, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:DoLoadSave.PROC CA")
+  field(WAIT4, "Wait")
+  field(DOL5, "0")
+  field(LNK5, "$(P)$(R)$(CONFIG_PV_PREFIX)IntrnlCopyNameAndDesc10.PROC")
+}
+
+record(sseq, "$(P)$(R)$(CONFIG_PV_PREFIX)IntrnlCopyNameAndDesc10") {
+  field(SDIS, "$(P)$(R)$(CONFIG_PV_PREFIX)Intrnl:LoadSaveStatus")
+  field(DISV, "1")
+  field(DOL1, "$(P)$(R)$(CONFIG_PV_PREFIX)File10:Name")
+  field(LNK1, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Name PP")
+  field(DOL2, "$(P)$(R)$(CONFIG_PV_PREFIX)File10:Description")
+  field(LNK2, "$(P)$(R)$(CONFIG_PV_PREFIX)Current:Description PP")
+}
