@@ -130,10 +130,12 @@ long processRecord(void *recordVoid) {
   } catch (std::exception &e) {
     errorExtendedPrintf("%s Record processing failed: %s", record->name,
         e.what());
+    recGblSetSevr(record, SOFT_ALARM, INVALID_ALARM);
     return -1;
   } catch (...) {
     errorExtendedPrintf("%s Record processing failed: Unknown error.",
         record->name);
+    recGblSetSevr(record, SOFT_ALARM, INVALID_ALARM);
     return -1;
   }
   return 0;
