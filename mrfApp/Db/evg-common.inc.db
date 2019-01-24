@@ -352,12 +352,71 @@ record(fanout, "$(P)$(R)Intrnl:Event:Soft:Pending:Scan") {
   field(FLNK, "$(P)$(R)Event:Soft:Pending")
 }
 
+# The software event enabled flag and the software event code share the same
+# register. This has the consequence that when enabling (or reenabling) the
+# software event, the last used event code is sent because it is still in the
+# register. In order to avoid this, we use two separate records for enabling and
+# disabling software events. This way, we clear the event code stored inside the
+# device when enabling software events (effectively, we send a null event, which
+# should not have any effects).
+# As we still want the record to be initialized from the current setting in the
+# device, we use a separate record for reading the state of the flag from the
+# device during initialization and copy it from that record once.
 record(bo, "$(P)$(R)Event:Soft:Enabled") {
   field(DESC, "Enable software event?")
-  field(DTYP, "MRF Memory")
-  field(OUT,  "@$(DEVICE) 0x0018[8] uint32")
+  field(FLNK, "$(P)$(R)Intrnl:Event:Soft:Enabled:Changed")
   field(ZNAM, "Disabled")
   field(ONAM, "Enabled")
+}
+
+# This record reads the software event enabled flag from the device once during
+# initialization.
+record(bi, "$(P)$(R)Intrnl:Event:Soft:Enabled:Init1") {
+  field(DTYP, "MRF Memory")
+  field(INP,  "@$(DEVICE) 0x0018[8] uint32")
+  field(PINI, "YES")
+  field(FLNK, "$(P)$(R)Intrnl:Event:Soft:Enabled:Init2")
+}
+
+# This record copies the value read from the device to the record that is
+# visible to the user.
+record(bo, "$(P)$(R)Intrnl:Event:Soft:Enabled:Init2") {
+  field(OUT,  "$(P)$(R)Event:Soft:Enabled MSS PP")
+  field(OMSL, "closed_loop")
+  field(DOL,  "$(P)$(R)Intrnl:Event:Soft:Enabled:Init1 MSS")
+}
+
+# This record is always processed when Event:Soft:Enabled is processed. It
+# delegates to the two records that take care of actually enabling or disabling
+# the flag.
+record(fanout, "$(P)$(R)Intrnl:Event:Soft:Enabled:Changed") {
+  field(LNK1, "$(P)$(R)Intrnl:Event:Soft:Enable")
+  field(LNK2, "$(P)$(R)Intrnl:Event:Soft:Disable")
+}
+
+# When enabling the software event, we overwrite the event code with zeros so
+# that a null event is sent. The device always sends a software event when we
+# write to the register and the corresponding flag is enabled, even if we just
+# wanted to enable the flag and not send an event.
+record(longout, "$(P)$(R)Intrnl:Event:Soft:Enable") {
+  field(DTYP, "MRF Memory")
+  field(OUT,  "@$(DEVICE) 0x0018[8:0] uint32 no_read_on_init")
+  field(OMSL, "closed_loop")
+  field(DOL,  "256")
+  field(SDIS, "$(P)$(R)Event:Soft:Enabled")
+  field(DISV, "0")
+}
+
+# When disabling the software event, it is sufficient to clear the enabled flag.
+# If this flag is zero, the event code also stored in the register is not going
+# to be sent.
+record(bo, "$(P)$(R)Intrnl:Event:Soft:Disable") {
+  field(DTYP, "MRF Memory")
+  field(OUT,  "@$(DEVICE) 0x0018[8] uint32 no_read_on_init")
+  field(OMSL, "closed_loop")
+  field(DOL,  "$(P)$(R)Intrnl:False")
+  field(SDIS, "$(P)$(R)Event:Soft:Enabled")
+  field(DISV, "1")
 }
 
 # Writing to this record causes the written event code to be sent.
