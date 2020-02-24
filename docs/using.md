@@ -19,6 +19,7 @@ The IOC has to be linked against the following libraries:
 - [IOC startup configuration](#ioc-startup-configuration)
 - [Autosave support](#autosave-support)
 - [Interrupt handling](#interrupt-handling)
+- [Clock generator configuration](#clock-generator-configuration)
 - [GUI / OPI panels](#gui--opi-panels)
 
 
@@ -66,6 +67,16 @@ default values are used.
 <th>Parameter Name</th>
 <th>Description</th>
 <th>Default Value</th>
+</tr>
+<tr>
+<td><code>CLK_GEN_CW_x</code></td>
+<td>Configuration word for the internal clock generator. See <a href="#clock-generator-configuration">Clock generator configuration</a> for details.</td>
+<td>Depends on <code>x</code>.</td>
+</tr>
+<tr>
+<td><code>CLK_GEN_F_x</code></td>
+<td>Frequency for the internal clock generator. See <a href="#clock-generator-configuration">Clock generator configuration</a> for details.</td>
+<td>Depends on <code>x</code>.</td>
 </tr>
 <tr>
 <td><code>UNIV_OUT_x_y_INSTALLED</code></td>
@@ -124,6 +135,16 @@ default values are used.
 <th>Default Value</th>
 </tr>
 <tr>
+<td><code>CLK_GEN_CW_x</code></td>
+<td>Configuration word for the internal clock generator. See <a href="#clock-generator-configuration">Clock generator configuration</a> for details.</td>
+<td>Depends on <code>x</code>.</td>
+</tr>
+<tr>
+<td><code>CLK_GEN_F_x</code></td>
+<td>Frequency for the internal clock generator. See <a href="#clock-generator-configuration">Clock generator configuration</a> for details.</td>
+<td>Depends on <code>x</code>.</td>
+</tr>
+<tr>
 <td><code>UNIV_OUT_x_y_INSTALLED</code></td>
 <td><code>0</code> if the corresponding universal output module (front panel) is not installed, <code>1</code> if it is installed.</td>
 <td><code>0</code></td>
@@ -170,6 +191,27 @@ The following parameters have to be passed to `dbLoadRecords`:
 <tr>
 <td><code>DEVICE</code></td>
 <td>Name of the device (must be the name that is specified when calling <code>mrfMmapMtcaEvr300Device</code>).</td>
+</tr>
+</table>
+
+The following parameters are optional. If they are not specified, the respective
+default values are used.
+
+<table>
+<tr>
+<th>Parameter Name</th>
+<th>Description</th>
+<th>Default Value</th>
+</tr>
+<tr>
+<td><code>CLK_GEN_CW_x</code></td>
+<td>Configuration word for the internal clock generator. See <a href="#clock-generator-configuration">Clock generator configuration</a> for details.</td>
+<td>Depends on <code>x</code>.</td>
+</tr>
+<tr>
+<td><code>CLK_GEN_F_x</code></td>
+<td>Frequency for the internal clock generator. See <a href="#clock-generator-configuration">Clock generator configuration</a> for details.</td>
+<td>Depends on <code>x</code>.</td>
 </tr>
 </table>
 
@@ -366,6 +408,203 @@ in the mask is set in the interrupt flag register.
 Such a record can also be used with a different scan mode, but in this case it
 is much less useful: When being processed (e.g. periodically or by another
 trigger) it will simply get the value that corresponds to the last interrupt.
+
+
+Clock generator configuration
+-----------------------------
+
+Each of the EVGs and EVRs has an internal clock generator. This clock generator
+is based on a fixed frequency oscillator combined with a SY87739L fractional
+divider. In order to set the frequency of the internal clock, this fractional
+divider has to be configured.
+
+Each frequency corresponds to a configuration word for the SY87739L chip. The
+configuration word that is needed to get a specific frequency can be calculated
+using a Python script (`utils/sy87739l-convert.py`) that is distributed with
+this device support.
+
+Please note that the difference between the actual event clock frequency (as
+derived by dividing the external reference clock fed to the EVG) and the
+frequency of the internal clock generator must be less than 100 ppm. If the
+difference is larger, the PLL might not properly lock to the reference, which
+can result in EVRs losing their link to the EVG and similar problems.
+
+This frequency of the internal clock generator can be configurated through the
+process variable `$(P)$(R)EventClock:Gen:Freq`. This PV is an enum, so that 16
+different frequencies can be selected.
+
+Each available frequency is configured by a pair of configuration macros that
+have to be passed to `dbLoadRecords` when loading the record file for an EVG or
+EVR. When a macro is not specified, its default value according to the following
+table is used.
+
+<table>
+<tr>
+<th>Parameter Name</th>
+<th>Description</th>
+<th>Default Value</th>
+</tr>
+<tr>
+<td><code>CLK_GEN_CW_0</code></td>
+<td>Configuration word corresponding to the 1<sup>st</sup> enum value.</td>
+<td><code>0x00de816d</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_F_0</code></td>
+<td>Frequency corresponding to the 1<sup>st</sup> enum value.</td>
+<td><code>125 MHz</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_CW_1</code></td>
+<td>Configuration word corresponding to the 2<sup>nd</sup> enum value.</td>
+<td><code>0x0c928166</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_F_1</code></td>
+<td>Frequency corresponding to the 2<sup>nd</sup> enum value.</td>
+<td><code>124.908 MHz</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_CW_2</code></td>
+<td>Configuration word corresponding to the 3<sup>rd</sup> enum value.</td>
+<td><code>0x018741ad</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_F_2</code></td>
+<td>Frequency corresponding to the 3<sup>rd</sup> enum value.</td>
+<td><code>119 MHz</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_CW_3</code></td>
+<td>Configuration word corresponding to the 4<sup>th</sup> enum value.</td>
+<td><code>0x072f01ad</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_F_3</code></td>
+<td>Frequency corresponding to the 4<sup>th</sup> enum value.</td>
+<td><code>114.24 MHz</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_CW_4</code></td>
+<td>Configuration word corresponding to the 5<sup>th</sup> enum value.</td>
+<td><code>0x049e81ad</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_F_4</code></td>
+<td>Frequency corresponding to the 5<sup>th</sup> enum value.</td>
+<td><code>106.25 MHz</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_CW_5</code></td>
+<td>Configuration word corresponding to the 6<sup>th</sup> enum value.</td>
+<td><code>0x008201ad</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_F_5</code></td>
+<td>Frequency corresponding to the 6<sup>th</sup> enum value.</td>
+<td><code>100 MHz</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_CW_6</code></td>
+<td>Configuration word corresponding to the 7<sup>th</sup> enum value.</td>
+<td><code>0x025b41ed</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_F_6</code></td>
+<td>Frequency corresponding to the 7<sup>th</sup> enum value.</td>
+<td><code>99.956 MHz</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_CW_7</code></td>
+<td>Configuration word corresponding to the 8<sup>th</sup> enum value.</td>
+<td><code>0x0187422d</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_F_7</code></td>
+<td>Frequency corresponding to the 8<sup>th</sup> enum value.</td>
+<td><code>89.25 MHz</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_CW_8</code></td>
+<td>Configuration word corresponding to the 9<sup>th</sup> enum value.</td>
+<td><code>0x0082822d</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_F_8</code></td>
+<td>Frequency corresponding to the 9<sup>th</sup> enum value.</td>
+<td><code>81 MHz</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_CW_9</code></td>
+<td>Configuration word corresponding to the 10<sup>th</sup> enum value.</td>
+<td><code>0x0106822d</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_F_9</code></td>
+<td>Frequency corresponding to the 10<sup>th</sup> enum value.</td>
+<td><code>80 MHz</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_CW_10</code></td>
+<td>Configuration word corresponding to the 11<sup>th</sup> enum value.</td>
+<td><code>0x019e822d</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_F_10</code></td>
+<td>Frequency corresponding to the 11<sup>th</sup> enum value.</td>
+<td><code>78.9 MHz</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_CW_11</code></td>
+<td>Configuration word corresponding to the 12<sup>th</sup> enum value.</td>
+<td><code>0x018742ad</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_F_11</code></td>
+<td>Frequency corresponding to the 12<sup>th</sup> enum value.</td>
+<td><code>71.4 MHz</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_CW_12</code></td>
+<td>Configuration word corresponding to the 13<sup>th</sup> enum value.</td>
+<td><code>0x0c9282a6</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_F_12</code></td>
+<td>Frequency corresponding to the 13<sup>th</sup> enum value.</td>
+<td><code>62.454 MHz</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_CW_13</code></td>
+<td>Configuration word corresponding to the 14<sup>th</sup> enum value.</td>
+<td><code>0x009743ad</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_F_13</code></td>
+<td>Frequency corresponding to the 14<sup>th</sup> enum value.</td>
+<td><code>50 MHz</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_CW_14</code></td>
+<td>Configuration word corresponding to the 15<sup>th</sup> enum value.</td>
+<td><code>0xc25b43ad</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_F_14</code></td>
+<td>Frequency corresponding to the 15<sup>th</sup> enum value.</td>
+<td><code>49.978 MHz</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_CW_15</code></td>
+<td>Configuration word corresponding to the 16<sup>th</sup> enum value.</td>
+<td><code>0x0176c36d</code></td>
+</tr>
+<tr>
+<td><code>CLK_GEN_F_15</code></td>
+<td>Frequency corresponding to the 16<sup>th</sup> enum value.</td>
+<td><code>49.965 MHz</code></td>
+</tr>
+</table>
 
 
 GUI / OPI panels
