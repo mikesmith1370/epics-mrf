@@ -56,17 +56,31 @@ The following parameters have to be passed to `dbLoadRecords`:
 <td><code>DEVICE</code></td>
 <td>Name of the device (must be the name that is specified when calling <code>mrfUdpIpEvgDevice</code>).</td>
 </tr>
+</table>
+
+The following parameters are optional. If they are not specified, the respective
+default values are used.
+
+<table>
+<tr>
+<th>Parameter Name</th>
+<th>Description</th>
+<th>Default Value</th>
+</tr>
 <tr>
 <td><code>UNIV_OUT_x_y_INSTALLED</code></td>
 <td><code>0</code> if the corresponding universal output module is not installed, <code>1</code> if it is installed.</td>
+<td><code>0</code></td>
 </tr>
 <tr>
 <td><code>UNIV_IN_x_y_INSTALLED</code></td>
 <td><code>0</code> if the corresponding universal input module (front panel) is not installed, <code>1</code> if it is installed.</td>
+<td><code>0</code></td>
 </tr>
 <tr>
 <td><code>TB_UNIV_IN_x_y_INSTALLED</code></td>
 <td><code>0</code> if the corresponding universal input module (transition board) is not installed, <code>1</code> if it is installed.</td>
+<td><code>0</code></td>
 </tr>
 </table>
 
@@ -98,17 +112,31 @@ The following parameters have to be passed to `dbLoadRecords`:
 <td><code>DEVICE</code></td>
 <td>Name of the device (must be the name that is specified when calling <code>mrfUdpIpEvrDevice</code>).</td>
 </tr>
+</table>
+
+The following parameters are optional. If they are not specified, the respective
+default values are used.
+
+<table>
+<tr>
+<th>Parameter Name</th>
+<th>Description</th>
+<th>Default Value</th>
+</tr>
 <tr>
 <td><code>UNIV_OUT_x_y_INSTALLED</code></td>
 <td><code>0</code> if the corresponding universal output module (front panel) is not installed, <code>1</code> if it is installed.</td>
+<td><code>0</code></td>
 </tr>
 <tr>
 <td><code>UNIV_OUT_x_y_FD_AVAILABLE</code></td>
 <td><code>0</code> if the corresponding universal output module (front panel) is not installed or does not allow specifying a fine delay, <code>1</code> if it is installed and allows specifying a fine delay.</td>
+<td><code>0</code></td>
 </tr>
 <tr>
 <td><code>TB_UNIV_OUT_x_y_INSTALLED</code></td>
 <td><code>0</code> if the corresponding universal output module (transition board) is not installed, <code>1</code> if it is installed.</td>
+<td><code>0</code></td>
 </tr>
 </table>
 

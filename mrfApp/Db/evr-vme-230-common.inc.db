@@ -159,7 +159,7 @@ record(bi, "$(P)$(R)EventClock:RecDCM:RUNFlag") {
 record(bi, "$(P)$(R)UnivOut0:FineDelayAvailable") {
   field(DESC, "Univ. outp. mod. 0/1 fine delay avail.?")
   field(PINI, "YES")
-  field(VAL,  "$(UNIV_OUT_0_1_FD_AVAILABLE)")
+  field(VAL,  "$(UNIV_OUT_0_1_FD_AVAILABLE=0)")
   field(ZNAM, "Not available")
   field(ONAM, "Available")
 }
@@ -167,7 +167,7 @@ record(bi, "$(P)$(R)UnivOut0:FineDelayAvailable") {
 record(bi, "$(P)$(R)UnivOut1:FineDelayAvailable") {
   field(DESC, "Univ. outp. mod. 0/1 fine delay avail.?")
   field(PINI, "YES")
-  field(VAL,  "$(UNIV_OUT_0_1_FD_AVAILABLE)")
+  field(VAL,  "$(UNIV_OUT_0_1_FD_AVAILABLE=0)")
   field(ZNAM, "Not available")
   field(ONAM, "Available")
 }
@@ -221,7 +221,7 @@ record(longout, "$(P)$(R)Intrnl:UnivOut01:FineDelay:Raw") {
 record(bi, "$(P)$(R)UnivOut2:FineDelayAvailable") {
   field(DESC, "Univ. outp. mod. 2/3 fine delay avail.?")
   field(PINI, "YES")
-  field(VAL,  "$(UNIV_OUT_2_3_FD_AVAILABLE)")
+  field(VAL,  "$(UNIV_OUT_2_3_FD_AVAILABLE=0)")
   field(ZNAM, "Not available")
   field(ONAM, "Available")
 }
@@ -229,7 +229,7 @@ record(bi, "$(P)$(R)UnivOut2:FineDelayAvailable") {
 record(bi, "$(P)$(R)UnivOut3:FineDelayAvailable") {
   field(DESC, "Univ. outp. mod. 2/3 fine delay avail.?")
   field(PINI, "YES")
-  field(VAL,  "$(UNIV_OUT_2_3_FD_AVAILABLE)")
+  field(VAL,  "$(UNIV_OUT_2_3_FD_AVAILABLE=0)")
   field(ZNAM, "Not available")
   field(ONAM, "Available")
 }

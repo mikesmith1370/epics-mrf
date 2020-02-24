@@ -2161,7 +2161,7 @@ record(fanout, "$(P)$(R)Intrnl:WriteAll:MXC7:Fout1") {
 record(bi, "$(P)$(R)UnivOut0:Installed") {
   field(DESC, "Universal output module 0/1 installed?")
   field(PINI, "YES")
-  field(VAL,  "$(UNIV_OUT_0_1_INSTALLED)")
+  field(VAL,  "$(UNIV_OUT_0_1_INSTALLED=0)")
   field(ZNAM, "Not installed")
   field(ONAM, "Installed")
 }
@@ -2195,7 +2195,7 @@ record(mbbo, "$(P)$(R)UnivOut0:Map") {
 record(bi, "$(P)$(R)UnivOut1:Installed") {
   field(DESC, "Universal output module 0/1 installed?")
   field(PINI, "YES")
-  field(VAL,  "$(UNIV_OUT_0_1_INSTALLED)")
+  field(VAL,  "$(UNIV_OUT_0_1_INSTALLED=0)")
   field(ZNAM, "Not installed")
   field(ONAM, "Installed")
 }
@@ -2229,7 +2229,7 @@ record(mbbo, "$(P)$(R)UnivOut1:Map") {
 record(bi, "$(P)$(R)UnivOut2:Installed") {
   field(DESC, "Universal output module 2/3 installed?")
   field(PINI, "YES")
-  field(VAL,  "$(UNIV_OUT_2_3_INSTALLED)")
+  field(VAL,  "$(UNIV_OUT_2_3_INSTALLED=0)")
   field(ZNAM, "Not installed")
   field(ONAM, "Installed")
 }
@@ -2263,7 +2263,7 @@ record(mbbo, "$(P)$(R)UnivOut2:Map") {
 record(bi, "$(P)$(R)UnivOut3:Installed") {
   field(DESC, "Universal output module 2/3 installed?")
   field(PINI, "YES")
-  field(VAL,  "$(UNIV_OUT_2_3_INSTALLED)")
+  field(VAL,  "$(UNIV_OUT_2_3_INSTALLED=0)")
   field(ZNAM, "Not installed")
   field(ONAM, "Installed")
 }
@@ -2673,7 +2673,7 @@ record(fanout, "$(P)$(R)Intrnl:WriteAll:FPIn1:Fout3") {
 record(bi, "$(P)$(R)UnivIn0:Installed") {
   field(DESC, "Universal input module 0/1 installed?")
   field(PINI, "YES")
-  field(VAL,  "$(UNIV_IN_0_1_INSTALLED)")
+  field(VAL,  "$(UNIV_IN_0_1_INSTALLED=0)")
   field(ZNAM, "Not installed")
   field(ONAM, "Installed")
 }
@@ -2867,7 +2867,7 @@ record(fanout, "$(P)$(R)Intrnl:WriteAll:UnivIn0:Fout3") {
 record(bi, "$(P)$(R)UnivIn1:Installed") {
   field(DESC, "Universal input module 0/1 installed?")
   field(PINI, "YES")
-  field(VAL,  "$(UNIV_IN_0_1_INSTALLED)")
+  field(VAL,  "$(UNIV_IN_0_1_INSTALLED=0)")
   field(ZNAM, "Not installed")
   field(ONAM, "Installed")
 }
@@ -3095,7 +3095,7 @@ record(fanout, "$(P)$(R)Intrnl:WriteAll:UnivIn2:Fout3") {
 record(bi, "$(P)$(R)UnivIn2:Installed") {
   field(DESC, "Universal input module 2/3 installed?")
   field(PINI, "YES")
-  field(VAL,  "$(UNIV_IN_2_3_INSTALLED)")
+  field(VAL,  "$(UNIV_IN_2_3_INSTALLED=0)")
   field(ZNAM, "Not installed")
   field(ONAM, "Installed")
 }
@@ -3255,7 +3255,7 @@ record(bo, "$(P)$(R)UnivIn2:MapTo:EvTrig0") {
 record(bi, "$(P)$(R)UnivIn3:Installed") {
   field(DESC, "Universal input module 2/3 installed?")
   field(PINI, "YES")
-  field(VAL,  "$(UNIV_IN_2_3_INSTALLED)")
+  field(VAL,  "$(UNIV_IN_2_3_INSTALLED=0)")
   field(ZNAM, "Not installed")
   field(ONAM, "Installed")
 }

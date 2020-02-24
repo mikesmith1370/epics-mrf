@@ -641,7 +641,7 @@ record(mbbo, "$(P)$(R)FPOut3:Map") {
 record(bi, "$(P)$(R)TBIn0:Installed") {
   field(DESC, "TB univ. input module 0/1 installed?")
   field(PINI, "YES")
-  field(VAL,  "$(TB_UNIV_IN_0_1_INSTALLED)")
+  field(VAL,  "$(TB_UNIV_IN_0_1_INSTALLED=0)")
   field(ZNAM, "Not installed")
   field(ONAM, "Installed")
 }
@@ -835,7 +835,7 @@ record(fanout, "$(P)$(R)Intrnl:WriteAll:TBIn0:Fout3") {
 record(bi, "$(P)$(R)TBIn1:Installed") {
   field(DESC, "TB univ. input module 0/1 installed?")
   field(PINI, "YES")
-  field(VAL,  "$(TB_UNIV_IN_0_1_INSTALLED)")
+  field(VAL,  "$(TB_UNIV_IN_0_1_INSTALLED=0)")
   field(ZNAM, "Not installed")
   field(ONAM, "Installed")
 }
@@ -1029,7 +1029,7 @@ record(fanout, "$(P)$(R)Intrnl:WriteAll:TBIn1:Fout3") {
 record(bi, "$(P)$(R)TBIn2:Installed") {
   field(DESC, "TB univ. input module 2/3 installed?")
   field(PINI, "YES")
-  field(VAL,  "$(TB_UNIV_IN_2_3_INSTALLED)")
+  field(VAL,  "$(TB_UNIV_IN_2_3_INSTALLED=0)")
   field(ZNAM, "Not installed")
   field(ONAM, "Installed")
 }
@@ -1223,7 +1223,7 @@ record(fanout, "$(P)$(R)Intrnl:WriteAll:TBIn2:Fout3") {
 record(bi, "$(P)$(R)TBIn3:Installed") {
   field(DESC, "TB univ. input module 2/3 installed?")
   field(PINI, "YES")
-  field(VAL,  "$(TB_UNIV_IN_2_3_INSTALLED)")
+  field(VAL,  "$(TB_UNIV_IN_2_3_INSTALLED=0)")
   field(ZNAM, "Not installed")
   field(ONAM, "Installed")
 }
@@ -1417,7 +1417,7 @@ record(fanout, "$(P)$(R)Intrnl:WriteAll:TBIn3:Fout3") {
 record(bi, "$(P)$(R)TBIn4:Installed") {
   field(DESC, "TB univ. input module 4/5 installed?")
   field(PINI, "YES")
-  field(VAL,  "$(TB_UNIV_IN_4_5_INSTALLED)")
+  field(VAL,  "$(TB_UNIV_IN_4_5_INSTALLED=0)")
   field(ZNAM, "Not installed")
   field(ONAM, "Installed")
 }
@@ -1611,7 +1611,7 @@ record(fanout, "$(P)$(R)Intrnl:WriteAll:TBIn4:Fout3") {
 record(bi, "$(P)$(R)TBIn5:Installed") {
   field(DESC, "TB univ. input module 4/5 installed?")
   field(PINI, "YES")
-  field(VAL,  "$(TB_UNIV_IN_4_5_INSTALLED)")
+  field(VAL,  "$(TB_UNIV_IN_4_5_INSTALLED=0)")
   field(ZNAM, "Not installed")
   field(ONAM, "Installed")
 }
@@ -1805,7 +1805,7 @@ record(fanout, "$(P)$(R)Intrnl:WriteAll:TBIn5:Fout3") {
 record(bi, "$(P)$(R)TBIn6:Installed") {
   field(DESC, "TB univ. input module 6/7 installed?")
   field(PINI, "YES")
-  field(VAL,  "$(TB_UNIV_IN_6_7_INSTALLED)")
+  field(VAL,  "$(TB_UNIV_IN_6_7_INSTALLED=0)")
   field(ZNAM, "Not installed")
   field(ONAM, "Installed")
 }
@@ -1999,7 +1999,7 @@ record(fanout, "$(P)$(R)Intrnl:WriteAll:TBIn6:Fout3") {
 record(bi, "$(P)$(R)TBIn7:Installed") {
   field(DESC, "TB univ. input module 6/7 installed?")
   field(PINI, "YES")
-  field(VAL,  "$(TB_UNIV_IN_6_7_INSTALLED)")
+  field(VAL,  "$(TB_UNIV_IN_6_7_INSTALLED=0)")
   field(ZNAM, "Not installed")
   field(ONAM, "Installed")
 }
@@ -2193,7 +2193,7 @@ record(fanout, "$(P)$(R)Intrnl:WriteAll:TBIn7:Fout3") {
 record(bi, "$(P)$(R)TBIn8:Installed") {
   field(DESC, "TB univ. input module 8/9 installed?")
   field(PINI, "YES")
-  field(VAL,  "$(TB_UNIV_IN_8_9_INSTALLED)")
+  field(VAL,  "$(TB_UNIV_IN_8_9_INSTALLED=0)")
   field(ZNAM, "Not installed")
   field(ONAM, "Installed")
 }
@@ -2387,7 +2387,7 @@ record(fanout, "$(P)$(R)Intrnl:WriteAll:TBIn8:Fout3") {
 record(bi, "$(P)$(R)TBIn9:Installed") {
   field(DESC, "TB univ. input module 8/9 installed?")
   field(PINI, "YES")
-  field(VAL,  "$(TB_UNIV_IN_8_9_INSTALLED)")
+  field(VAL,  "$(TB_UNIV_IN_8_9_INSTALLED=0)")
   field(ZNAM, "Not installed")
   field(ONAM, "Installed")
 }
@@ -2581,7 +2581,7 @@ record(fanout, "$(P)$(R)Intrnl:WriteAll:TBIn9:Fout3") {
 record(bi, "$(P)$(R)TBIn10:Installed") {
   field(DESC, "TB univ. input module 10/11 installed?")
   field(PINI, "YES")
-  field(VAL,  "$(TB_UNIV_IN_10_11_INSTALLED)")
+  field(VAL,  "$(TB_UNIV_IN_10_11_INSTALLED=0)")
   field(ZNAM, "Not installed")
   field(ONAM, "Installed")
 }
@@ -2775,7 +2775,7 @@ record(fanout, "$(P)$(R)Intrnl:WriteAll:TBIn10:Fout3") {
 record(bi, "$(P)$(R)TBIn11:Installed") {
   field(DESC, "TB univ. input module 10/11 installed?")
   field(PINI, "YES")
-  field(VAL,  "$(TB_UNIV_IN_10_11_INSTALLED)")
+  field(VAL,  "$(TB_UNIV_IN_10_11_INSTALLED=0)")
   field(ZNAM, "Not installed")
   field(ONAM, "Installed")
 }
@@ -2969,7 +2969,7 @@ record(fanout, "$(P)$(R)Intrnl:WriteAll:TBIn11:Fout3") {
 record(bi, "$(P)$(R)TBIn12:Installed") {
   field(DESC, "TB univ. input module 12/13 installed?")
   field(PINI, "YES")
-  field(VAL,  "$(TB_UNIV_IN_12_13_INSTALLED)")
+  field(VAL,  "$(TB_UNIV_IN_12_13_INSTALLED=0)")
   field(ZNAM, "Not installed")
   field(ONAM, "Installed")
 }
@@ -3163,7 +3163,7 @@ record(fanout, "$(P)$(R)Intrnl:WriteAll:TBIn12:Fout3") {
 record(bi, "$(P)$(R)TBIn13:Installed") {
   field(DESC, "TB univ. input module 12/13 installed?")
   field(PINI, "YES")
-  field(VAL,  "$(TB_UNIV_IN_12_13_INSTALLED)")
+  field(VAL,  "$(TB_UNIV_IN_12_13_INSTALLED=0)")
   field(ZNAM, "Not installed")
   field(ONAM, "Installed")
 }
@@ -3357,7 +3357,7 @@ record(fanout, "$(P)$(R)Intrnl:WriteAll:TBIn13:Fout3") {
 record(bi, "$(P)$(R)TBIn14:Installed") {
   field(DESC, "TB univ. input module 14/15 installed?")
   field(PINI, "YES")
-  field(VAL,  "$(TB_UNIV_IN_14_15_INSTALLED)")
+  field(VAL,  "$(TB_UNIV_IN_14_15_INSTALLED=0)")
   field(ZNAM, "Not installed")
   field(ONAM, "Installed")
 }
@@ -3551,7 +3551,7 @@ record(fanout, "$(P)$(R)Intrnl:WriteAll:TBIn14:Fout3") {
 record(bi, "$(P)$(R)TBIn15:Installed") {
   field(DESC, "TB univ. input module 14/15 installed?")
   field(PINI, "YES")
-  field(VAL,  "$(TB_UNIV_IN_14_15_INSTALLED)")
+  field(VAL,  "$(TB_UNIV_IN_14_15_INSTALLED=0)")
   field(ZNAM, "Not installed")
   field(ONAM, "Installed")
 }
