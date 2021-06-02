@@ -41,17 +41,17 @@ namespace mrf {
 namespace epics {
 
 /**
- * Read cache for a {@link MrfMemoryAccess}. When a read from a memory address
- * is requested for the first time, the cache delegates to the actual memory
- * access. Subsequent read requests for the same address return the cached value
- * instead of delegating to the memory access. This is useful for applications
- * that have to read from the same memory address multiple times, but do require
- * recent data. Internally, separate caches are used for 16-bit and 32-bit
- * registers.
+ * Read cache for a {@link MrfMemoryAccess}. When a read operation from a memory
+ * address is requested for the first time, the cache delegates to the actual
+ * memory access. Subsequent read requests for the same address return the
+ * cached value instead of delegating to the memory access. This is useful for
+ * applications that have to read from the same memory address multiple times,
+ * but do not require recent data. Internally, separate caches are used for
+ * 16-bit and 32-bit registers.
  *
  * In particular, we use it during record initialization, so that a slow memory
  * access (e.g. one using the UDP/IP protocol) does not slow down the
- * initialization of many recors that refer to the same register (e.g. a
+ * initialization of many records that refer to the same register (e.g. a
  * register that acts as a bit field).
  */
 class MrfMemoryCache {
