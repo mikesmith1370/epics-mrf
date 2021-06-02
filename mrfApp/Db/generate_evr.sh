@@ -164,7 +164,7 @@ tb_output() {
   local tb_out_addr=$( decimal_to_hex $(( $( hex_to_decimal 0x0480 ) + 2 * ${tb_out_num} )) 4 )
   local tb_out_module_first_num=$(( ${tb_out_num} / 2 * 2 ))
   local tb_out_module_second_num=$(( ${tb_out_module_first_num} + 1 ))
-  output "TBOut${tb_out_num}" "TB univ. output ${tb_out_num}" ${tb_out_addr} TB_UNIV_OUT_${tb_out_module_first_num}_${tb_out_module_second_num}_INSTALLED "TB univ. output module ${tb_out_module_first_num}/${tb_out_module_second_num}"
+  output "TBOut${tb_out_num}" "TB univ. output ${tb_out_num}" ${tb_out_addr} "TB_UNIV_OUT_${tb_out_module_first_num}_${tb_out_module_second_num}_INSTALLED=\$(TB_UNIV_OUT_INSTALLED=0)" "TB univ. output module ${tb_out_module_first_num}/${tb_out_module_second_num}"
 }
 
 univ_output() {
@@ -172,7 +172,7 @@ univ_output() {
   local univ_out_addr=$( decimal_to_hex $(( $( hex_to_decimal 0x0440 ) + 2 * ${univ_out_num} )) 4 )
   local univ_out_module_first_num=$(( ${univ_out_num} / 2 * 2 ))
   local univ_out_module_second_num=$(( ${univ_out_module_first_num} + 1 ))
-  output "UnivOut${univ_out_num}" "Universal output ${univ_out_num}" ${univ_out_addr} UNIV_OUT_${univ_out_module_first_num}_${univ_out_module_second_num}_INSTALLED "Universal output module ${univ_out_module_first_num}/${univ_out_module_second_num}"
+  output "UnivOut${univ_out_num}" "Universal output ${univ_out_num}" ${univ_out_addr} "UNIV_OUT_${univ_out_module_first_num}_${univ_out_module_second_num}_INSTALLED=\$(UNIV_OUT_INSTALLED=0)" "Universal output module ${univ_out_module_first_num}/${univ_out_module_second_num}"
 }
 
 declare -a write_all_pvs
