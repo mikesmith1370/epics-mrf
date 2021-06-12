@@ -28,6 +28,8 @@
  */
 
 #include <climits>
+#include <cinttypes>
+#include <cstdio>
 #include <cstring>
 #include <memory>
 #include <mutex>
@@ -109,6 +111,59 @@ void mapInterruptToEvent(const std::string &deviceId, int eventNumber,
 }
 
 extern "C" {
+
+// Data structures needed for the iocsh mrfDumpCache function.
+static const iocshArg iocshMrfDumpCacheArg0 = { "device ID", iocshArgString };
+static const iocshArg * const iocshMrfDumpCacheArgs[] = {
+  &iocshMrfDumpCacheArg0 };
+static const iocshFuncDef iocshMrfDumpCacheFuncDef = {
+  "mrfDumpCache", 1, iocshMrfDumpCacheArgs };
+
+/**
+ * Implementation of the iocsh mrfDumpCache function. This function prints the
+ * contents of the memory cache for a device. It is mainly intended for
+ * diagnostics when developing this device support. In particular, it is used to
+ * get a list of addresses for which the cache is used.
+ */
+static void iocshMrfDumpCacheFunc(const iocshArgBuf *args) noexcept {
+   char *deviceId = args[0].sval;
+  // Verify and convert the parameters.
+  if (!deviceId) {
+    errorPrintf(
+        "Device ID must be specified.");
+    return;
+  }
+  if (!std::strlen(deviceId)) {
+    errorPrintf(
+        "Device ID must not be empty.");
+    return;
+  }
+  try {
+    auto cache = MrfDeviceRegistry::getInstance().getDeviceCache(deviceId);
+    if (!cache) {
+      errorPrintf("Could not find cache for device with ID \"%s\".", deviceId);
+      return;
+    }
+    std::printf("uint16 registers:\n\n");
+    for (auto &addressAndValue : cache->getCacheUInt16()) {
+      std::printf(
+        "0x%08" PRIx32 ": 0x%04" PRIx16 "\n",
+        addressAndValue.first,
+        addressAndValue.second);
+    }
+    std::printf("\n\nuint32 registers:\n\n");
+    for (auto &addressAndValue : cache->getCacheUInt32()) {
+      std::printf(
+        "0x%08" PRIx32 ": 0x%08" PRIx32 "\n",
+        addressAndValue.first,
+        addressAndValue.second);
+    }
+  } catch (std::exception &e) {
+    errorPrintf("Error while accessing device cache: %s", e.what());
+  } catch (...) {
+    errorPrintf("Error while accessing device cache: Unknown error.");
+  }
+}
 
 // Data structures needed for the iocsh mrfMapInterruptToEvent function.
 static const iocshArg iocshMrfMapInterruptToEventArg0 = { "device ID",
@@ -204,6 +259,7 @@ static void iocshMrfMapInterruptToEventFunc(const iocshArgBuf *args) noexcept {
  * Registrar that registers the iocsh commands.
  */
 static void mrfRegistrarCommon() {
+  ::iocshRegister(&iocshMrfDumpCacheFuncDef, iocshMrfDumpCacheFunc);
   ::iocshRegister(&iocshMrfMapInterruptToEventFuncDef,
       iocshMrfMapInterruptToEventFunc);
 }

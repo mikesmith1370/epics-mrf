@@ -31,6 +31,7 @@
 #define ANKA_MRF_EPICS_MEMORY_CACHE_H
 
 #include <cstdint>
+#include <map>
 #include <mutex>
 #include <unordered_map>
 
@@ -71,6 +72,24 @@ public:
   explicit MrfMemoryCache(std::shared_ptr<MrfMemoryAccess> memoryAccess);
 
   /**
+   * Returns a snapshot of the cache for uint16 values. The returned map is a
+   * copy of the cache at the time of calling this method and does not receive
+   * any subsequent updates. This method is primarily intended for diagnostic
+   * purposes. The returned map contains memory addresses as keys and the
+   * respective cached values as values.
+   */
+  std::map<std::uint32_t, std::uint16_t> getCacheUInt16() const;
+
+  /**
+   * Returns a snapshot of the cache for uint32 values. The returned map is a
+   * copy of the cache at the time of calling this method and does not receive
+   * any subsequent updates. This method is primarily intended for diagnostic
+   * purposes. The returned map contains memory addresses as keys and the
+   * respective cached values as values.
+   */
+  std::map<std::uint32_t, std::uint32_t> getCacheUInt32() const;
+
+  /**
    * Reads from an unsigned 16-bit register. The method blocks until the
    * operation has finished (either successfully or unsuccessfully). On success,
    * the value read from the specified memory address is returned. On failure,
@@ -92,6 +111,22 @@ public:
    */
   std::uint32_t readUInt32(std::uint32_t address);
 
+  /**
+   * Tries to read an unsigned 16-bit register. If the read attempt fails, the
+   * error is silently ignored. This method is intended to warm up the cache, so
+   * that subsequent read requests for the same address can be served from the
+   * cache.
+   */
+  void tryCacheUInt16(std::uint32_t address);
+
+  /**
+   * Tries to read an unsigned 32-bit register. If the read attempt fails, the
+   * error is silently ignored. This method is intended to warm up the cache, so
+   * that subsequent read requests for the same address can be served from the
+   * cache.
+   */
+  void tryCacheUInt32(std::uint32_t address);
+
 private:
 
   // We do not want to allow copy or move construction or assignment.
@@ -103,7 +138,7 @@ private:
   MrfMemoryAccess &memoryAccess;
   std::shared_ptr<MrfMemoryAccess> memoryAccessPtr;
 
-  std::recursive_mutex mutex;
+  mutable std::recursive_mutex mutex;
 
   std::unordered_map<std::uint32_t, std::uint16_t> cacheUInt16;
   std::unordered_map<std::uint32_t, std::uint32_t> cacheUInt32;

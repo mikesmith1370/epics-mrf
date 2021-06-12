@@ -41,6 +41,20 @@ MrfMemoryCache::MrfMemoryCache(std::shared_ptr<MrfMemoryAccess> memoryAccess) :
     memoryAccess(*memoryAccess), memoryAccessPtr(memoryAccess) {
 }
 
+std::map<std::uint32_t, std::uint16_t> MrfMemoryCache::getCacheUInt16() const {
+  // Access to the hash map has to be protected by a mutex.
+  std::lock_guard<std::recursive_mutex> lock(mutex);
+  return std::map<std::uint32_t, std::uint16_t>(
+    cacheUInt16.begin(), cacheUInt16.end());
+}
+
+std::map<std::uint32_t, std::uint32_t> MrfMemoryCache::getCacheUInt32() const {
+  // Access to the hash map has to be protected by a mutex.
+  std::lock_guard<std::recursive_mutex> lock(mutex);
+  return std::map<std::uint32_t, std::uint32_t>(
+    cacheUInt32.begin(), cacheUInt32.end());
+}
+
 std::uint16_t MrfMemoryCache::readUInt16(std::uint32_t address) {
   {
     // Access to the hash map has to be protected by a mutex.
@@ -88,6 +102,22 @@ std::uint32_t MrfMemoryCache::readUInt32(std::uint32_t address) {
     // If the value has already been cached, we prefer the cached value. This
     // way, the behavior is independent concurrency timings.
     return cacheUInt32.emplace(address, value).first->second;
+  }
+}
+
+void MrfMemoryCache::tryCacheUInt16(std::uint32_t address) {
+  try {
+    readUInt16(address);
+  } catch (...) {
+    // We ignore any exception.
+  }
+}
+
+void MrfMemoryCache::tryCacheUInt32(std::uint32_t address) {
+  try {
+    readUInt32(address);
+  } catch (...) {
+    // We ignore any exception.
   }
 }
 
