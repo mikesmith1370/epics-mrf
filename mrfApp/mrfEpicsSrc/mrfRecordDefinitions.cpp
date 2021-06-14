@@ -1,6 +1,6 @@
 /*
- * Copyright 2015-2016 aquenos GmbH.
- * Copyright 2015-2016 Karlsruhe Institute of Technology.
+ * Copyright 2015-2021 aquenos GmbH.
+ * Copyright 2015-2021 Karlsruhe Institute of Technology.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -56,7 +56,7 @@ using namespace anka::mrf::epics;
 
 namespace {
 
-template<typename RecordDeviceSupportType, typename RecordType>
+template<typename RecordDeviceSupportType>
 long initRecord(void *recordVoid) {
   if (!recordVoid) {
     errorExtendedPrintf(
@@ -66,7 +66,8 @@ long initRecord(void *recordVoid) {
   dbCommon *record = static_cast<dbCommon *>(recordVoid);
   try {
     RecordDeviceSupportType *deviceSupport = new RecordDeviceSupportType(
-        static_cast<RecordType *>(recordVoid));
+      static_cast<typename RecordDeviceSupportType::RecordType *>(
+        recordVoid));
     record->dpvt = deviceSupport;
     return 0;
   } catch (std::exception &e) {
@@ -112,13 +113,12 @@ long getInterruptInfo(int command, dbCommon *record, ::IOSCANPVT *iopvt) {
 }
 
 template<typename RecordDeviceSupportType>
-long processRecord(void *recordVoid) {
-  if (!recordVoid) {
+long processRecord(typename RecordDeviceSupportType::RecordType *record) {
+  if (!record) {
     errorExtendedPrintf(
         "Record processing failed: Pointer to record structure is null.");
     return -1;
   }
-  dbCommon *record = static_cast<dbCommon *>(recordVoid);
   try {
     RecordDeviceSupportType *deviceSupport =
         static_cast<RecordDeviceSupportType *>(record->dpvt);
@@ -155,247 +155,311 @@ typedef long (*DEVSUPFUN_GET_IOINT_INFO)(int, ::dbCommon *, ::IOSCANPVT *);
 /**
  * ai record type.
  */
-struct {
-  long numberOfFunctionPointers;
-  DEVSUPFUN report;
-  DEVSUPFUN init;
-  DEVSUPFUN init_record;
-  DEVSUPFUN_GET_IOINT_INFO get_ioint_info;
-  DEVSUPFUN read;
-  DEVSUPFUN special_linconv;
-} devAiMrf = { 6, nullptr, nullptr, initRecord<MrfAiRecord, ::aiRecord>,
-    nullptr, processRecord<MrfAiRecord>, nullptr };
-epicsExportAddress(dset, devAiMrf)
-;
+#ifndef HAS_aidset
+typedef struct aidset {
+  dset common;
+  long (*read_ai)(aiRecord *prec);
+  long (*special_linconv)(aiRecord *prec, int after);
+} aidset;
+#endif // HAS_aidset
+aidset devAiMrf = {
+  {
+    6,
+    nullptr,
+    nullptr,
+    initRecord<MrfAiRecord>,
+    nullptr,
+  },
+  processRecord<MrfAiRecord>,
+  nullptr,
+};
+epicsExportAddress(dset, devAiMrf);
 
 /**
  * ao record type.
  */
-struct {
-  long numberOfFunctionPointers;
-  DEVSUPFUN report;
-  DEVSUPFUN init;
-  DEVSUPFUN init_record;
-  DEVSUPFUN_GET_IOINT_INFO get_ioint_info;
-  DEVSUPFUN write;
-  DEVSUPFUN special_linconv;
-} devAoMrf = { 6, nullptr, nullptr, initRecord<MrfAoRecord, ::aoRecord>,
-    nullptr, processRecord<MrfAoRecord>, nullptr };
-epicsExportAddress(dset, devAoMrf)
-;
+#ifndef HAS_aodset
+typedef struct aodset {
+  dset common;
+  long (*write_ao)(aiRecord *prec);
+  long (*special_linconv)(aiRecord *prec, int after);
+} aodset;
+#endif // HAS_aodset
+aodset devAoMrf = {
+  {
+    6,
+    nullptr,
+    nullptr,
+    initRecord<MrfAoRecord>,
+    nullptr,
+  },
+  processRecord<MrfAoRecord>,
+  nullptr,
+};
+epicsExportAddress(dset, devAoMrf);
 
 /**
  * bi record type.
  */
-struct {
-  long numberOfFunctionPointers;
-  DEVSUPFUN report;
-  DEVSUPFUN init;
-  DEVSUPFUN init_record;
-  DEVSUPFUN_GET_IOINT_INFO get_ioint_info;
-  DEVSUPFUN read;
-} devBiMrf = { 5, nullptr, nullptr, initRecord<MrfBiRecord, ::biRecord>,
-    nullptr, processRecord<MrfBiRecord> };
-epicsExportAddress(dset, devBiMrf)
-;
+#ifndef HAS_bidset
+typedef struct bidset {
+  dset common;
+  long (*read_bi)(biRecord *prec);
+} bidset;
+#endif // HAS_bidset
+bidset devBiMrf = {
+  {
+    5,
+    nullptr,
+    nullptr,
+    initRecord<MrfBiRecord>,
+    nullptr,
+  },
+  processRecord<MrfBiRecord>,
+};
+epicsExportAddress(dset, devBiMrf);
 
 /**
  * bi record type. Special version for handling interrupts.
  */
-struct {
-  long numberOfFunctionPointers;
-  DEVSUPFUN report;
-  DEVSUPFUN init;
-  DEVSUPFUN init_record;
-  DEVSUPFUN_GET_IOINT_INFO get_ioint_info;
-  DEVSUPFUN read;
-} devBiInterruptMrf = { 5, nullptr, nullptr, initRecord<MrfBiInterruptRecord,
-    ::biRecord>, getInterruptInfo<MrfBiInterruptRecord>, processRecord<
-    MrfBiInterruptRecord> };
-epicsExportAddress(dset, devBiInterruptMrf)
-;
+bidset devBiInterruptMrf = {
+  {
+    5,
+    nullptr,
+    nullptr,
+    initRecord<MrfBiInterruptRecord>,
+    reinterpret_cast<DEVSUPFUN>(getInterruptInfo<MrfBiInterruptRecord>),
+  },
+  processRecord<MrfBiInterruptRecord>,
+};
+epicsExportAddress(dset, devBiInterruptMrf);
 
 /**
  * bo record type.
  */
-struct {
-  long numberOfFunctionPointers;
-  DEVSUPFUN report;
-  DEVSUPFUN init;
-  DEVSUPFUN init_record;
-  DEVSUPFUN_GET_IOINT_INFO get_ioint_info;
-  DEVSUPFUN write;
-} devBoMrf = { 5, nullptr, nullptr, initRecord<MrfBoRecord, ::boRecord>,
-    nullptr, processRecord<MrfBoRecord> };
-epicsExportAddress(dset, devBoMrf)
-;
+#ifndef HAS_bodset
+typedef struct bodset {
+  dset common;
+  long (*write_bo)(boRecord *prec);
+} bodset;
+#endif // HAS_bodset
+bodset devBoMrf = {
+  {
+    5,
+    nullptr,
+    nullptr,
+    initRecord<MrfBoRecord>,
+    nullptr,
+  },
+  processRecord<MrfBoRecord>,
+};
+epicsExportAddress(dset, devBoMrf);
 
 /**
  * longin record type.
  */
-struct {
-  long numberOfFunctionPointers;
-  DEVSUPFUN report;
-  DEVSUPFUN init;
-  DEVSUPFUN init_record;
-  DEVSUPFUN_GET_IOINT_INFO get_ioint_info;
-  DEVSUPFUN read;
-} devLonginMrf = { 5, nullptr, nullptr, initRecord<MrfLonginRecord,
-    ::longinRecord>, nullptr, processRecord<MrfLonginRecord> };
-epicsExportAddress(dset, devLonginMrf)
-;
+#ifndef HAS_longindset
+typedef struct longindset {
+  dset common;
+  long (*read_longin)(longinRecord *prec);
+} longindset;
+#endif // HAS_longindset
+longindset devLonginMrf = {
+  {
+    5,
+    nullptr,
+    nullptr,
+    initRecord<MrfLonginRecord>,
+    nullptr,
+  },
+  processRecord<MrfLonginRecord>,
+};
+epicsExportAddress(dset, devLonginMrf);
 
 /**
  * longin record type. Special version for handling interrupts.
  */
-struct {
-  long numberOfFunctionPointers;
-  DEVSUPFUN report;
-  DEVSUPFUN init;
-  DEVSUPFUN init_record;
-  DEVSUPFUN_GET_IOINT_INFO get_ioint_info;
-  DEVSUPFUN read;
-} devLonginInterruptMrf = { 5, nullptr, nullptr, initRecord<
-    MrfLonginInterruptRecord, ::longinRecord>, getInterruptInfo<
-    MrfLonginInterruptRecord>, processRecord<MrfLonginInterruptRecord> };
-epicsExportAddress(dset, devLonginInterruptMrf)
-;
+longindset devLonginInterruptMrf = {
+  {
+    5,
+    nullptr,
+    nullptr,
+    initRecord<MrfLonginInterruptRecord>,
+    reinterpret_cast<DEVSUPFUN>(getInterruptInfo<MrfLonginInterruptRecord>),
+  },
+  processRecord<MrfLonginInterruptRecord>,
+};
+epicsExportAddress(dset, devLonginInterruptMrf);
 
 /**
  * longout record type.
  */
-struct {
-  long numberOfFunctionPointers;
-  DEVSUPFUN report;
-  DEVSUPFUN init;
-  DEVSUPFUN init_record;
-  DEVSUPFUN_GET_IOINT_INFO get_ioint_info;
-  DEVSUPFUN write;
-} devLongoutMrf = { 5, nullptr, nullptr, initRecord<MrfLongoutRecord,
-    ::longoutRecord>, nullptr, processRecord<MrfLongoutRecord> };
-epicsExportAddress(dset, devLongoutMrf)
-;
+#ifndef HAS_longoutdset
+typedef struct longoutdset {
+  dset common;
+  long (*write_longout)(longoutRecord *prec);
+} longoutdset;
+#endif // HAS_longoutdset
+longoutdset devLongoutMrf = {
+  {
+    5,
+    nullptr,
+    nullptr,
+    initRecord<MrfLongoutRecord>,
+    nullptr,
+  },
+  processRecord<MrfLongoutRecord>,
+};
+epicsExportAddress(dset, devLongoutMrf);
 
 /**
  * longout record type. Special version used for tuning output fine delays.
  */
-struct {
-  long numberOfFunctionPointers;
-  DEVSUPFUN report;
-  DEVSUPFUN init;
-  DEVSUPFUN init_record;
-  DEVSUPFUN_GET_IOINT_INFO get_ioint_info;
-  DEVSUPFUN write;
-} devLongoutFineDelayShiftRegisterMrf = { 5, nullptr, nullptr, initRecord<
-    MrfLongoutFineDelayShiftRegisterRecord, ::longoutRecord>, nullptr,
-    processRecord<MrfLongoutFineDelayShiftRegisterRecord> };
-epicsExportAddress(dset, devLongoutFineDelayShiftRegisterMrf)
-;
+longoutdset devLongoutFineDelayShiftRegisterMrf = {
+  {
+    5,
+    nullptr,
+    nullptr,
+    initRecord<MrfLongoutFineDelayShiftRegisterRecord>,
+    nullptr,
+  },
+  processRecord<MrfLongoutFineDelayShiftRegisterRecord>,
+};
+epicsExportAddress(dset, devLongoutFineDelayShiftRegisterMrf);
 
 /**
  * mbbiDirect record type.
  */
-struct {
-  long numberOfFunctionPointers;
-  DEVSUPFUN report;
-  DEVSUPFUN init;
-  DEVSUPFUN init_record;
-  DEVSUPFUN_GET_IOINT_INFO get_ioint_info;
-  DEVSUPFUN read;
-} devMbbiDirectMrf = { 5, nullptr, nullptr, initRecord<MrfMbbiDirectRecord,
-    ::mbbiDirectRecord>, nullptr, processRecord<MrfMbbiDirectRecord> };
-epicsExportAddress(dset, devMbbiDirectMrf)
-;
+#ifndef HAS_mbbidirectdset
+typedef struct mbbidirectdset {
+  dset common;
+  long (*read_mbbi)(mbbiDirectRecord *prec);
+} mbbidirectdset;
+#endif // HAS_mbbidirectdset
+mbbidirectdset devMbbiDirectMrf = {
+  {
+    5,
+    nullptr,
+    nullptr,
+    initRecord<MrfMbbiDirectRecord>,
+    nullptr,
+  },
+  processRecord<MrfMbbiDirectRecord>,
+};
+epicsExportAddress(dset, devMbbiDirectMrf);
 
 /**
  * mbbiDirect record type. Special version for handling interrupts.
  */
-struct {
-  long numberOfFunctionPointers;
-  DEVSUPFUN report;
-  DEVSUPFUN init;
-  DEVSUPFUN init_record;
-  DEVSUPFUN_GET_IOINT_INFO get_ioint_info;
-  DEVSUPFUN read;
-} devMbbiDirectInterruptMrf = { 5, nullptr, nullptr, initRecord<
-    MrfMbbiDirectInterruptRecord, ::mbbiDirectRecord>, getInterruptInfo<
-    MrfMbbiDirectInterruptRecord>, processRecord<MrfMbbiDirectInterruptRecord> };
-epicsExportAddress(dset, devMbbiDirectInterruptMrf)
-;
+mbbidirectdset devMbbiDirectInterruptMrf = {
+  {
+    5,
+    nullptr,
+    nullptr,
+    initRecord<MrfMbbiDirectInterruptRecord>,
+    reinterpret_cast<DEVSUPFUN>(getInterruptInfo<MrfMbbiDirectInterruptRecord>),
+  },
+  processRecord<MrfMbbiDirectInterruptRecord>,
+};
+epicsExportAddress(dset, devMbbiDirectInterruptMrf);
 
 /**
  * mbboDirect record type.
  */
-struct {
-  long numberOfFunctionPointers;
-  DEVSUPFUN report;
-  DEVSUPFUN init;
-  DEVSUPFUN init_record;
-  DEVSUPFUN_GET_IOINT_INFO get_ioint_info;
-  DEVSUPFUN write;
-} devMbboDirectMrf = { 5, nullptr, nullptr, initRecord<MrfMbboDirectRecord,
-    ::mbboDirectRecord>, nullptr, processRecord<MrfMbboDirectRecord> };
-epicsExportAddress(dset, devMbboDirectMrf)
-;
+#ifndef HAS_mbbodirectdset
+typedef struct mbbodirectdset {
+  dset common;
+  long (*write_mbbo)(mbboDirectRecord *prec);
+} mbbodirectdset;
+#endif // HAS_mbbodirectdset
+mbbodirectdset devMbboDirectMrf = {
+  {
+    5,
+    nullptr,
+    nullptr,
+    initRecord<MrfMbboDirectRecord>,
+    nullptr,
+  },
+  processRecord<MrfMbboDirectRecord>,
+};
+epicsExportAddress(dset, devMbboDirectMrf);
 
 /**
  * mbbi record type.
  */
-struct {
-  long numberOfFunctionPointers;
-  DEVSUPFUN report;
-  DEVSUPFUN init;
-  DEVSUPFUN init_record;
-  DEVSUPFUN_GET_IOINT_INFO get_ioint_info;
-  DEVSUPFUN read;
-} devMbbiMrf = { 5, nullptr, nullptr, initRecord<MrfMbbiRecord, ::mbbiRecord>,
-    nullptr, processRecord<MrfMbbiRecord> };
-epicsExportAddress(dset, devMbbiMrf)
-;
+#ifndef HAS_mbbidset
+typedef struct mbbidset {
+  dset common;
+  long (*read_mbbi)(mbbiRecord *prec);
+} mbbidset;
+#endif // HAS_mbbidset
+mbbidset devMbbiMrf = {
+  {
+    5,
+    nullptr,
+    nullptr,
+    initRecord<MrfMbbiRecord>,
+    nullptr,
+  },
+  processRecord<MrfMbbiRecord>,
+};
+epicsExportAddress(dset, devMbbiMrf);
 
 /**
  * mbbo record type.
  */
-struct {
-  long numberOfFunctionPointers;
-  DEVSUPFUN report;
-  DEVSUPFUN init;
-  DEVSUPFUN init_record;
-  DEVSUPFUN_GET_IOINT_INFO get_ioint_info;
-  DEVSUPFUN write;
-} devMbboMrf = { 5, nullptr, nullptr, initRecord<MrfMbboRecord, ::mbboRecord>,
-    nullptr, processRecord<MrfMbboRecord> };
-epicsExportAddress(dset, devMbboMrf)
-;
+#ifndef HAS_mbbodset
+typedef struct mbbodset {
+  dset common;
+  long (*write_mbbo)(mbboRecord *prec);
+} mbbodset;
+#endif // HAS_mbbodset
+mbbodset devMbboMrf = {
+  {
+    5,
+    nullptr,
+    nullptr,
+    initRecord<MrfMbboRecord>,
+    nullptr,
+  },
+  processRecord<MrfMbboRecord>,
+};
+epicsExportAddress(dset, devMbboMrf);
 
 /**
  * waveform (input) record type.
  */
-struct {
-  long numberOfFunctionPointers;
-  DEVSUPFUN report;
-  DEVSUPFUN init;
-  DEVSUPFUN init_record;
-  DEVSUPFUN_GET_IOINT_INFO get_ioint_info;
-  DEVSUPFUN read;
-} devWaveformInMrf = { 5, nullptr, nullptr, initRecord<MrfWaveformInRecord,
-    ::waveformRecord>, nullptr, processRecord<MrfWaveformInRecord> };
-epicsExportAddress(dset, devWaveformInMrf)
-;
+#ifndef HAS_wfdset
+typedef struct wfdset {
+  dset common;
+  long (*read_wf)(waveformRecord *prec);
+} wfdset;
+#endif // HAS_wfdset
+wfdset devWaveformInMrf = {
+  {
+    5,
+    nullptr,
+    nullptr,
+    initRecord<MrfWaveformInRecord>,
+    nullptr,
+  },
+  processRecord<MrfWaveformInRecord>,
+};
+epicsExportAddress(dset, devWaveformInMrf);
 
 /**
  * waveform (output) record type.
  */
-struct {
-  long numberOfFunctionPointers;
-  DEVSUPFUN report;
-  DEVSUPFUN init;
-  DEVSUPFUN init_record;
-  DEVSUPFUN_GET_IOINT_INFO get_ioint_info;
-  DEVSUPFUN write;
-} devWaveformOutMrf = { 5, nullptr, nullptr, initRecord<MrfWaveformOutRecord,
-    ::waveformRecord>, nullptr, processRecord<MrfWaveformOutRecord> };
-epicsExportAddress(dset, devWaveformOutMrf)
-;
+wfdset devWaveformOutMrf = {
+  {
+    5,
+    nullptr,
+    nullptr,
+    initRecord<MrfWaveformOutRecord>,
+    nullptr,
+  },
+  processRecord<MrfWaveformOutRecord>,
+};
+epicsExportAddress(dset, devWaveformOutMrf);
 
-}
+} // extern "C"
