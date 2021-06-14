@@ -1,46 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <display typeId="org.csstudio.opibuilder.Display" version="1.0.0">
-  <show_close_button>true</show_close_button>
-  <rules />
-  <wuid>4a318208:14de1f4e024:-791e</wuid>
-  <show_grid>true</show_grid>
-  <auto_zoom_to_fit_all>false</auto_zoom_to_fit_all>
-  <scripts />
-  <height>600</height>
-  <macros>
-    <include_parent_macros>true</include_parent_macros>
-  </macros>
-  <boy_version>3.2.16.20140409</boy_version>
-  <show_edit_range>true</show_edit_range>
-  <widget_type>Display</widget_type>
+  <actions hook="false" hook_all="false" />
   <auto_scale_widgets>
     <auto_scale_widgets>false</auto_scale_widgets>
     <min_width>-1</min_width>
     <min_height>-1</min_height>
   </auto_scale_widgets>
+  <auto_zoom_to_fit_all>false</auto_zoom_to_fit_all>
   <background_color>
     <color red="240" green="240" blue="240" />
   </background_color>
-  <width>800</width>
-  <x>-1</x>
-  <name></name>
-  <grid_space>6</grid_space>
-  <show_ruler>true</show_ruler>
-  <y>-1</y>
-  <snap_to_geometry>true</snap_to_geometry>
+  <boy_version>5.1.0.201911281711</boy_version>
   <foreground_color>
     <color red="192" green="192" blue="192" />
   </foreground_color>
-  <actions hook="false" hook_all="false" />
+  <grid_space>6</grid_space>
+  <height>600</height>
+  <macros>
+    <include_parent_macros>true</include_parent_macros>
+  </macros>
+  <name></name>
+  <rules />
+  <scripts />
+  <show_close_button>true</show_close_button>
+  <show_edit_range>true</show_edit_range>
+  <show_grid>true</show_grid>
+  <show_ruler>true</show_ruler>
+  <snap_to_geometry>true</snap_to_geometry>
+  <widget_type>Display</widget_type>
+  <width>800</width>
+  <wuid>4a318208:14de1f4e024:-791e</wuid>
+  <x>-1</x>
+  <y>-1</y>
   <widget typeId="org.csstudio.opibuilder.widgets.combo" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
     <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>false</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>4a318208:14de1f4e024:-3f79</wuid>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <height>31</height>
+    <items>
+      <s>Pulse Generator 0</s>
+      <s>Pulse Generator 1</s>
+      <s>Pulse Generator 2</s>
+      <s>Pulse Generator 3</s>
+      <s>Pulse Generator 4</s>
+      <s>Pulse Generator 5</s>
+      <s>Pulse Generator 6</s>
+      <s>Pulse Generator 7</s>
+      <s>Pulse Generator 8</s>
+      <s>Pulse Generator 9</s>
+      <s>Pulse Generator 10</s>
+      <s>Pulse Generator 11</s>
+      <s>Pulse Generator 12</s>
+      <s>Pulse Generator 13</s>
+      <s>Pulse Generator 14</s>
+      <s>Pulse Generator 15</s>
+      <s>Dist. Bus Bit 0</s>
+      <s>Dist. Bus Bit 1</s>
+      <s>Dist. Bus Bit 2</s>
+      <s>Dist. Bus Bit 3</s>
+      <s>Dist. Bus Bit 4</s>
+      <s>Dist. Bus Bit 5</s>
+      <s>Dist. Bus Bit 6</s>
+      <s>Dist. Bus Bit 7</s>
+      <s>Prescaler 0</s>
+      <s>Prescaler 1</s>
+      <s>Prescaler 2</s>
+      <s>Force High</s>
+      <s>Force Low</s>
+    </items>
+    <items_from_pv>false</items_from_pv>
+    <name>Combo</name>
+    <pv_name>loc://$(mrf_evr_output_prefix)$(mrf_evr_output_num):Mapping_$(DID)&lt;VString&gt;("")</pv_name>
     <pv_value />
+    <rules>
+      <rule name="Enable if write allowed" prop_id="enabled" out_exp="false">
+        <exp bool_exp="pvs[0].isWriteAllowed()">
+          <value>true</value>
+        </exp>
+        <pv trig="true">$(mrf_evr_output_prefix)$(mrf_evr_output_num):Map</pv>
+        <pv trig="true">sim://flipflop(0.5)</pv>
+      </rule>
+    </rules>
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>false</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
     <scripts>
       <path pathString="EmbeddedJs" checkConnect="true" sfe="false" seoe="false">
         <scriptName>Read from real PV</scriptName>
@@ -223,7 +285,7 @@ if (mappingString == "Pulse Generator 0") {
   mappingCode = -1;
 }
 
-if (mappingCode >= 0) {
+if (mappingCode >= 0 && pvMappingCode.isWriteAllowed()) {
   PVUtil.writePV(pvMappingCode.getName(), mappingCode);
 }
 ]]></scriptText>
@@ -242,112 +304,76 @@ else
         <pv trig="true">$(mrf_evr_output_prefix)$(mrf_evr_output_num):Installed</pv>
       </path>
     </scripts>
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <height>30</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>false</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <items_from_pv>false</items_from_pv>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
     <visible>true</visible>
-    <pv_name>loc://$(mrf_evr_output_prefix)$(mrf_evr_output_num):Mapping_$(DID)&lt;VString&gt;("")</pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
     <widget_type>Combo</widget_type>
-    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <width>163</width>
+    <wuid>4a318208:14de1f4e024:-3f79</wuid>
+    <x>42</x>
+    <y>7</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <auto_size>false</auto_size>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
-    <width>163</width>
-    <x>42</x>
-    <name>Combo</name>
-    <y>7</y>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <items>
-      <s>Pulse Generator 0</s>
-      <s>Pulse Generator 1</s>
-      <s>Pulse Generator 2</s>
-      <s>Pulse Generator 3</s>
-      <s>Pulse Generator 4</s>
-      <s>Pulse Generator 5</s>
-      <s>Pulse Generator 6</s>
-      <s>Pulse Generator 7</s>
-      <s>Pulse Generator 8</s>
-      <s>Pulse Generator 9</s>
-      <s>Pulse Generator 10</s>
-      <s>Pulse Generator 11</s>
-      <s>Pulse Generator 12</s>
-      <s>Pulse Generator 13</s>
-      <s>Pulse Generator 14</s>
-      <s>Pulse Generator 15</s>
-      <s>Dist. Bus Bit 0</s>
-      <s>Dist. Bus Bit 1</s>
-      <s>Dist. Bus Bit 2</s>
-      <s>Dist. Bus Bit 3</s>
-      <s>Dist. Bus Bit 4</s>
-      <s>Dist. Bus Bit 5</s>
-      <s>Dist. Bus Bit 6</s>
-      <s>Dist. Bus Bit 7</s>
-      <s>Prescaler 0</s>
-      <s>Prescaler 1</s>
-      <s>Prescaler 2</s>
-      <s>Force High</s>
-      <s>Force Low</s>
-    </items>
-    <font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <border_style>0</border_style>
-    <tooltip></tooltip>
-    <horizontal_alignment>2</horizontal_alignment>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>4a318208:14de1f4e024:-6423</wuid>
-    <transparent>true</transparent>
-    <auto_size>false</auto_size>
-    <text>$(mrf_evr_output_num)</text>
-    <scripts />
     <height>20</height>
-    <border_width>1</border_width>
+    <horizontal_alignment>2</horizontal_alignment>
+    <name>Label</name>
+    <rules />
     <scale_options>
       <width_scalable>true</width_scalable>
       <height_scalable>true</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <visible>true</visible>
+    <scripts />
+    <text>$(mrf_evr_output_num)</text>
+    <tooltip></tooltip>
+    <transparent>true</transparent>
     <vertical_alignment>1</vertical_alignment>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
+    <visible>true</visible>
     <widget_type>Label</widget_type>
+    <width>23</width>
     <wrap_words>false</wrap_words>
+    <wuid>4a318208:14de1f4e024:-6423</wuid>
+    <x>13</x>
+    <y>12</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <auto_size>false</auto_size>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
-    <width>23</width>
-    <x>13</x>
-    <name>Label</name>
-    <y>12</y>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <border_style>0</border_style>
-    <tooltip></tooltip>
+    <height>20</height>
     <horizontal_alignment>1</horizontal_alignment>
+    <name>Label_1</name>
     <rules>
       <rule name="Show / hide" prop_id="visible" out_exp="false">
         <exp bool_exp="pv0 == 0">
@@ -356,51 +382,51 @@ else
         <pv trig="true">$(mrf_evr_output_prefix)$(mrf_evr_output_num):Installed</pv>
       </rule>
     </rules>
-    <enabled>true</enabled>
-    <wuid>-3a15dff4:14e25e56121:-47da</wuid>
-    <transparent>true</transparent>
-    <auto_size>false</auto_size>
-    <text>Not installed</text>
-    <scripts />
-    <height>20</height>
-    <border_width>1</border_width>
     <scale_options>
       <width_scalable>true</width_scalable>
       <height_scalable>true</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <visible>false</visible>
+    <scripts />
+    <text>Not installed</text>
+    <tooltip></tooltip>
+    <transparent>true</transparent>
     <vertical_alignment>1</vertical_alignment>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
+    <visible>false</visible>
     <widget_type>Label</widget_type>
-    <wrap_words>false</wrap_words>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
     <width>97</width>
+    <wrap_words>false</wrap_words>
+    <wuid>-3a15dff4:14e25e56121:-47da</wuid>
     <x>75</x>
-    <name>Label_1</name>
     <y>12</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </font>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <border_style>0</border_style>
-    <tooltip></tooltip>
-    <horizontal_alignment>0</horizontal_alignment>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>-3a15dff4:14e25e56121:-16a4</wuid>
-    <transparent>true</transparent>
+    <actions hook="false" hook_all="false" />
     <auto_size>false</auto_size>
-    <text>Fine Delay:</text>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <height>20</height>
+    <horizontal_alignment>0</horizontal_alignment>
+    <name>Label_2</name>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
     <scripts>
       <path pathString="EmbeddedJs" checkConnect="true" sfe="false" seoe="false">
         <scriptName>Hide / show</scriptName>
@@ -416,66 +442,60 @@ else
         <pv trig="true">$(mrf_evr_output_prefix)$(mrf_evr_output_num):FineDelayAvailable</pv>
       </path>
     </scripts>
-    <height>20</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
+    <text>Fine Delay:</text>
+    <tooltip></tooltip>
+    <transparent>true</transparent>
     <vertical_alignment>1</vertical_alignment>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
+    <visible>true</visible>
     <widget_type>Label</widget_type>
-    <wrap_words>false</wrap_words>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
     <width>85</width>
+    <wrap_words>false</wrap_words>
+    <wuid>-3a15dff4:14e25e56121:-16a4</wuid>
     <x>210</x>
-    <name>Label_2</name>
     <y>12</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </font>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.TextInput" version="2.0.0">
-    <precision>0</precision>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <horizontal_alignment>2</horizontal_alignment>
-    <rules />
-    <pv_value />
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
     <auto_size>false</auto_size>
-    <text></text>
-    <rotation_angle>0.0</rotation_angle>
-    <show_units>true</show_units>
-    <height>19</height>
-    <multiline_input>false</multiline_input>
-    <border_width>1</border_width>
-    <visible>true</visible>
-    <pv_name>$(mrf_evr_output_prefix)$(mrf_evr_output_num):FineDelay</pv_name>
-    <selector_type>0</selector_type>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
     <border_color>
       <color red="0" green="128" blue="255" />
     </border_color>
-    <precision_from_pv>true</precision_from_pv>
-    <widget_type>Text Input</widget_type>
-    <confirm_message></confirm_message>
-    <name>Text Input</name>
-    <style>0</style>
-    <actions hook="false" hook_all="false" />
     <border_style>3</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <border_width>1</border_width>
+    <confirm_message></confirm_message>
     <enabled>true</enabled>
-    <wuid>-3a15dff4:14e25e56121:-167b</wuid>
-    <transparent>false</transparent>
+    <font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <format_type>1</format_type>
+    <height>19</height>
+    <horizontal_alignment>2</horizontal_alignment>
+    <limits_from_pv>false</limits_from_pv>
+    <maximum>1.7976931348623157E308</maximum>
+    <minimum>-1.7976931348623157E308</minimum>
+    <multiline_input>false</multiline_input>
+    <name>Text Input</name>
+    <precision>0</precision>
+    <precision_from_pv>true</precision_from_pv>
+    <pv_name>$(mrf_evr_output_prefix)$(mrf_evr_output_num):FineDelay</pv_name>
+    <pv_value />
+    <rotation_angle>0.0</rotation_angle>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
     <scripts>
       <path pathString="EmbeddedJs" checkConnect="true" sfe="false" seoe="false">
         <scriptName>Hide / show</scriptName>
@@ -491,28 +511,18 @@ else
         <pv trig="true">$(mrf_evr_output_prefix)$(mrf_evr_output_num):FineDelayAvailable</pv>
       </path>
     </scripts>
-    <border_alarm_sensitive>false</border_alarm_sensitive>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
-    <format_type>1</format_type>
-    <limits_from_pv>false</limits_from_pv>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
+    <selector_type>0</selector_type>
+    <show_units>true</show_units>
+    <style>0</style>
+    <text></text>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <transparent>false</transparent>
+    <visible>true</visible>
+    <widget_type>Text Input</widget_type>
     <width>97</width>
+    <wuid>-3a15dff4:14e25e56121:-167b</wuid>
     <x>294</x>
     <y>12</y>
-    <maximum>1.7976931348623157E308</maximum>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <minimum>-1.7976931348623157E308</minimum>
-    <font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </font>
   </widget>
 </display>
