@@ -39,6 +39,7 @@
 
 #include <dbScan.h>
 #include <epicsExport.h>
+#include <epicsVersion.h>
 #include <iocsh.h>
 
 #include <MrfMemoryAccess.h>
@@ -128,30 +129,24 @@ static const iocshFuncDef iocshMrfDumpCacheFuncDef = {
 #endif // IOCSHFUNCDEF_HAS_USAGE
 };
 
-/**
- * Implementation of the iocsh mrfDumpCache function. This function prints the
- * contents of the memory cache for a device. It is mainly intended for
- * diagnostics when developing this device support. In particular, it is used to
- * get a list of addresses for which the cache is used.
- */
-static void iocshMrfDumpCacheFunc(const iocshArgBuf *args) noexcept {
-   char *deviceId = args[0].sval;
+static int iocshMrfDumpCacheFuncInternal(const iocshArgBuf *args) noexcept {
+  char *deviceId = args[0].sval;
   // Verify and convert the parameters.
   if (!deviceId) {
     errorPrintf(
         "Device ID must be specified.");
-    return;
+    return 1;
   }
   if (!std::strlen(deviceId)) {
     errorPrintf(
         "Device ID must not be empty.");
-    return;
+    return 1;
   }
   try {
     auto cache = MrfDeviceRegistry::getInstance().getDeviceCache(deviceId);
     if (!cache) {
       errorPrintf("Could not find cache for device with ID \"%s\".", deviceId);
-      return;
+      return 1;
     }
     std::printf("uint16 registers:\n\n");
     for (auto &addressAndValue : cache->getCacheUInt16()) {
@@ -169,9 +164,26 @@ static void iocshMrfDumpCacheFunc(const iocshArgBuf *args) noexcept {
     }
   } catch (std::exception &e) {
     errorPrintf("Error while accessing device cache: %s", e.what());
+    return 1;
   } catch (...) {
     errorPrintf("Error while accessing device cache: Unknown error.");
+    return 1;
   }
+  return 0;
+}
+
+/**
+ * Implementation of the iocsh mrfDumpCache function. This function prints the
+ * contents of the memory cache for a device. It is mainly intended for
+ * diagnostics when developing this device support. In particular, it is used to
+ * get a list of addresses for which the cache is used.
+ */
+static void iocshMrfDumpCacheFunc(const iocshArgBuf *args) noexcept {
+#if EPICS_VERSION_INT >= VERSION_INT(7,0,3,1)
+  iocshSetError(iocshMrfDumpCacheFuncInternal(args));
+#else // EPICS_VERSION_INT >= VERSION_INT(7,0,3,1)
+  iocshMrfDumpCacheFuncInternal(args);
+#endif // EPICS_VERSION_INT >= VERSION_INT(7,0,3,1)
 }
 
 // Data structures needed for the iocsh mrfMapInterruptToEvent function.
@@ -197,14 +209,7 @@ static const iocshFuncDef iocshMrfMapInterruptToEventFuncDef = {
 #endif // IOCSHFUNCDEF_HAS_USAGE
 };
 
-/**
- * Implementation of the iocsh mrfMapInterruptToEvent function. This function
- * maps the interrupt for a specific device to an EPICS event. The interrupt
- * flag mask defines for which kind of interrupts an event is triggered. An
- * event is only triggered when at least one of the bits in the specified mask
- * is also set in the interrupt flags of the interrupt event.
- */
-static void iocshMrfMapInterruptToEventFunc(const iocshArgBuf *args) noexcept {
+static int iocshMrfMapInterruptToEventFuncInternal(const iocshArgBuf *args) noexcept {
   char *deviceId = args[0].sval;
   int eventNumber = args[1].ival;
   const char *interruptFlagsMaskCString = args[2].sval;
@@ -212,17 +217,17 @@ static void iocshMrfMapInterruptToEventFunc(const iocshArgBuf *args) noexcept {
   if (!deviceId) {
     errorPrintf(
         "Could not create the event mapping: Device ID must be specified.");
-    return;
+    return 1;
   }
   if (!std::strlen(deviceId)) {
     errorPrintf(
         "Could not create the event mapping: Device ID must not be empty.");
-    return;
+    return 1;
   }
   if (eventNumber < 0) {
     errorPrintf(
         "Could not create the event mapping: The event number must not be negative.");
-    return;
+    return 1;
   }
   // We do the conversion of the interruptFlagsMask ourselves instead of using
   // an int parameter. This way, we can ensure that only unsigned numbers are
@@ -245,33 +250,51 @@ static void iocshMrfMapInterruptToEventFunc(const iocshArgBuf *args) noexcept {
     errorPrintf(
         "Could not create the event mapping: Invalid interrupt flags mask: %s",
         interruptFlagsMaskString.c_str());
-    return;
+    return 1;
   } catch (std::out_of_range&) {
     errorPrintf(
         "Could not create the event mapping: Invalid interrupt flags mask: %s",
         interruptFlagsMaskString.c_str());
-    return;
+    return 1;
   }
   if (numberLength != interruptFlagsMaskString.size()) {
     errorPrintf(
         "Could not create the event mapping: Invalid interrupt flags mask: %s",
         interruptFlagsMaskString.c_str());
-    return;
+    return 1;
   }
   if (interruptFlagsMask > UINT32_MAX || interruptFlagsMask == 0) {
     errorPrintf(
         "Could not create the event mapping: Invalid interrupt flags mask: %s. The event mask must be greater than zero and less than or equal to 0xffffffff.",
         interruptFlagsMaskString.c_str());
-    return;
+    return 1;
   }
   try {
     mapInterruptToEvent(deviceId, eventNumber,
         static_cast<std::uint32_t>(interruptFlagsMask));
   } catch (std::exception &e) {
     errorPrintf("Could not create the event mapping: %s", e.what());
+    return 1;
   } catch (...) {
     errorPrintf("Could not create the event mapping: Unknown error.");
+    return 1;
   }
+  return 0;
+}
+
+/**
+ * Implementation of the iocsh mrfMapInterruptToEvent function. This function
+ * maps the interrupt for a specific device to an EPICS event. The interrupt
+ * flag mask defines for which kind of interrupts an event is triggered. An
+ * event is only triggered when at least one of the bits in the specified mask
+ * is also set in the interrupt flags of the interrupt event.
+ */
+static void iocshMrfMapInterruptToEventFunc(const iocshArgBuf *args) noexcept {
+#if EPICS_VERSION_INT >= VERSION_INT(7,0,3,1)
+  iocshSetError(iocshMrfMapInterruptToEventFuncInternal(args));
+#else // EPICS_VERSION_INT >= VERSION_INT(7,0,3,1)
+  iocshMrfMapInterruptToEventFuncInternal(args);
+#endif // EPICS_VERSION_INT >= VERSION_INT(7,0,3,1)
 }
 
 /**

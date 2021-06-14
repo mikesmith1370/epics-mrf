@@ -34,6 +34,7 @@
 #include <stdexcept>
 
 #include <epicsExport.h>
+#include <epicsVersion.h>
 #include <iocsh.h>
 
 #include <MrfConsistentAsynchronousMemoryAccess.h>
@@ -304,7 +305,7 @@ static const iocshFuncDef iocshMrfUdpIpEvrDeviceFuncDef = {
  * Common implementation of the iocsh mrfUdpIpEvgDevice and mrfUdpIpEvrDevice
  * functions.
  */
-static void iocshMrfUdpIpDeviceFunc(const iocshArgBuf *args, bool evr)
+static int iocshMrfUdpIpDeviceFunc(const iocshArgBuf *args, bool evr)
     noexcept {
   char *deviceId = args[0].sval;
   char *hostAddress = args[1].sval;
@@ -314,11 +315,11 @@ static void iocshMrfUdpIpDeviceFunc(const iocshArgBuf *args, bool evr)
   // Verify and convert the parameters.
   if (!deviceId) {
     errorPrintf("Could not create device: Device ID must be specified.");
-    return;
+    return 1;
   }
   if (!std::strlen(deviceId)) {
     errorPrintf("Could not create device: Device ID must not be empty.");
-    return;
+    return 1;
   }
   // Until here our code does not throw. We put the rest of the function into a
   // try-catch statement, so that we handle all other exceptions.
@@ -381,24 +382,35 @@ static void iocshMrfUdpIpDeviceFunc(const iocshArgBuf *args, bool evr)
   } catch (std::exception &e) {
     anka::mrf::epics::errorPrintf("Could not create device %s: %s", deviceId,
         e.what());
+    return 1;
   } catch (...) {
     anka::mrf::epics::errorPrintf("Could not create device %s: Unknown error.",
         deviceId);
+    return 1;
   }
+  return 0;
 }
 
 /**
  * Implementation of the iocsh mrfUdpIpEvgDevice function.
  */
 static void iocshMrfUdpIpEvgDeviceFunc(const iocshArgBuf *args) noexcept {
+#if EPICS_VERSION_INT >= VERSION_INT(7,0,3,1)
+  iocshSetError(iocshMrfUdpIpDeviceFunc(args, false));
+#else // EPICS_VERSION_INT >= VERSION_INT(7,0,3,1)
   iocshMrfUdpIpDeviceFunc(args, false);
+#endif // EPICS_VERSION_INT >= VERSION_INT(7,0,3,1)
 }
 
 /**
  * Implementation of the iocsh mrfUdpIpEvrDevice function.
  */
 static void iocshMrfUdpIpEvrDeviceFunc(const iocshArgBuf *args) noexcept {
+#if EPICS_VERSION_INT >= VERSION_INT(7,0,3,1)
+  iocshSetError(iocshMrfUdpIpDeviceFunc(args, true));
+#else // EPICS_VERSION_INT >= VERSION_INT(7,0,3,1)
   iocshMrfUdpIpDeviceFunc(args, true);
+#endif // EPICS_VERSION_INT >= VERSION_INT(7,0,3,1)
 }
 
 /*

@@ -38,6 +38,7 @@
 #include <string>
 
 #include <epicsExport.h>
+#include <epicsVersion.h>
 #include <iocsh.h>
 
 #include <MrfConsistentAsynchronousMemoryAccess.h>
@@ -186,26 +187,26 @@ static const iocshFuncDef iocshMrfMmapPxieEvr300DeviceFuncDef = {
  * Implementation that is shared by all the the iocsh mrfMmapXxxDevice
  * functions.
  */
-static void iocshMrfMmapDeviceFunc(const iocshArgBuf *args,
+static int iocshMrfMmapDeviceFunc(const iocshArgBuf *args,
     std::uint32_t memorySize) noexcept {
   char *deviceId = args[0].sval;
   char *devicePath = args[1].sval;
   // Verify and convert the parameters.
   if (!deviceId) {
     errorPrintf("Could not create device: Device ID must be specified.");
-    return;
+    return 1;
   }
   if (!std::strlen(deviceId)) {
     errorPrintf("Could not create device: Device ID must not be empty.");
-    return;
+    return 1;
   }
   if (!devicePath) {
     errorPrintf("Could not create device: Device path must be specified.");
-    return;
+    return 1;
   }
   if (!std::strlen(devicePath)) {
     errorPrintf("Could not create device: Device path must not be empty.");
-    return;
+    return 1;
   }
   // Until here our code does not throw. We put the rest of the function into a
   // try-catch statement, so that we handle all other exceptions.
@@ -219,10 +220,13 @@ static void iocshMrfMmapDeviceFunc(const iocshArgBuf *args,
   } catch (std::exception &e) {
     anka::mrf::epics::errorPrintf("Could not create device %s: %s", deviceId,
         e.what());
+    return 1;
   } catch (...) {
     anka::mrf::epics::errorPrintf("Could not create device %s: Unknown error.",
         deviceId);
+    return 1;
   }
+  return 0;
 }
 
 /**
@@ -230,7 +234,11 @@ static void iocshMrfMmapDeviceFunc(const iocshArgBuf *args,
  * (regular memory size).
  */
 static void iocshMrfMmapRegularEvgDeviceFunc(const iocshArgBuf *args) noexcept {
+#if EPICS_VERSION_INT >= VERSION_INT(7,0,3,1)
+  iocshSetError(iocshMrfMmapDeviceFunc(args, 0x00010000));
+#else // EPICS_VERSION_INT >= VERSION_INT(7,0,3,1)
   iocshMrfMmapDeviceFunc(args, 0x00010000);
+#endif // EPICS_VERSION_INT >= VERSION_INT(7,0,3,1)
 }
 
 /**
@@ -238,7 +246,11 @@ static void iocshMrfMmapRegularEvgDeviceFunc(const iocshArgBuf *args) noexcept {
  * (regular memory size).
  */
 static void iocshMrfMmapRegularEvrDeviceFunc(const iocshArgBuf *args) noexcept {
+#if EPICS_VERSION_INT >= VERSION_INT(7,0,3,1)
+  iocshSetError(iocshMrfMmapDeviceFunc(args, 0x00008000));
+#else // EPICS_VERSION_INT >= VERSION_INT(7,0,3,1)
   iocshMrfMmapDeviceFunc(args, 0x00008000);
+#endif // EPICS_VERSION_INT >= VERSION_INT(7,0,3,1)
 }
 
 /**
@@ -247,7 +259,11 @@ static void iocshMrfMmapRegularEvrDeviceFunc(const iocshArgBuf *args) noexcept {
  */
 static void iocshMrfMmapCpciEvrtg300DeviceFunc(const iocshArgBuf *args)
     noexcept {
+#if EPICS_VERSION_INT >= VERSION_INT(7,0,3,1)
+  iocshSetError(iocshMrfMmapDeviceFunc(args, 0x00040000));
+#else // EPICS_VERSION_INT >= VERSION_INT(7,0,3,1)
   iocshMrfMmapDeviceFunc(args, 0x00040000);
+#endif // EPICS_VERSION_INT >= VERSION_INT(7,0,3,1)
 }
 
 /*
