@@ -1,6 +1,6 @@
 /*
- * Copyright 2016 aquenos GmbH.
- * Copyright 2016 Karlsruhe Institute of Technology.
+ * Copyright 2016-2021 aquenos GmbH.
+ * Copyright 2016-2021 Karlsruhe Institute of Technology.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -62,29 +62,125 @@ static const iocshArg * const iocshMrfMmapDeviceArgs[] = {
 // device allows for changes in the future without having to change iocsh
 // scripts.
 static const iocshFuncDef iocshMrfMmapCpciEvg220DeviceFuncDef = {
-    "mrfMmapCpciEvg220Device", 2, iocshMrfMmapDeviceArgs };
+  "mrfMmapCpciEvg220Device",
+  2,
+  iocshMrfMmapDeviceArgs,
+#ifdef IOCSHFUNCDEF_HAS_USAGE
+  "Define a connection to a cPCI-EVG-220 using the MRF kernel device driver.\n"
+  "\nThe device path is the path to the device node providing access to the "
+  "device\nregisters (e.g. /dev/ega3, /dev/egb3, etc.).\n",
+#endif // IOCSHFUNCDEF_HAS_USAGE
+};
 static const iocshFuncDef iocshMrfMmapCpciEvg230DeviceFuncDef = {
-    "mrfMmapCpciEvg230Device", 2, iocshMrfMmapDeviceArgs };
+  "mrfMmapCpciEvg230Device",
+  2,
+  iocshMrfMmapDeviceArgs,
+#ifdef IOCSHFUNCDEF_HAS_USAGE
+  "Define a connection to a cPCI-EVG-230 using the MRF kernel device driver.\n"
+  "\nThe device path is the path to the device node providing access to the "
+  "device\nregisters (e.g. /dev/ega3, /dev/egb3, etc.).\n",
+#endif // IOCSHFUNCDEF_HAS_USAGE
+};
 static const iocshFuncDef iocshMrfMmapCpciEvg300DeviceFuncDef = {
-    "mrfMmapCpciEvg300Device", 2, iocshMrfMmapDeviceArgs };
+  "mrfMmapCpciEvg300Device",
+  2,
+  iocshMrfMmapDeviceArgs,
+#ifdef IOCSHFUNCDEF_HAS_USAGE
+  "Define a connection to a cPCI-EVG-300 using the MRF kernel device driver.\n"
+  "\nThe device path is the path to the device node providing access to the "
+  "device\nregisters (e.g. /dev/ega3, /dev/egb3, etc.).\n",
+#endif // IOCSHFUNCDEF_HAS_USAGE
+};
 static const iocshFuncDef iocshMrfMmapPxieEvg300DeviceFuncDef = {
-    "mrfMmapPxieEvg300Device", 2, iocshMrfMmapDeviceArgs };
+  "mrfMmapPxieEvg300Device",
+  2,
+  iocshMrfMmapDeviceArgs,
+#ifdef IOCSHFUNCDEF_HAS_USAGE
+  "Define a connection to a PXIe-EVG-300 using the MRF kernel device driver.\n"
+  "\nThe device path is the path to the device node providing access to the "
+  "device\nregisters (e.g. /dev/ega3, /dev/egb3, etc.).\n",
+#endif // IOCSHFUNCDEF_HAS_USAGE
+};
 static const iocshFuncDef iocshMrfMmapCpciEvr220DeviceFuncDef = {
-    "mrfMmapCpciEvr220Device", 2, iocshMrfMmapDeviceArgs };
+  "mrfMmapCpciEvr220Device",
+  2,
+  iocshMrfMmapDeviceArgs,
+#ifdef IOCSHFUNCDEF_HAS_USAGE
+  "Define a connection to a cPCI-EVR-220 using the MRF kernel device driver.\n"
+  "\nThe device path is the path to the device node providing access to the "
+  "device\nregisters (e.g. /dev/era3, /dev/erb3, etc.).\n",
+#endif // IOCSHFUNCDEF_HAS_USAGE
+};
 static const iocshFuncDef iocshMrfMmapCpciEvr230DeviceFuncDef = {
-    "mrfMmapCpciEvr230Device", 2, iocshMrfMmapDeviceArgs };
+  "mrfMmapCpciEvr230Device",
+  2,
+  iocshMrfMmapDeviceArgs,
+#ifdef IOCSHFUNCDEF_HAS_USAGE
+  "Define a connection to a cPCI-EVR-230 using the MRF kernel device driver.\n"
+  "\nThe device path is the path to the device node providing access to the "
+  "device\nregisters (e.g. /dev/era3, /dev/erb3, etc.).\n",
+#endif // IOCSHFUNCDEF_HAS_USAGE
+};
 static const iocshFuncDef iocshMrfMmapCpciEvr300DeviceFuncDef = {
-    "mrfMmapCpciEvr300Device", 2, iocshMrfMmapDeviceArgs };
+  "mrfMmapCpciEvr300Device",
+  2,
+  iocshMrfMmapDeviceArgs,
+#ifdef IOCSHFUNCDEF_HAS_USAGE
+  "Define a connection to a cPCI-EVR-300 using the MRF kernel device driver.\n"
+  "\nThe device path is the path to the device node providing access to the "
+  "device\nregisters (e.g. /dev/era3, /dev/erb3, etc.).\n",
+#endif // IOCSHFUNCDEF_HAS_USAGE
+};
 static const iocshFuncDef iocshMrfMmapCpciEvrtg300DeviceFuncDef = {
-    "mrfMmapCpciEvrtg300Device", 2, iocshMrfMmapDeviceArgs };
+  "mrfMmapCpciEvrtg300Device",
+  2,
+  iocshMrfMmapDeviceArgs,
+#ifdef IOCSHFUNCDEF_HAS_USAGE
+  "Define a connection to a cPCI-EVRTG-300 using the MRF kernel device driver."
+  "\n\nThe device path is the path to the device node providing access to the "
+  "device\nregisters (e.g. /dev/era3, /dev/erb3, etc.).\n",
+#endif // IOCSHFUNCDEF_HAS_USAGE
+};
 static const iocshFuncDef iocshMrfMmapMtcaEvr300DeviceFuncDef = {
-    "mrfMmapMtcaEvr300Device", 2, iocshMrfMmapDeviceArgs };
+  "mrfMmapMtcaEvr300Device",
+  2,
+  iocshMrfMmapDeviceArgs,
+#ifdef IOCSHFUNCDEF_HAS_USAGE
+  "Define a connection to a mTCA-EVR-300 using the MRF kernel device driver.\n"
+  "\nThe device path is the path to the device node providing access to the "
+  "device\nregisters (e.g. /dev/era3, /dev/erb3, etc.).\n",
+#endif // IOCSHFUNCDEF_HAS_USAGE
+};
 static const iocshFuncDef iocshMrfMmapPcieEvr300DeviceFuncDef = {
-    "mrfMmapPcieEvr300Device", 2, iocshMrfMmapDeviceArgs };
+  "mrfMmapPcieEvr300Device",
+  2,
+  iocshMrfMmapDeviceArgs,
+#ifdef IOCSHFUNCDEF_HAS_USAGE
+  "Define a connection to a PCIe-EVR-300 using the MRF kernel device driver.\n"
+  "\nThe device path is the path to the device node providing access to the "
+  "device\nregisters (e.g. /dev/era3, /dev/erb3, etc.).\n",
+#endif // IOCSHFUNCDEF_HAS_USAGE
+};
 static const iocshFuncDef iocshMrfMmapPmcEvr230DeviceFuncDef = {
-    "mrfMmapPmcEvr230Device", 2, iocshMrfMmapDeviceArgs };
+  "mrfMmapPmcEvr230Device",
+  2,
+  iocshMrfMmapDeviceArgs,
+#ifdef IOCSHFUNCDEF_HAS_USAGE
+  "Define a connection to a PMC-EVR-230 using the MRF kernel device driver.\n\n"
+  "The device path is the path to the device node providing access to the "
+  "device\nregisters (e.g. /dev/era3, /dev/erb3, etc.).\n",
+#endif // IOCSHFUNCDEF_HAS_USAGE
+};
 static const iocshFuncDef iocshMrfMmapPxieEvr300DeviceFuncDef = {
-    "mrfMmapPxieEvr300Device", 2, iocshMrfMmapDeviceArgs };
+  "mrfMmapPxieEvr300Device",
+  2,
+  iocshMrfMmapDeviceArgs,
+#ifdef IOCSHFUNCDEF_HAS_USAGE
+  "Define a connection to a PXIe-EVR-300 using the MRF kernel device driver.\n"
+  "\nThe device path is the path to the device node providing access to the "
+  "device\nregisters (e.g. /dev/era3, /dev/erb3, etc.).\n",
+#endif // IOCSHFUNCDEF_HAS_USAGE
+};
 
 /**
  * Implementation that is shared by all the the iocsh mrfMmapXxxDevice

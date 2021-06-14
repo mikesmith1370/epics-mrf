@@ -283,10 +283,22 @@ static const iocshArg * const iocshMrfUdpIpDeviceArgs[] =
     { &iocshMrfUdpIpDeviceArg0, &iocshMrfUdpIpDeviceArg1,
         &iocshMrfUdpIpDeviceArg2, &iocshMrfUdpIpDeviceArg3,
         &iocshMrfUdpIpDeviceArg4 };
-static const iocshFuncDef iocshMrfUdpIpEvgDeviceFuncDef = { "mrfUdpIpEvgDevice",
-    5, iocshMrfUdpIpDeviceArgs };
-static const iocshFuncDef iocshMrfUdpIpEvrDeviceFuncDef = { "mrfUdpIpEvrDevice",
-    5, iocshMrfUdpIpDeviceArgs };
+static const iocshFuncDef iocshMrfUdpIpEvgDeviceFuncDef = {
+  "mrfUdpIpEvgDevice",
+  5,
+  iocshMrfUdpIpDeviceArgs,
+#ifdef IOCSHFUNCDEF_HAS_USAGE
+  "Define a UDP/IP connection to a VME-EVG-230.\n",
+#endif // IOCSHFUNCDEF_HAS_USAGE
+};
+static const iocshFuncDef iocshMrfUdpIpEvrDeviceFuncDef = {
+  "mrfUdpIpEvrDevice",
+  5,
+  iocshMrfUdpIpDeviceArgs,
+#ifdef IOCSHFUNCDEF_HAS_USAGE
+  "Define a UDP/IP connection to a VME-EVR-230RF.\n",
+#endif // IOCSHFUNCDEF_HAS_USAGE
+};
 
 /**
  * Common implementation of the iocsh mrfUdpIpEvgDevice and mrfUdpIpEvrDevice

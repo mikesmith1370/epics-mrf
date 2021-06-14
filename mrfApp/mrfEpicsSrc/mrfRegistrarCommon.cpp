@@ -117,7 +117,16 @@ static const iocshArg iocshMrfDumpCacheArg0 = { "device ID", iocshArgString };
 static const iocshArg * const iocshMrfDumpCacheArgs[] = {
   &iocshMrfDumpCacheArg0 };
 static const iocshFuncDef iocshMrfDumpCacheFuncDef = {
-  "mrfDumpCache", 1, iocshMrfDumpCacheArgs };
+  "mrfDumpCache",
+  1,
+  iocshMrfDumpCacheArgs,
+#ifdef IOCSHFUNCDEF_HAS_USAGE
+  "Dump the memory cache for a device.\n\n"
+  "The memory cache is only used for initializing output records during IOC "
+  "startup\nand thus will only contain entries for memory locations referenced "
+  "by such\nrecords.\n",
+#endif // IOCSHFUNCDEF_HAS_USAGE
+};
 
 /**
  * Implementation of the iocsh mrfDumpCache function. This function prints the
@@ -176,7 +185,17 @@ static const iocshArg * const iocshMrfMapInterruptToEventArgs[] = {
     &iocshMrfMapInterruptToEventArg0, &iocshMrfMapInterruptToEventArg1,
     &iocshMrfMapInterruptToEventArg2 };
 static const iocshFuncDef iocshMrfMapInterruptToEventFuncDef = {
-    "mrfMapInterruptToEvent", 3, iocshMrfMapInterruptToEventArgs };
+  "mrfMapInterruptToEvent",
+  3,
+  iocshMrfMapInterruptToEventArgs,
+#ifdef IOCSHFUNCDEF_HAS_USAGE
+  "Map a device interrupt to an EPICS event.\n\n"
+  "This only works when the device actually supports interrupts (e.g. not for\n"
+  "UDP/IP devices). The event is only triggered when one of the bits that is "
+  "set in\nthe mask is also set in the interrupt flags register when the "
+  "interrupt happens.\n",
+#endif // IOCSHFUNCDEF_HAS_USAGE
+};
 
 /**
  * Implementation of the iocsh mrfMapInterruptToEvent function. This function
