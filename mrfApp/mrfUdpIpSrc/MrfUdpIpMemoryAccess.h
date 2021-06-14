@@ -1,6 +1,6 @@
 /*
- * Copyright 2015-2016 aquenos GmbH.
- * Copyright 2015-2016 Karlsruhe Institute of Technology.
+ * Copyright 2015-2021 aquenos GmbH.
+ * Copyright 2015-2021 Karlsruhe Institute of Technology.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -181,6 +181,8 @@ private:
    * Data structure that is used for the internal request callbacks.
    */
   struct MrfRequestCallback {
+    virtual ~MrfRequestCallback() {}
+
     virtual void operator()(std::uint16_t receivedData, std::int8_t status,
         bool timeout) = 0;
   };
