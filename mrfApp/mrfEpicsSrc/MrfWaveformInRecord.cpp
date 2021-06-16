@@ -1,6 +1,6 @@
 /*
- * Copyright 2015-2016 aquenos GmbH.
- * Copyright 2015-2016 Karlsruhe Institute of Technology.
+ * Copyright 2015-2021 aquenos GmbH.
+ * Copyright 2015-2021 Karlsruhe Institute of Technology.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -206,7 +206,7 @@ void MrfWaveformInRecord::processRecord() {
     --pendingReadRequests;
     if (pendingReadRequests == 0) {
       if (!readSuccessful) {
-        recGblSetSevr(this->record, WRITE_ALARM, INVALID_ALARM);
+        recGblSetSevr(this->record, READ_ALARM, INVALID_ALARM);
         throw std::runtime_error(readErrorMessage);
       } else {
         std::uint8_t *recordValueBufferUInt8 =
