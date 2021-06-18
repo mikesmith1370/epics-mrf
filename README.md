@@ -8,7 +8,7 @@ event receiver (EVR) devices that are part of the timing system from
 At the moment, the following devices are directly supported:
 
 - MTCA-EVR-300
-- VME-EVR-230
+- VME-EVG-230
 - VME-EVR-230RF
 
 This device support implements an abstraction layer, that allows it to control
