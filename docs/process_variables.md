@@ -685,12 +685,12 @@ which information is provided.
 <td>Real-time power-supply voltage reported by the SFP module (in V). This PV also provides the alarm state signaled by the SFP module.</td>
 </tr>
 <tr>
-<td>SFP:Vendor:Id</td>
-<td>IEEE company ID of the SFP module’s vendor. This is a 24-bit unsigned integer that is usually represented as a hexadecimal number.</td>
-</tr>
-<tr>
 <td>SFP:Vendor:DateCode</td>
 <td>Vendor-provided manufacturing date code reported by the SFP module (as an ASCII string).</td>
+</tr>
+<tr>
+<td>SFP:Vendor:Id</td>
+<td>IEEE company ID of the SFP module’s vendor. This is a 24-bit unsigned integer that is usually represented as a hexadecimal number.</td>
 </tr>
 <tr>
 <td>SFP:Vendor:Name</td>
