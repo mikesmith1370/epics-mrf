@@ -37,6 +37,7 @@ EVG
 - [Interrupts](#interrupts)
 - [Multiplexed counter](#multiplexed-counters)
 - [Outputs](#outputs)
+- [SFP module](#sfp-module)
 
 
 ### AC synchronization
@@ -621,6 +622,95 @@ which has to be replaced with the output-specific prefix.
 </table>
 
 
+### SFP module
+
+The following PVs provide diagnostics information about the SFP module that is
+installed inside the EVG. Please note that some of the information is optional
+and not all SFP modules might provide it. In that case, the respective PVs will
+not have valid values (but they won’t report that through an INVALID alarm). In
+case of doubt, refer to the documentation of the SFP module in order to find out
+which information is provided.
+
+<table>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>SFP:NominalBitRate</td>
+<td>Nominal bit rate reported by the SFP module (in Gbps).</td>
+</tr>
+<tr>
+<td>SFP:RXPower</td>
+<td>Real-time receive power reported by the SFP module (in µW). This PV also provides the alarm state signaled by the SFP module.</td>
+</tr>
+<tr>
+<td>SFP:ScanDiag</td>
+<td>Triggers periodic polling of the SFP registers that provide diagnostics data (analog values, corresponding alarm flags, and the status register). Its <code>SCAN</code> field can be changed in order to change the rate at which these registers are polled.</td>
+</tr>
+<tr>
+<td>SFP:ScanInfo</td>
+<td>Triggers periodic polling of the SFP registers that provide static information about the SFP module (alarm limits for analog values, vendor information, and nominal bit rate). Its <code>SCAN</code> field can be changed in order to change the rate at which these registers are polled. By default, these registers are only read once at IOC startup.</td>
+</tr>
+<tr>
+<td>SFP:Status:DataNotReady</td>
+<td>Indicates that the SFP module reports that the analog monitoring data is not yet available (valid).</td>
+</tr>
+<tr>
+<td>SFP:Status:RXLossOfSignal</td>
+<td>State of the RX loss-of-signal pin as reported by the SFP module.</td>
+</tr>
+<tr>
+<td>SFP:Status:TXDisabled</td>
+<td>State of the TX disable pin as reported by the SFP module.</td>
+</tr>
+<tr>
+<td>SFP:Status:TXFault</td>
+<td>State of the TX fault pin as reported by the SFP module.</td>
+</tr>
+<tr>
+<td>SFP:Temperature</td>
+<td>Real-time temperature reported by the SFP module (in °C). This PV also provides the alarm state signaled by the SFP module.</td>
+</tr>
+<tr>
+<td>SFP:TXBiasCurrent</td>
+<td>Real-time transmit laser-diode bias current reported by the SFP module (in mA). This PV also provides the alarm state signaled by the SFP module.</td>
+</tr>
+<tr>
+<td>SFP:TXPower</td>
+<td>Real-time transmit power reported by the SFP module (in µW). This PV also provides the alarm state signaled by the SFP module.</td>
+</tr>
+<tr>
+<td>SFP:VCC</td>
+<td>Real-time power-supply voltage reported by the SFP module (in V). This PV also provides the alarm state signaled by the SFP module.</td>
+</tr>
+<tr>
+<td>SFP:Vendor:Id</td>
+<td>IEEE company ID of the SFP module’s vendor. This is a 24-bit unsigned integer that is usually represented as a hexadecimal number.</td>
+</tr>
+<tr>
+<td>SFP:Vendor:DateCode</td>
+<td>Vendor-provided manufacturing date code reported by the SFP module (as an ASCII string).</td>
+</tr>
+<tr>
+<td>SFP:Vendor:Name</td>
+<td>Vendor name reported by the SFP module.</td>
+</tr>
+<tr>
+<td>SFP:Vendor:PartNumber</td>
+<td>Vendor-provided part number reported by the SFP module (as an ASCII string).</td>
+</tr>
+<tr>
+<td>SFP:Vendor:PartNumberRevision</td>
+<td>Vendor-provided revision of the part number reported by the SFP module (as an ASCII string).</td>
+</tr>
+<tr>
+<td>SFP:Vendor:SerialNumber</td>
+<td>Vendor-provided serial number reported by the SFP module (as an ASCII string).</td>
+</tr>
+</table>
+
+
 EVR
 ---
 
@@ -637,6 +727,7 @@ EVR
 - [Pulse generators](#pulse-generators)
 - [Prescalers](#prescalers)
 - [Time stamps](#time-stamps)
+- [SFP module](#sfp-module-1)
 
 
 ### Data buffer
@@ -1377,3 +1468,9 @@ detailed description.
 <td>Time-stamp seconds shift register (read-only). The time-stamp seconds shift register is updated when a "seconds shift register 0" event (event code 0x70) or a "seconds shift register 1" event (event code 0x71) is received. The value of this register is the source used when updating the time-stamp seconds counter.  This record is not updated automatically. Process it (write 0 to the <code>PROC</code> field) in order to get the latest status.</td>
 </tr>
 </table>
+
+
+### SFP module
+
+The PVs with diagnostic information for the SFP module are exactly the same as
+[the ones supported for the EVG](#sfp-module).

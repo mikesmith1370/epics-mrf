@@ -251,6 +251,9 @@ if [ "${device_type}" = "vme-evr-230rf" ]; then
   write_all_pvs+=("\$(P)\$(R)Intrnl:WriteAll:FPOut:CML")
 fi
 
+# EVRs only have a single SFP module, so we use the empty string for the number.
+sfp_module "" "0x8200"
+
 if [ "${mode}" = "records" ]; then
   cat <<EOF
 # Write all settings to the hardware.

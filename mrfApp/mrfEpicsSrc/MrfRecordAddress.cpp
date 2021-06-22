@@ -1,6 +1,6 @@
 /*
- * Copyright 2015 aquenos GmbH.
- * Copyright 2015 Karlsruhe Institute of Technology.
+ * Copyright 2015-2021 aquenos GmbH.
+ * Copyright 2015-2021 Karlsruhe Institute of Technology.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -164,8 +164,8 @@ std::tuple<std::uint32_t, signed char, signed char> parseMemoryAddress(
 }
 
 MrfRecordAddress::MrfRecordAddress(const std::string &addressString) :
-    elementDistance(0), zeroOtherBits(false), verify(true), readOnInit(true), changedElementsOnly(
-        false) {
+    changedElementsOnly(false), elementDistance(0), readOnInit(true),
+    stringLength(0), verify(true), zeroOtherBits(false) {
   const std::string delimiters(" \t\n\v\f\r");
   std::size_t tokenStart, tokenLength;
   // First, read the device name.
@@ -207,6 +207,7 @@ MrfRecordAddress::MrfRecordAddress(const std::string &addressString) :
   std::tie(tokenStart, tokenLength) = findNextToken(addressString, delimiters,
       tokenStart + tokenLength);
   const std::string elementDistanceString = "element_distance=";
+  const std::string stringLengthString = "string_length=";
   while (tokenStart != std::string::npos) {
     std::string token = addressString.substr(tokenStart, tokenLength);
     if (compareStringsIgnoreCase(token, "zero_other_bits")) {
@@ -244,6 +245,32 @@ MrfRecordAddress::MrfRecordAddress(const std::string &addressString) :
                 + token);
       }
       this->elementDistance = elementDistance;
+    } else if (token.length() >= stringLengthString.length()
+        && compareStringsIgnoreCase(
+            token.substr(0, stringLengthString.length()),
+            stringLengthString)) {
+      std::size_t numberLength;
+      unsigned long stringLength;
+      try {
+        stringLength = std::stoul(
+            token.substr(stringLengthString.length(), std::string::npos),
+            &numberLength, 0);
+      } catch (std::invalid_argument&) {
+        throw std::invalid_argument(
+            std::string("Invalid string length in record address: ")
+                + token);
+      } catch (std::out_of_range&) {
+        throw std::invalid_argument(
+            std::string("Invalid string length in record address: ")
+                + token);
+      }
+      // We have to make sure that the value fits into a signed integer.
+      if (stringLength > INT_MAX) {
+        throw std::invalid_argument(
+            std::string("Invalid string length in record address: ")
+                + token);
+      }
+      this->stringLength = stringLength;
     } else {
       throw std::invalid_argument(
           std::string("Unrecognized token in record address: ") + token);

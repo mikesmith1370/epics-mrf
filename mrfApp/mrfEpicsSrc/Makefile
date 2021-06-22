@@ -32,6 +32,7 @@ mrfEpics_SRCS += MrfLongoutFineDelayShiftRegisterRecord.cpp
 mrfEpics_SRCS += MrfMbbiDirectInterruptRecord.cpp
 mrfEpics_SRCS += MrfMemoryCache.cpp
 mrfEpics_SRCS += MrfRecordAddress.cpp
+mrfEpics_SRCS += MrfStringinRecord.cpp
 mrfEpics_SRCS += MrfWaveformInRecord.cpp
 mrfEpics_SRCS += MrfWaveformOutRecord.cpp
 mrfEpics_SRCS += mrfEpicsError.cpp

@@ -1,6 +1,6 @@
 /*
- * Copyright 2015 aquenos GmbH.
- * Copyright 2015 Karlsruhe Institute of Technology.
+ * Copyright 2015-2021 aquenos GmbH.
+ * Copyright 2015-2021 Karlsruhe Institute of Technology.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
@@ -119,6 +119,14 @@ public:
   }
 
   /**
+   * Returns the length of a string in the device memory (number of bytes). This
+   * is only used by string records.
+   */
+  inline int getStringLength() const {
+    return stringLength;
+  }
+
+  /**
    * Tells whether the bits that are not used should be forced to zero when
    * writing to the register. This is useful for registers that have bits that
    * are not used or which do not represent a state but just trigger an event
@@ -178,11 +186,12 @@ private:
 
   DataType dataType;
 
-  int elementDistance;
-  bool zeroOtherBits;
-  bool verify;
-  bool readOnInit;
   bool changedElementsOnly;
+  int elementDistance;
+  bool readOnInit;
+  int stringLength;
+  bool verify;
+  bool zeroOtherBits;
 
 };
 

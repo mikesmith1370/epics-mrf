@@ -47,6 +47,7 @@
 #include "MrfMbboDirectRecord.h"
 #include "MrfMbbiRecord.h"
 #include "MrfMbboRecord.h"
+#include "MrfStringinRecord.h"
 #include "MrfWaveformInRecord.h"
 #include "MrfWaveformOutRecord.h"
 #include "mrfEpicsError.h"
@@ -425,6 +426,27 @@ mbbodset devMbboMrf = {
   processRecord<MrfMbboRecord>,
 };
 epicsExportAddress(dset, devMbboMrf);
+
+/**
+ * stringin record type.
+ */
+#ifndef HAS_stringindset
+typedef struct stringindset {
+  dset common;
+  long (*read_stringin)(stringinRecord *prec);
+} stringindset;
+#endif // HAS_stringindset
+stringindset devStringinMrf = {
+  {
+    5,
+    nullptr,
+    nullptr,
+    initRecord<MrfStringinRecord>,
+    nullptr,
+  },
+  processRecord<MrfStringinRecord>,
+};
+epicsExportAddress(dset, devStringinMrf);
 
 /**
  * waveform (input) record type.
