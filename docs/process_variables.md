@@ -38,6 +38,7 @@ EVG
 - [Multiplexed counter](#multiplexed-counters)
 - [Outputs](#outputs)
 - [SFP module](#sfp-module)
+- [Time stamps](#time-stamps)
 
 
 ### AC synchronization
@@ -731,6 +732,33 @@ which information is provided.
 </table>
 
 
+### Time stamps
+
+The time-stamp mechanism allows for a high-precision time-stamp being
+distributed from an EVG to all EVRs. The details of this mechanism are tricky,
+so it is strongly suggested that you refer to the EVG and EVR manuals for a
+detailed description.
+
+<table>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>TimeStamp:Generator:Enabled</td>
+<td>Time-stamp generator enabled flag. 1 if the time-stamp generator shall be enabled, 0 if it shall be disabled. If the time-stamp generator is enabled, it will automatically increment the time-stamp value and send it out to the EVRs when it receives the external 1 Hz input.</td>
+</tr>
+<tr>
+<td>TimeStamp:Generator:LoadValue</td>
+<td>Writing to this record load sthe value from <code>TimeStamp:Generator:Value</code> into the time-stamp generator.</td>
+</tr>
+<tr>
+<td>TimeStamp:Generator:Value</td>
+<td>Value that is loaded into the time-stamp generator when processing <code>TimeStamp:Generator:LoadValue</code>.</td>
+</tr>
+</table>
+
+
 EVR
 ---
 
@@ -746,7 +774,7 @@ EVR
 - [Outputs](#outputs-1)
 - [Pulse generators](#pulse-generators)
 - [Prescalers](#prescalers)
-- [Time stamps](#time-stamps)
+- [Time stamps](#time-stamps-1)
 - [SFP module](#sfp-module-1)
 
 

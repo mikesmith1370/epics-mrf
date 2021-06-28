@@ -1574,3 +1574,32 @@ record(fanout, "$(P)$(R)Intrnl:WriteAll:Event:SeqRAM1") {
   field(LNK5, "$(P)$(R)Event:SeqRAM1:TrigSource")
 }
 
+record(bo, "$(P)$(R)TimeStamp:Generator:Enabled") {
+  field(DESC, "Enable time-stamp generator?")
+  field(DTYP, "MRF Memory")
+  field(OUT,  "@$(DEVICE) 0x0034[1] uint32")
+  field(ZNAM, "Disabled")
+  field(ONAM, "Enabled")
+}
+
+record(bo, "$(P)$(R)TimeStamp:Generator:LoadValue") {
+  field(DESC, "Load time-stamp gen. value")
+  field(FLNK, "$(P)$(R)Intrnl:TSGeneratorLoad")
+  field(ZNAM, "Load")
+  field(ONAM, "Load")
+}
+
+record(bo, "$(P)$(R)Intrnl:TSGeneratorLoad") {
+  field(DTYP, "MRF Memory")
+  field(OUT,  "@$(DEVICE) 0x0034[0] uint32 no_verify")
+  field(OMSL, "closed_loop")
+  field(DOL,  "$(P)$(R)Intrnl:True")
+  field(ZNAM, "No load")
+  field(ONAM, "Load")
+}
+
+record(longout, "$(P)$(R)TimeStamp:Generator:Value") {
+  field(DESC, "Time-stamp generator new value")
+  field(DTYP, "MRF Memory")
+  field(OUT,  "@$(DEVICE) 0x0038 uint32")
+}

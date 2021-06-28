@@ -60,3 +60,5 @@ $(P)$(R)EventClock:Gen:Freq.VAL
 $(P)$(R)EventClock:RefSelect.VAL
 $(P)$(R)RX:Disabled.VAL
 $(P)$(R)RX:PowerDown.VAL
+$(P)$(R)TimeStamp:Generator:Enabled.VAL
+$(P)$(R)TimeStamp:Generator:Value.VAL
