@@ -119,7 +119,7 @@ description() {
   local pv_name="$1"
   local description="$2"
   case "$MRF_DESCRIPTION_RECORD_TYPE" in
-    lso)
+    lso|"")
       if [ "${mode}" = "records" ]; then
         cat <<EOF
 record(lso, "${pv_name}") {
@@ -132,7 +132,7 @@ EOF
         echo "${pv_name}.VAL\$"
       fi
       ;;
-    stringout|"")
+    stringout)
       if [ "${mode}" = "records" ]; then
         cat <<EOF
 record(stringout, "${pv_name}") {

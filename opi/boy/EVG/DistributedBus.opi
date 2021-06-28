@@ -2324,7 +2324,7 @@ $(pv_value)</tooltip>
     <name>Text Input</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(mrf_evg_prefix)DBus:B0:Description.VAL$ {"longString":true}</pv_name>
+    <pv_name>$(mrf_evg_prefix)DBus:B0:Description$(mrf_description_pv_suffix)</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2421,7 +2421,7 @@ $(pv_value)</tooltip>
     <name>Text Input_1</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(mrf_evg_prefix)DBus:B1:Description.VAL$ {"longString":true}</pv_name>
+    <pv_name>$(mrf_evg_prefix)DBus:B1:Description$(mrf_description_pv_suffix)</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2478,7 +2478,7 @@ $(pv_value)</tooltip>
     <name>Text Input_2</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(mrf_evg_prefix)DBus:B2:Description.VAL$ {"longString":true}</pv_name>
+    <pv_name>$(mrf_evg_prefix)DBus:B2:Description$(mrf_description_pv_suffix)</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2535,7 +2535,7 @@ $(pv_value)</tooltip>
     <name>Text Input_3</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(mrf_evg_prefix)DBus:B3:Description.VAL$ {"longString":true}</pv_name>
+    <pv_name>$(mrf_evg_prefix)DBus:B3:Description$(mrf_description_pv_suffix)</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2592,7 +2592,7 @@ $(pv_value)</tooltip>
     <name>Text Input_4</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(mrf_evg_prefix)DBus:B4:Description.VAL$ {"longString":true}</pv_name>
+    <pv_name>$(mrf_evg_prefix)DBus:B4:Description$(mrf_description_pv_suffix)</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2649,7 +2649,7 @@ $(pv_value)</tooltip>
     <name>Text Input_5</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(mrf_evg_prefix)DBus:B5:Description.VAL$ {"longString":true}</pv_name>
+    <pv_name>$(mrf_evg_prefix)DBus:B5:Description$(mrf_description_pv_suffix)</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2706,7 +2706,7 @@ $(pv_value)</tooltip>
     <name>Text Input_6</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(mrf_evg_prefix)DBus:B6:Description.VAL$ {"longString":true}</pv_name>
+    <pv_name>$(mrf_evg_prefix)DBus:B6:Description$(mrf_description_pv_suffix)</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2763,7 +2763,7 @@ $(pv_value)</tooltip>
     <name>Text Input_7</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(mrf_evg_prefix)DBus:B7:Description.VAL$ {"longString":true}</pv_name>
+    <pv_name>$(mrf_evg_prefix)DBus:B7:Description$(mrf_description_pv_suffix)</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />

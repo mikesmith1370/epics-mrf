@@ -2330,7 +2330,7 @@ $(pv_value)</tooltip>
     <name>Text Input_1</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(mrf_evr_prefix)Prescaler$(mrf_evr_prescaler_num):Description.VAL$ {"longString":true}</pv_name>
+    <pv_name>$(mrf_evr_prefix)Prescaler$(mrf_evr_prescaler_num):Description$(mrf_description_pv_suffix)</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />

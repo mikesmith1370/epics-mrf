@@ -51,24 +51,28 @@ between three types, that can be selected by setting the
 `MRF_DESCRIPTION_RECORD_TYPE` variable in `configure/CONFIG_SITE.local` to the
 name of the respective record type.
 
-### stringout
-
-This is the default option and works with all supported releases of EPICS Base.
-The only downside of this option is that description strings are limited to 39
-characters. The CSS / BOY panels distributed with this device support will not
-work natively with this record type and have to be adjusted if you want to use
- the `stringout` record type (replacing referenced to `.VAL$` with `.VAL` and
-removing the `longString` option).
-
 ### lso
 
-When choosing the `lso` record, descriptions can have up to 255 characters. The
-downside is that the `lso` record is only supported by recent releases of EPICS
-Base and that there is a
+This is the default option and allows using descriptions with up to 255
+characters. The downside is that the `lso` record is only supported by recent
+releases of EPICS Base and that there is a
 [bug in Autosave](https://github.com/epics-modules/autosave/pull/27) that
 prevents values from being restored correctly unless you apply a patch to
-Autosave. The CSS / BOY panels distributed with this device support will work
-with the `lso` record type without any modifications.
+Autosave.
+
+The CSS / BOY panels distributed with this device support will work with the
+`lso` record type without any modifications.
+
+### stringout
+
+The `stringout` record is supported by all releases of EPICS Base, but
+description strings are limited to 39 characters when using it.
+
+The CSS / BOY panels distributed with this device support will not work natively
+with this record type and have to be adjusted. This can be done either by
+setting the `mrf_description_pv_suffix` macro to `.VAL` when opening the main
+panel or by editing the main panel files (for each of the supported device
+types) and changing the default value of this macro accordingly.
 
 ### waveform
 
@@ -79,7 +83,11 @@ The downside of using the `waveform` record is that EPICS client tools will not
 natively recognize that the PV represents a string and that the format in which
 Autosave stores the data differs from the one used for the `stringout` and `lso`
 records. This means that you will have to manually edit Autosave save files when
-switching between `waveform` and one of the other record types. Another downside
-is that the CSS / BOY panels, that ship with this device support, will not work
-when using the `waveform` record type. The panels have to be adjusted first
-(so that they reference the record’s `VAL` field instead of `VAL$`).
+switching between `waveform` and one of the other record types.
+
+The CSS / BOY panels distributed with this device support will not work natively
+with this record type and have to be adjusted. This can be done either by
+setting the `mrf_description_pv_suffix` macro to `.VAL {"longString":true}` when
+opening the main panel or by editing the main panel files (for each of the
+supported device types) and changing the default value of this macro
+accordingly.

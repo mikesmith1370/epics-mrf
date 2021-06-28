@@ -19,6 +19,7 @@
   <macros>
     <include_parent_macros>true</include_parent_macros>
     <mrf_evr_type>VME-EVR-230RF</mrf_evr_type>
+    <mrf_description_pv_suffix>.VAL$ {"longString":true}</mrf_description_pv_suffix>
   </macros>
   <name>$(mrf_evr_name) Overview</name>
   <rules />

@@ -18,6 +18,7 @@
   <height>600</height>
   <macros>
     <include_parent_macros>true</include_parent_macros>
+    <mrf_description_pv_suffix>.VAL$ {"longString":true}</mrf_description_pv_suffix>
   </macros>
   <name>$(mrf_evg_name) Overview</name>
   <rules />

@@ -16,5 +16,5 @@ USR_CXXFLAGS += -Wall -Wextra -pedantic -Wno-c++11-long-long
 USR_CFLAGS += -std=c99
 
 # Record type to use for description records.
-# This can be "stringout" (the default), "lso", or "waveform".
-MRF_DESCRIPTION_RECORD_TYPE = stringout
+# This can be "lso" (the default), "stringout", or "waveform".
+MRF_DESCRIPTION_RECORD_TYPE = lso

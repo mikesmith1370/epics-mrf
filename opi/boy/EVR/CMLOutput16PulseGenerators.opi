@@ -47,13 +47,13 @@
     <border_width>1</border_width>
     <enabled>false</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
-    <height>32</height>
+    <height>26</height>
     <items>
       <s>Pulse Generator 0</s>
       <s>Pulse Generator 1</s>
@@ -315,7 +315,7 @@ $(pv_value)</tooltip>
     <border_width>1</border_width>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -366,7 +366,7 @@ $(pv_value)</tooltip>
     <border_width>1</border_width>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <foreground_color>
@@ -414,7 +414,7 @@ $(pv_value)</tooltip>
     <confirm_message></confirm_message>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <foreground_color>
@@ -430,7 +430,7 @@ $(pv_value)</tooltip>
     <name>Text Input</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(mrf_evr_output_prefix)$(mrf_evr_output_num):Description.VAL$ {"longString":true}</pv_name>
+    <pv_name>$(mrf_evr_output_prefix)$(mrf_evr_output_num):Description$(mrf_description_pv_suffix)</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
