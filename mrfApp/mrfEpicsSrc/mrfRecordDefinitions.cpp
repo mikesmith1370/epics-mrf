@@ -182,8 +182,8 @@ epicsExportAddress(dset, devAiMrf);
 #ifndef HAS_aodset
 typedef struct aodset {
   dset common;
-  long (*write_ao)(aiRecord *prec);
-  long (*special_linconv)(aiRecord *prec, int after);
+  long (*write_ao)(aoRecord *prec);
+  long (*special_linconv)(aoRecord *prec, int after);
 } aodset;
 #endif // HAS_aodset
 aodset devAoMrf = {
