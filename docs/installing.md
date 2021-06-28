@@ -55,7 +55,10 @@ name of the respective record type.
 
 This is the default option and works with all supported releases of EPICS Base.
 The only downside of this option is that description strings are limited to 39
-characters.
+characters. The CSS / BOY panels distributed with this device support will not
+work natively with this record type and have to be adjusted if you want to use
+ the `stringout` record type (replacing referenced to `.VAL$` with `.VAL` and
+removing the `longString` option).
 
 ### lso
 
@@ -64,7 +67,8 @@ downside is that the `lso` record is only supported by recent releases of EPICS
 Base and that there is a
 [bug in Autosave](https://github.com/epics-modules/autosave/pull/27) that
 prevents values from being restored correctly unless you apply a patch to
-Autosave.
+Autosave. The CSS / BOY panels distributed with this device support will work
+with the `lso` record type without any modifications.
 
 ### waveform
 
