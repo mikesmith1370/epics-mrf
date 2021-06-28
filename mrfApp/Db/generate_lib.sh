@@ -125,7 +125,6 @@ description() {
 record(lso, "${pv_name}") {
   field(DESC, "${description}")
   field(SIZV, "256")
-  field(VAL,  "")
   field(PINI, "YES")
 }
 EOF
