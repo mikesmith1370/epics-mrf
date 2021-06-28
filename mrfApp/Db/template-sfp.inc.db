@@ -54,7 +54,7 @@ record(fanout, "$(P)$(R)Intrnl:SFP@SFP_NUM@:ScanInfo:Fout3") {
   field(FLNK, "$(P)$(R)Intrnl:SFP@SFP_NUM@:ScanInfo:Fout4")
 }
 
-record(fanout, "$(P)$(R)Intrnl:SFP@SFP_NUM@:ScanSlow:Fout4") {
+record(fanout, "$(P)$(R)Intrnl:SFP@SFP_NUM@:ScanInfo:Fout4") {
   field(LNK1, "$(P)$(R)Intrnl:SFP@SFP_NUM@:TXBiasLWarning")
   field(LNK2, "$(P)$(R)Intrnl:SFP@SFP_NUM@:TXPowerHAlarm")
   field(LNK3, "$(P)$(R)Intrnl:SFP@SFP_NUM@:TXPowerLAlarm")
