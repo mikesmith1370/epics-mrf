@@ -533,4 +533,5 @@ record(bi, "$(P)$(R)EventClock:RecDCM:RUNFlag") {
 # Write all settings in this file to the hardware.
 
 record(fanout, "$(P)$(R)Intrnl:WriteAll:VME") {
+  field(LNK1, "$(P)$(R)Intrnl:WriteAll:IRQ")
 }

@@ -58,14 +58,5 @@ $(P)$(R)EventClock:Divider.VAL
 $(P)$(R)EventClock:Freq.VAL
 $(P)$(R)EventClock:Gen:Freq.VAL
 $(P)$(R)EventClock:RefSelect.VAL
-$(P)$(R)IRQ:DataBuffer:Enabled.VAL
-$(P)$(R)IRQ:Enabled.VAL
-$(P)$(R)IRQ:EventFIFOFull:Enabled.VAL
-$(P)$(R)IRQ:External:Enabled.VAL
-$(P)$(R)IRQ:RXViolation:Enabled.VAL
-$(P)$(R)IRQ:SeqRAM0Start:Enabled.VAL
-$(P)$(R)IRQ:SeqRAM1Start:Enabled.VAL
-$(P)$(R)IRQ:SeqRAM0Stop:Enabled.VAL
-$(P)$(R)IRQ:SeqRAM1Stop:Enabled.VAL
 $(P)$(R)RX:Disabled.VAL
 $(P)$(R)RX:PowerDown.VAL
