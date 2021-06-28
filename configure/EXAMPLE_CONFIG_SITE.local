@@ -14,3 +14,7 @@ USR_CXXFLAGS += -Wall -Wextra -pedantic -Wno-c++11-long-long
 
 # Language standard for C code - should be c99 or gnu99
 USR_CFLAGS += -std=c99
+
+# Record type to use for description records.
+# This can be "stringout" (the default), "lso", or "waveform".
+MRF_DESCRIPTION_RECORD_TYPE = stringout

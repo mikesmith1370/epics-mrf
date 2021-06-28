@@ -115,6 +115,58 @@ substitute_template_variables() {
   done
 }
 
+description() {
+  local pv_name="$1"
+  local description="$2"
+  case "$MRF_DESCRIPTION_RECORD_TYPE" in
+    lso)
+      if [ "${mode}" = "records" ]; then
+        cat <<EOF
+record(lso, "${pv_name}") {
+  field(DESC, "${description}")
+  field(SIZV, "256")
+  field(VAL,  "")
+  field(PINI, "YES")
+}
+EOF
+      elif [ "${mode}" = "autosave_request_file" ]; then
+        echo "${pv_name}.VAL\$"
+      fi
+      ;;
+    stringout|"")
+      if [ "${mode}" = "records" ]; then
+        cat <<EOF
+record(stringout, "${pv_name}") {
+  field(DESC, "${description}")
+  field(VAL,  "")
+  field(PINI, "YES")
+}
+EOF
+      elif [ "${mode}" = "autosave_request_file" ]; then
+        echo "${pv_name}.VAL"
+      fi
+      ;;
+    waveform)
+      if [ "${mode}" = "records" ]; then
+        cat <<EOF
+record(waveform, "${pv_name}") {
+  field(DESC, "${description}")
+  field(FTVL, "CHAR")
+  field(NELM, "256")
+  field(PINI, "YES")
+}
+EOF
+      elif [ "${mode}" = "autosave_request_file" ]; then
+        echo "${pv_name}.VAL"
+      fi
+      ;;
+    *)
+      echo "Value of \$MRF_DESCRIPTION_RECORD_TYPE is invalid." >&2
+      exit 1
+      ;;
+  esac
+}
+
 fanout() {
   local pv_name="$1"
   local fout_num=0

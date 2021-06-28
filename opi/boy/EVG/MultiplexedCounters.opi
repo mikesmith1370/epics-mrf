@@ -1,969 +1,923 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <display typeId="org.csstudio.opibuilder.Display" version="1.0.0">
-  <show_close_button>true</show_close_button>
-  <rules />
-  <wuid>5cccfaca:14dde8a1ae8:-7ed6</wuid>
-  <show_grid>true</show_grid>
-  <auto_zoom_to_fit_all>false</auto_zoom_to_fit_all>
-  <scripts />
-  <height>600</height>
-  <macros>
-    <include_parent_macros>true</include_parent_macros>
-  </macros>
-  <boy_version>3.2.16.20140409</boy_version>
-  <show_edit_range>true</show_edit_range>
-  <widget_type>Display</widget_type>
+  <actions hook="false" hook_all="false" />
   <auto_scale_widgets>
     <auto_scale_widgets>false</auto_scale_widgets>
     <min_width>-1</min_width>
     <min_height>-1</min_height>
   </auto_scale_widgets>
+  <auto_zoom_to_fit_all>false</auto_zoom_to_fit_all>
   <background_color>
     <color red="240" green="240" blue="240" />
   </background_color>
-  <width>800</width>
-  <x>-1</x>
-  <name>$(mrf_evg_name) Multiplexed Counters</name>
-  <grid_space>6</grid_space>
-  <show_ruler>true</show_ruler>
-  <y>-1</y>
-  <snap_to_geometry>true</snap_to_geometry>
+  <boy_version>5.1.0.202009030828</boy_version>
   <foreground_color>
     <color red="192" green="192" blue="192" />
   </foreground_color>
-  <actions hook="false" hook_all="false" />
+  <grid_space>6</grid_space>
+  <height>600</height>
+  <macros>
+    <include_parent_macros>true</include_parent_macros>
+  </macros>
+  <name>$(mrf_evg_name) Multiplexed Counters</name>
+  <rules />
+  <scripts />
+  <show_close_button>true</show_close_button>
+  <show_edit_range>true</show_edit_range>
+  <show_grid>true</show_grid>
+  <show_ruler>true</show_ruler>
+  <snap_to_geometry>true</snap_to_geometry>
+  <widget_type>Display</widget_type>
+  <width>800</width>
+  <wuid>5cccfaca:14dde8a1ae8:-7ed6</wuid>
+  <x>-1</x>
+  <y>-1</y>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <border_style>0</border_style>
-    <tooltip></tooltip>
-    <horizontal_alignment>0</horizontal_alignment>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>5cccfaca:14dde8a1ae8:-6140</wuid>
-    <transparent>true</transparent>
+    <actions hook="false" hook_all="false" />
     <auto_size>false</auto_size>
-    <text>$(mrf_evg_name) Multiplexed Counters</text>
-    <scripts />
-    <height>37</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <vertical_alignment>1</vertical_alignment>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <widget_type>Label</widget_type>
-    <wrap_words>false</wrap_words>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
-    <width>619</width>
-    <x>174</x>
-    <name>Label_2</name>
-    <y>12</y>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="19" style="1" pixels="false">Header 1</opifont.name>
+    </font>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Lucida Grande" height="21" style="1">Header 1</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.ActionButton" version="2.0.0">
-    <toggle_button>false</toggle_button>
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <push_action_index>0</push_action_index>
+    <height>37</height>
+    <horizontal_alignment>0</horizontal_alignment>
+    <name>Label_2</name>
     <rules />
-    <enabled>true</enabled>
-    <wuid>5cccfaca:14dde8a1ae8:-7ec0</wuid>
-    <pv_value />
-    <text>$(actions)</text>
-    <scripts />
-    <border_alarm_sensitive>false</border_alarm_sensitive>
-    <height>25</height>
-    <border_width>1</border_width>
     <scale_options>
       <width_scalable>true</width_scalable>
       <height_scalable>true</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <image></image>
+    <scripts />
+    <text>$(mrf_evg_name) Multiplexed Counters</text>
+    <tooltip></tooltip>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
     <visible>true</visible>
-    <pv_name></pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <widget_type>Action Button</widget_type>
-    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
-    <background_color>
-      <color red="240" green="240" blue="240" />
-    </background_color>
-    <width>133</width>
-    <x>18</x>
-    <name>Action Button</name>
-    <y>18</y>
-    <style>0</style>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
+    <widget_type>Label</widget_type>
+    <width>619</width>
+    <wrap_words>false</wrap_words>
+    <wuid>5cccfaca:14dde8a1ae8:-6140</wuid>
+    <x>174</x>
+    <y>12</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.ActionButton" version="2.0.0">
     <actions hook="false" hook_all="false">
       <action type="OPEN_DISPLAY">
         <path>Main.opi</path>
         <macros>
           <include_parent_macros>true</include_parent_macros>
         </macros>
-        <replace>0</replace>
+        <mode>1</mode>
         <description>Overview...</description>
       </action>
     </actions>
-    <font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.tab" version="1.0.0">
-    <active_tab>0</active_tab>
-    <tooltip></tooltip>
-    <tab_3_icon_path></tab_3_icon_path>
-    <tab_4_enabled>true</tab_4_enabled>
-    <tab_6_background_color>
-      <color red="255" green="255" blue="255" />
-    </tab_6_background_color>
-    <tab_6_title>MXC 6</tab_6_title>
-    <height>193</height>
-    <tab_6_foreground_color>
-      <color red="0" green="0" blue="0" />
-    </tab_6_foreground_color>
-    <tab_2_icon_path></tab_2_icon_path>
-    <border_width>1</border_width>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <tab_0_foreground_color>
-      <color red="0" green="0" blue="0" />
-    </tab_0_foreground_color>
-    <actions hook="false" hook_all="false" />
-    <tab_1_enabled>true</tab_1_enabled>
-    <border_style>0</border_style>
-    <tab_4_title>MXC 4</tab_4_title>
-    <tab_5_enabled>true</tab_5_enabled>
-    <enabled>true</enabled>
-    <wuid>4a318208:14de1f4e024:-7920</wuid>
-    <tab_1_background_color>
-      <color red="255" green="255" blue="255" />
-    </tab_1_background_color>
-    <tab_1_icon_path></tab_1_icon_path>
-    <tab_7_font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </tab_7_font>
-    <tab_2_foreground_color>
-      <color red="0" green="0" blue="0" />
-    </tab_2_foreground_color>
-    <tab_1_font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </tab_1_font>
-    <tab_3_title>MXC 3</tab_3_title>
-    <tab_4_background_color>
-      <color red="255" green="255" blue="255" />
-    </tab_4_background_color>
-    <tab_4_icon_path></tab_4_icon_path>
-    <tab_2_enabled>true</tab_2_enabled>
-    <tab_7_icon_path></tab_7_icon_path>
-    <background_color>
-      <color red="240" green="240" blue="240" />
-    </background_color>
-    <width>469</width>
-    <x>18</x>
-    <horizontal_tabs>true</horizontal_tabs>
-    <y>60</y>
-    <tab_6_enabled>true</tab_6_enabled>
-    <tab_7_background_color>
-      <color red="255" green="255" blue="255" />
-    </tab_7_background_color>
-    <tab_5_foreground_color>
-      <color red="0" green="0" blue="0" />
-    </tab_5_foreground_color>
-    <rules />
-    <tab_3_font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </tab_3_font>
-    <tab_5_background_color>
-      <color red="255" green="255" blue="255" />
-    </tab_5_background_color>
-    <tab_4_font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </tab_4_font>
-    <tab_6_icon_path></tab_6_icon_path>
-    <macros>
-      <include_parent_macros>true</include_parent_macros>
-    </macros>
-    <visible>true</visible>
-    <tab_0_background_color>
-      <color red="255" green="255" blue="255" />
-    </tab_0_background_color>
-    <tab_3_foreground_color>
-      <color red="0" green="0" blue="0" />
-    </tab_3_foreground_color>
-    <widget_type>Tabbed Container</widget_type>
-    <tab_2_font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </tab_2_font>
-    <tab_3_background_color>
-      <color red="255" green="255" blue="255" />
-    </tab_3_background_color>
-    <tab_5_title>MXC 5</tab_5_title>
-    <tab_5_icon_path></tab_5_icon_path>
-    <tab_3_enabled>true</tab_3_enabled>
-    <tab_5_font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </tab_5_font>
-    <name>Tabbed Container</name>
-    <minimum_tab_height>10</minimum_tab_height>
-    <tab_2_title>MXC 2</tab_2_title>
-    <tab_7_enabled>true</tab_7_enabled>
-    <tab_0_font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </tab_0_font>
-    <tab_2_background_color>
-      <color red="255" green="255" blue="255" />
-    </tab_2_background_color>
-    <tab_6_font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </tab_6_font>
-    <tab_0_title>MXC 0</tab_0_title>
-    <tab_1_foreground_color>
-      <color red="0" green="0" blue="0" />
-    </tab_1_foreground_color>
-    <tab_1_title>MXC 1</tab_1_title>
-    <scripts />
-    <tab_count>8</tab_count>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <tab_7_foreground_color>
-      <color red="0" green="0" blue="0" />
-    </tab_7_foreground_color>
-    <tab_0_icon_path></tab_0_icon_path>
-    <tab_0_enabled>true</tab_0_enabled>
-    <tab_7_title>MXC 7</tab_7_title>
-    <foreground_color>
-      <color red="192" green="192" blue="192" />
-    </foreground_color>
-    <tab_4_foreground_color>
-      <color red="0" green="0" blue="0" />
-    </tab_4_foreground_color>
-    <widget typeId="org.csstudio.opibuilder.widgets.groupingContainer" version="1.0.0">
-      <border_style>0</border_style>
-      <tooltip></tooltip>
-      <rules />
-      <enabled>true</enabled>
-      <wuid>4a318208:14de1f4e024:-791f</wuid>
-      <transparent>true</transparent>
-      <lock_children>false</lock_children>
-      <scripts />
-      <height>163</height>
-      <border_width>1</border_width>
-      <scale_options>
-        <width_scalable>true</width_scalable>
-        <height_scalable>true</height_scalable>
-        <keep_wh_ratio>false</keep_wh_ratio>
-      </scale_options>
-      <macros>
-        <include_parent_macros>true</include_parent_macros>
-      </macros>
-      <visible>true</visible>
-      <border_color>
-        <color red="0" green="128" blue="255" />
-      </border_color>
-      <widget_type>Grouping Container</widget_type>
-      <background_color>
-        <color red="240" green="240" blue="240" />
-      </background_color>
-      <width>467</width>
-      <x>1</x>
-      <name>MXC 0</name>
-      <y>1</y>
-      <foreground_color>
-        <color red="192" green="192" blue="192" />
-      </foreground_color>
-      <actions hook="false" hook_all="false" />
-      <fc>false</fc>
-      <show_scrollbar>true</show_scrollbar>
-      <font>
-        <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-      </font>
-      <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
-        <opi_file>MultiplexedCounter.opi</opi_file>
-        <border_style>0</border_style>
-        <tooltip></tooltip>
-        <rules />
-        <enabled>true</enabled>
-        <wuid>4a318208:14de1f4e024:-7736</wuid>
-        <auto_size>true</auto_size>
-        <scripts />
-        <height>147</height>
-        <border_width>1</border_width>
-        <scale_options>
-          <width_scalable>true</width_scalable>
-          <height_scalable>true</height_scalable>
-          <keep_wh_ratio>false</keep_wh_ratio>
-        </scale_options>
-        <macros>
-          <include_parent_macros>true</include_parent_macros>
-          <mrf_evg_mxc_id>0</mrf_evg_mxc_id>
-        </macros>
-        <visible>true</visible>
-        <group_name></group_name>
-        <border_color>
-          <color red="0" green="128" blue="255" />
-        </border_color>
-        <widget_type>Linking Container</widget_type>
-        <background_color>
-          <color red="240" green="240" blue="240" />
-        </background_color>
-        <zoom_to_fit>false</zoom_to_fit>
-        <width>349</width>
-        <x>6</x>
-        <name>Linking Container</name>
-        <y>6</y>
-        <foreground_color>
-          <color red="192" green="192" blue="192" />
-        </foreground_color>
-        <actions hook="false" hook_all="false" />
-        <font>
-          <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-        </font>
-      </widget>
-    </widget>
-    <widget typeId="org.csstudio.opibuilder.widgets.groupingContainer" version="1.0.0">
-      <border_style>0</border_style>
-      <tooltip></tooltip>
-      <rules />
-      <enabled>true</enabled>
-      <wuid>4a318208:14de1f4e024:-7723</wuid>
-      <transparent>true</transparent>
-      <lock_children>false</lock_children>
-      <scripts />
-      <height>163</height>
-      <border_width>1</border_width>
-      <scale_options>
-        <width_scalable>true</width_scalable>
-        <height_scalable>true</height_scalable>
-        <keep_wh_ratio>false</keep_wh_ratio>
-      </scale_options>
-      <macros>
-        <include_parent_macros>true</include_parent_macros>
-      </macros>
-      <visible>false</visible>
-      <border_color>
-        <color red="0" green="128" blue="255" />
-      </border_color>
-      <widget_type>Grouping Container</widget_type>
-      <background_color>
-        <color red="240" green="240" blue="240" />
-      </background_color>
-      <width>467</width>
-      <x>1</x>
-      <name>MXC 1</name>
-      <y>1</y>
-      <foreground_color>
-        <color red="192" green="192" blue="192" />
-      </foreground_color>
-      <actions hook="false" hook_all="false" />
-      <fc>false</fc>
-      <show_scrollbar>true</show_scrollbar>
-      <font>
-        <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-      </font>
-      <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
-        <opi_file>MultiplexedCounter.opi</opi_file>
-        <border_style>0</border_style>
-        <tooltip></tooltip>
-        <rules />
-        <enabled>true</enabled>
-        <wuid>4a318208:14de1f4e024:-770f</wuid>
-        <auto_size>true</auto_size>
-        <scripts />
-        <height>147</height>
-        <border_width>1</border_width>
-        <scale_options>
-          <width_scalable>true</width_scalable>
-          <height_scalable>true</height_scalable>
-          <keep_wh_ratio>false</keep_wh_ratio>
-        </scale_options>
-        <macros>
-          <include_parent_macros>true</include_parent_macros>
-          <mrf_evg_mxc_id>1</mrf_evg_mxc_id>
-        </macros>
-        <visible>true</visible>
-        <group_name></group_name>
-        <border_color>
-          <color red="0" green="128" blue="255" />
-        </border_color>
-        <widget_type>Linking Container</widget_type>
-        <background_color>
-          <color red="240" green="240" blue="240" />
-        </background_color>
-        <zoom_to_fit>false</zoom_to_fit>
-        <width>349</width>
-        <x>6</x>
-        <name>Linking Container</name>
-        <y>6</y>
-        <foreground_color>
-          <color red="192" green="192" blue="192" />
-        </foreground_color>
-        <actions hook="false" hook_all="false" />
-        <font>
-          <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-        </font>
-      </widget>
-    </widget>
-    <widget typeId="org.csstudio.opibuilder.widgets.groupingContainer" version="1.0.0">
-      <border_style>0</border_style>
-      <tooltip></tooltip>
-      <rules />
-      <enabled>true</enabled>
-      <wuid>4a318208:14de1f4e024:-7722</wuid>
-      <transparent>true</transparent>
-      <lock_children>false</lock_children>
-      <scripts />
-      <height>163</height>
-      <border_width>1</border_width>
-      <scale_options>
-        <width_scalable>true</width_scalable>
-        <height_scalable>true</height_scalable>
-        <keep_wh_ratio>false</keep_wh_ratio>
-      </scale_options>
-      <macros>
-        <include_parent_macros>true</include_parent_macros>
-      </macros>
-      <visible>false</visible>
-      <border_color>
-        <color red="0" green="128" blue="255" />
-      </border_color>
-      <widget_type>Grouping Container</widget_type>
-      <background_color>
-        <color red="240" green="240" blue="240" />
-      </background_color>
-      <width>467</width>
-      <x>1</x>
-      <name>MXC 2</name>
-      <y>1</y>
-      <foreground_color>
-        <color red="192" green="192" blue="192" />
-      </foreground_color>
-      <actions hook="false" hook_all="false" />
-      <fc>false</fc>
-      <show_scrollbar>true</show_scrollbar>
-      <font>
-        <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-      </font>
-      <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
-        <opi_file>MultiplexedCounter.opi</opi_file>
-        <border_style>0</border_style>
-        <tooltip></tooltip>
-        <rules />
-        <enabled>true</enabled>
-        <wuid>4a318208:14de1f4e024:-76da</wuid>
-        <auto_size>true</auto_size>
-        <scripts />
-        <height>147</height>
-        <border_width>1</border_width>
-        <scale_options>
-          <width_scalable>true</width_scalable>
-          <height_scalable>true</height_scalable>
-          <keep_wh_ratio>false</keep_wh_ratio>
-        </scale_options>
-        <macros>
-          <include_parent_macros>true</include_parent_macros>
-          <mrf_evg_mxc_id>2</mrf_evg_mxc_id>
-        </macros>
-        <visible>true</visible>
-        <group_name></group_name>
-        <border_color>
-          <color red="0" green="128" blue="255" />
-        </border_color>
-        <widget_type>Linking Container</widget_type>
-        <background_color>
-          <color red="240" green="240" blue="240" />
-        </background_color>
-        <zoom_to_fit>false</zoom_to_fit>
-        <width>349</width>
-        <x>6</x>
-        <name>Linking Container</name>
-        <y>6</y>
-        <foreground_color>
-          <color red="192" green="192" blue="192" />
-        </foreground_color>
-        <actions hook="false" hook_all="false" />
-        <font>
-          <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-        </font>
-      </widget>
-    </widget>
-    <widget typeId="org.csstudio.opibuilder.widgets.groupingContainer" version="1.0.0">
-      <border_style>0</border_style>
-      <tooltip></tooltip>
-      <rules />
-      <enabled>true</enabled>
-      <wuid>4a318208:14de1f4e024:-7721</wuid>
-      <transparent>true</transparent>
-      <lock_children>false</lock_children>
-      <scripts />
-      <height>163</height>
-      <border_width>1</border_width>
-      <scale_options>
-        <width_scalable>true</width_scalable>
-        <height_scalable>true</height_scalable>
-        <keep_wh_ratio>false</keep_wh_ratio>
-      </scale_options>
-      <macros>
-        <include_parent_macros>true</include_parent_macros>
-      </macros>
-      <visible>false</visible>
-      <border_color>
-        <color red="0" green="128" blue="255" />
-      </border_color>
-      <widget_type>Grouping Container</widget_type>
-      <background_color>
-        <color red="240" green="240" blue="240" />
-      </background_color>
-      <width>467</width>
-      <x>1</x>
-      <name>MXC 3</name>
-      <y>1</y>
-      <foreground_color>
-        <color red="192" green="192" blue="192" />
-      </foreground_color>
-      <actions hook="false" hook_all="false" />
-      <fc>false</fc>
-      <show_scrollbar>true</show_scrollbar>
-      <font>
-        <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-      </font>
-      <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
-        <opi_file>MultiplexedCounter.opi</opi_file>
-        <border_style>0</border_style>
-        <tooltip></tooltip>
-        <rules />
-        <enabled>true</enabled>
-        <wuid>4a318208:14de1f4e024:-76a5</wuid>
-        <auto_size>true</auto_size>
-        <scripts />
-        <height>147</height>
-        <border_width>1</border_width>
-        <scale_options>
-          <width_scalable>true</width_scalable>
-          <height_scalable>true</height_scalable>
-          <keep_wh_ratio>false</keep_wh_ratio>
-        </scale_options>
-        <macros>
-          <include_parent_macros>true</include_parent_macros>
-          <mrf_evg_mxc_id>3</mrf_evg_mxc_id>
-        </macros>
-        <visible>true</visible>
-        <group_name></group_name>
-        <border_color>
-          <color red="0" green="128" blue="255" />
-        </border_color>
-        <widget_type>Linking Container</widget_type>
-        <background_color>
-          <color red="240" green="240" blue="240" />
-        </background_color>
-        <zoom_to_fit>false</zoom_to_fit>
-        <width>349</width>
-        <x>6</x>
-        <name>Linking Container</name>
-        <y>6</y>
-        <foreground_color>
-          <color red="192" green="192" blue="192" />
-        </foreground_color>
-        <actions hook="false" hook_all="false" />
-        <font>
-          <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-        </font>
-      </widget>
-    </widget>
-    <widget typeId="org.csstudio.opibuilder.widgets.groupingContainer" version="1.0.0">
-      <border_style>0</border_style>
-      <tooltip></tooltip>
-      <rules />
-      <enabled>true</enabled>
-      <wuid>4a318208:14de1f4e024:-7720</wuid>
-      <transparent>true</transparent>
-      <lock_children>false</lock_children>
-      <scripts />
-      <height>163</height>
-      <border_width>1</border_width>
-      <scale_options>
-        <width_scalable>true</width_scalable>
-        <height_scalable>true</height_scalable>
-        <keep_wh_ratio>false</keep_wh_ratio>
-      </scale_options>
-      <macros>
-        <include_parent_macros>true</include_parent_macros>
-      </macros>
-      <visible>false</visible>
-      <border_color>
-        <color red="0" green="128" blue="255" />
-      </border_color>
-      <widget_type>Grouping Container</widget_type>
-      <background_color>
-        <color red="240" green="240" blue="240" />
-      </background_color>
-      <width>467</width>
-      <x>1</x>
-      <name>MXC 4</name>
-      <y>1</y>
-      <foreground_color>
-        <color red="192" green="192" blue="192" />
-      </foreground_color>
-      <actions hook="false" hook_all="false" />
-      <fc>false</fc>
-      <show_scrollbar>true</show_scrollbar>
-      <font>
-        <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-      </font>
-      <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
-        <opi_file>MultiplexedCounter.opi</opi_file>
-        <border_style>0</border_style>
-        <tooltip></tooltip>
-        <rules />
-        <enabled>true</enabled>
-        <wuid>4a318208:14de1f4e024:-7670</wuid>
-        <auto_size>true</auto_size>
-        <scripts />
-        <height>147</height>
-        <border_width>1</border_width>
-        <scale_options>
-          <width_scalable>true</width_scalable>
-          <height_scalable>true</height_scalable>
-          <keep_wh_ratio>false</keep_wh_ratio>
-        </scale_options>
-        <macros>
-          <include_parent_macros>true</include_parent_macros>
-          <mrf_evg_mxc_id>4</mrf_evg_mxc_id>
-        </macros>
-        <visible>true</visible>
-        <group_name></group_name>
-        <border_color>
-          <color red="0" green="128" blue="255" />
-        </border_color>
-        <widget_type>Linking Container</widget_type>
-        <background_color>
-          <color red="240" green="240" blue="240" />
-        </background_color>
-        <zoom_to_fit>false</zoom_to_fit>
-        <width>349</width>
-        <x>6</x>
-        <name>Linking Container</name>
-        <y>6</y>
-        <foreground_color>
-          <color red="192" green="192" blue="192" />
-        </foreground_color>
-        <actions hook="false" hook_all="false" />
-        <font>
-          <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-        </font>
-      </widget>
-    </widget>
-    <widget typeId="org.csstudio.opibuilder.widgets.groupingContainer" version="1.0.0">
-      <border_style>0</border_style>
-      <tooltip></tooltip>
-      <rules />
-      <enabled>true</enabled>
-      <wuid>4a318208:14de1f4e024:-771f</wuid>
-      <transparent>true</transparent>
-      <lock_children>false</lock_children>
-      <scripts />
-      <height>163</height>
-      <border_width>1</border_width>
-      <scale_options>
-        <width_scalable>true</width_scalable>
-        <height_scalable>true</height_scalable>
-        <keep_wh_ratio>false</keep_wh_ratio>
-      </scale_options>
-      <macros>
-        <include_parent_macros>true</include_parent_macros>
-      </macros>
-      <visible>false</visible>
-      <border_color>
-        <color red="0" green="128" blue="255" />
-      </border_color>
-      <widget_type>Grouping Container</widget_type>
-      <background_color>
-        <color red="240" green="240" blue="240" />
-      </background_color>
-      <width>467</width>
-      <x>1</x>
-      <name>MXC 5</name>
-      <y>1</y>
-      <foreground_color>
-        <color red="192" green="192" blue="192" />
-      </foreground_color>
-      <actions hook="false" hook_all="false" />
-      <fc>false</fc>
-      <show_scrollbar>true</show_scrollbar>
-      <font>
-        <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-      </font>
-      <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
-        <opi_file>MultiplexedCounter.opi</opi_file>
-        <border_style>0</border_style>
-        <tooltip></tooltip>
-        <rules />
-        <enabled>true</enabled>
-        <wuid>4a318208:14de1f4e024:-763b</wuid>
-        <auto_size>true</auto_size>
-        <scripts />
-        <height>147</height>
-        <border_width>1</border_width>
-        <scale_options>
-          <width_scalable>true</width_scalable>
-          <height_scalable>true</height_scalable>
-          <keep_wh_ratio>false</keep_wh_ratio>
-        </scale_options>
-        <macros>
-          <include_parent_macros>true</include_parent_macros>
-          <mrf_evg_mxc_id>5</mrf_evg_mxc_id>
-        </macros>
-        <visible>true</visible>
-        <group_name></group_name>
-        <border_color>
-          <color red="0" green="128" blue="255" />
-        </border_color>
-        <widget_type>Linking Container</widget_type>
-        <background_color>
-          <color red="240" green="240" blue="240" />
-        </background_color>
-        <zoom_to_fit>false</zoom_to_fit>
-        <width>349</width>
-        <x>6</x>
-        <name>Linking Container</name>
-        <y>6</y>
-        <foreground_color>
-          <color red="192" green="192" blue="192" />
-        </foreground_color>
-        <actions hook="false" hook_all="false" />
-        <font>
-          <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-        </font>
-      </widget>
-    </widget>
-    <widget typeId="org.csstudio.opibuilder.widgets.groupingContainer" version="1.0.0">
-      <border_style>0</border_style>
-      <tooltip></tooltip>
-      <rules />
-      <enabled>true</enabled>
-      <wuid>4a318208:14de1f4e024:-771e</wuid>
-      <transparent>true</transparent>
-      <lock_children>false</lock_children>
-      <scripts />
-      <height>163</height>
-      <border_width>1</border_width>
-      <scale_options>
-        <width_scalable>true</width_scalable>
-        <height_scalable>true</height_scalable>
-        <keep_wh_ratio>false</keep_wh_ratio>
-      </scale_options>
-      <macros>
-        <include_parent_macros>true</include_parent_macros>
-      </macros>
-      <visible>false</visible>
-      <border_color>
-        <color red="0" green="128" blue="255" />
-      </border_color>
-      <widget_type>Grouping Container</widget_type>
-      <background_color>
-        <color red="240" green="240" blue="240" />
-      </background_color>
-      <width>467</width>
-      <x>1</x>
-      <name>MXC 6</name>
-      <y>1</y>
-      <foreground_color>
-        <color red="192" green="192" blue="192" />
-      </foreground_color>
-      <actions hook="false" hook_all="false" />
-      <fc>false</fc>
-      <show_scrollbar>true</show_scrollbar>
-      <font>
-        <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-      </font>
-      <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
-        <opi_file>MultiplexedCounter.opi</opi_file>
-        <border_style>0</border_style>
-        <tooltip></tooltip>
-        <rules />
-        <enabled>true</enabled>
-        <wuid>4a318208:14de1f4e024:-7606</wuid>
-        <auto_size>true</auto_size>
-        <scripts />
-        <height>147</height>
-        <border_width>1</border_width>
-        <scale_options>
-          <width_scalable>true</width_scalable>
-          <height_scalable>true</height_scalable>
-          <keep_wh_ratio>false</keep_wh_ratio>
-        </scale_options>
-        <macros>
-          <include_parent_macros>true</include_parent_macros>
-          <mrf_evg_mxc_id>6</mrf_evg_mxc_id>
-        </macros>
-        <visible>true</visible>
-        <group_name></group_name>
-        <border_color>
-          <color red="0" green="128" blue="255" />
-        </border_color>
-        <widget_type>Linking Container</widget_type>
-        <background_color>
-          <color red="240" green="240" blue="240" />
-        </background_color>
-        <zoom_to_fit>false</zoom_to_fit>
-        <width>349</width>
-        <x>6</x>
-        <name>Linking Container</name>
-        <y>6</y>
-        <foreground_color>
-          <color red="192" green="192" blue="192" />
-        </foreground_color>
-        <actions hook="false" hook_all="false" />
-        <font>
-          <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-        </font>
-      </widget>
-    </widget>
-    <widget typeId="org.csstudio.opibuilder.widgets.groupingContainer" version="1.0.0">
-      <border_style>0</border_style>
-      <tooltip></tooltip>
-      <rules />
-      <enabled>true</enabled>
-      <wuid>4a318208:14de1f4e024:-771d</wuid>
-      <transparent>true</transparent>
-      <lock_children>false</lock_children>
-      <scripts />
-      <height>163</height>
-      <border_width>1</border_width>
-      <scale_options>
-        <width_scalable>true</width_scalable>
-        <height_scalable>true</height_scalable>
-        <keep_wh_ratio>false</keep_wh_ratio>
-      </scale_options>
-      <macros>
-        <include_parent_macros>true</include_parent_macros>
-      </macros>
-      <visible>false</visible>
-      <border_color>
-        <color red="0" green="128" blue="255" />
-      </border_color>
-      <widget_type>Grouping Container</widget_type>
-      <background_color>
-        <color red="240" green="240" blue="240" />
-      </background_color>
-      <width>467</width>
-      <x>1</x>
-      <name>MXC 7</name>
-      <y>1</y>
-      <foreground_color>
-        <color red="192" green="192" blue="192" />
-      </foreground_color>
-      <actions hook="false" hook_all="false" />
-      <fc>false</fc>
-      <show_scrollbar>true</show_scrollbar>
-      <font>
-        <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-      </font>
-      <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
-        <opi_file>MultiplexedCounter.opi</opi_file>
-        <border_style>0</border_style>
-        <tooltip></tooltip>
-        <rules />
-        <enabled>true</enabled>
-        <wuid>4a318208:14de1f4e024:-75d1</wuid>
-        <auto_size>true</auto_size>
-        <scripts />
-        <height>147</height>
-        <border_width>1</border_width>
-        <scale_options>
-          <width_scalable>true</width_scalable>
-          <height_scalable>true</height_scalable>
-          <keep_wh_ratio>false</keep_wh_ratio>
-        </scale_options>
-        <macros>
-          <include_parent_macros>true</include_parent_macros>
-          <mrf_evg_mxc_id>7</mrf_evg_mxc_id>
-        </macros>
-        <visible>true</visible>
-        <group_name></group_name>
-        <border_color>
-          <color red="0" green="128" blue="255" />
-        </border_color>
-        <widget_type>Linking Container</widget_type>
-        <background_color>
-          <color red="240" green="240" blue="240" />
-        </background_color>
-        <zoom_to_fit>false</zoom_to_fit>
-        <width>349</width>
-        <x>6</x>
-        <name>Linking Container</name>
-        <y>6</y>
-        <foreground_color>
-          <color red="192" green="192" blue="192" />
-        </foreground_color>
-        <actions hook="false" hook_all="false" />
-        <font>
-          <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-        </font>
-      </widget>
-    </widget>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.ActionButton" version="2.0.0">
-    <toggle_button>false</toggle_button>
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <push_action_index>0</push_action_index>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>4a318208:14de1f4e024:-7911</wuid>
-    <pv_value />
-    <text>$(actions)</text>
-    <scripts />
-    <border_alarm_sensitive>false</border_alarm_sensitive>
-    <height>25</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <image></image>
-    <visible>true</visible>
-    <pv_name>$(mrf_evg_prefix)MXC:Reset.PROC</pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <widget_type>Action Button</widget_type>
+    <alarm_pulsing>false</alarm_pulsing>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
-    <width>218</width>
-    <x>21</x>
-    <name>Action Button_1</name>
-    <y>264</y>
-    <style>0</style>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
+    <height>25</height>
+    <image></image>
+    <name>Action Button</name>
+    <push_action_index>0</push_action_index>
+    <pv_name></pv_name>
+    <pv_value />
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <style>0</style>
+    <text>$(actions)</text>
+    <toggle_button>false</toggle_button>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <visible>true</visible>
+    <widget_type>Action Button</widget_type>
+    <width>133</width>
+    <wuid>5cccfaca:14dde8a1ae8:-7ec0</wuid>
+    <x>18</x>
+    <y>18</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.tab" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <active_tab>0</active_tab>
+    <background_color>
+      <color red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <height>217</height>
+    <horizontal_tabs>true</horizontal_tabs>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+    </macros>
+    <minimum_tab_height>10</minimum_tab_height>
+    <name>Tabbed Container</name>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tab_0_background_color>
+      <color red="255" green="255" blue="255" />
+    </tab_0_background_color>
+    <tab_0_enabled>true</tab_0_enabled>
+    <tab_0_font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </tab_0_font>
+    <tab_0_foreground_color>
+      <color red="0" green="0" blue="0" />
+    </tab_0_foreground_color>
+    <tab_0_icon_path></tab_0_icon_path>
+    <tab_0_title>MXC 0</tab_0_title>
+    <tab_1_background_color>
+      <color red="255" green="255" blue="255" />
+    </tab_1_background_color>
+    <tab_1_enabled>true</tab_1_enabled>
+    <tab_1_font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </tab_1_font>
+    <tab_1_foreground_color>
+      <color red="0" green="0" blue="0" />
+    </tab_1_foreground_color>
+    <tab_1_icon_path></tab_1_icon_path>
+    <tab_1_title>MXC 1</tab_1_title>
+    <tab_2_background_color>
+      <color red="255" green="255" blue="255" />
+    </tab_2_background_color>
+    <tab_2_enabled>true</tab_2_enabled>
+    <tab_2_font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </tab_2_font>
+    <tab_2_foreground_color>
+      <color red="0" green="0" blue="0" />
+    </tab_2_foreground_color>
+    <tab_2_icon_path></tab_2_icon_path>
+    <tab_2_title>MXC 2</tab_2_title>
+    <tab_3_background_color>
+      <color red="255" green="255" blue="255" />
+    </tab_3_background_color>
+    <tab_3_enabled>true</tab_3_enabled>
+    <tab_3_font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </tab_3_font>
+    <tab_3_foreground_color>
+      <color red="0" green="0" blue="0" />
+    </tab_3_foreground_color>
+    <tab_3_icon_path></tab_3_icon_path>
+    <tab_3_title>MXC 3</tab_3_title>
+    <tab_4_background_color>
+      <color red="255" green="255" blue="255" />
+    </tab_4_background_color>
+    <tab_4_enabled>true</tab_4_enabled>
+    <tab_4_font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </tab_4_font>
+    <tab_4_foreground_color>
+      <color red="0" green="0" blue="0" />
+    </tab_4_foreground_color>
+    <tab_4_icon_path></tab_4_icon_path>
+    <tab_4_title>MXC 4</tab_4_title>
+    <tab_5_background_color>
+      <color red="255" green="255" blue="255" />
+    </tab_5_background_color>
+    <tab_5_enabled>true</tab_5_enabled>
+    <tab_5_font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </tab_5_font>
+    <tab_5_foreground_color>
+      <color red="0" green="0" blue="0" />
+    </tab_5_foreground_color>
+    <tab_5_icon_path></tab_5_icon_path>
+    <tab_5_title>MXC 5</tab_5_title>
+    <tab_6_background_color>
+      <color red="255" green="255" blue="255" />
+    </tab_6_background_color>
+    <tab_6_enabled>true</tab_6_enabled>
+    <tab_6_font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </tab_6_font>
+    <tab_6_foreground_color>
+      <color red="0" green="0" blue="0" />
+    </tab_6_foreground_color>
+    <tab_6_icon_path></tab_6_icon_path>
+    <tab_6_title>MXC 6</tab_6_title>
+    <tab_7_background_color>
+      <color red="255" green="255" blue="255" />
+    </tab_7_background_color>
+    <tab_7_enabled>true</tab_7_enabled>
+    <tab_7_font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </tab_7_font>
+    <tab_7_foreground_color>
+      <color red="0" green="0" blue="0" />
+    </tab_7_foreground_color>
+    <tab_7_icon_path></tab_7_icon_path>
+    <tab_7_title>MXC 7</tab_7_title>
+    <tab_count>8</tab_count>
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Tabbed Container</widget_type>
+    <width>469</width>
+    <wuid>4a318208:14de1f4e024:-7920</wuid>
+    <x>18</x>
+    <y>60</y>
+    <widget typeId="org.csstudio.opibuilder.widgets.groupingContainer" version="1.0.0">
+      <actions hook="false" hook_all="false" />
+      <background_color>
+        <color red="240" green="240" blue="240" />
+      </background_color>
+      <border_color>
+        <color red="0" green="128" blue="255" />
+      </border_color>
+      <border_style>0</border_style>
+      <border_width>1</border_width>
+      <enabled>true</enabled>
+      <fc>false</fc>
+      <font>
+        <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      </font>
+      <foreground_color>
+        <color red="192" green="192" blue="192" />
+      </foreground_color>
+      <height>188</height>
+      <lock_children>false</lock_children>
+      <macros>
+        <include_parent_macros>true</include_parent_macros>
+      </macros>
+      <name>MXC 0</name>
+      <rules />
+      <scale_options>
+        <width_scalable>true</width_scalable>
+        <height_scalable>true</height_scalable>
+        <keep_wh_ratio>false</keep_wh_ratio>
+      </scale_options>
+      <scripts />
+      <show_scrollbar>true</show_scrollbar>
+      <tooltip></tooltip>
+      <transparent>true</transparent>
+      <visible>true</visible>
+      <widget_type>Grouping Container</widget_type>
+      <width>467</width>
+      <wuid>4a318208:14de1f4e024:-791f</wuid>
+      <x>1</x>
+      <y>1</y>
+      <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+        <actions hook="false" hook_all="false" />
+        <background_color>
+          <color red="240" green="240" blue="240" />
+        </background_color>
+        <border_color>
+          <color red="0" green="128" blue="255" />
+        </border_color>
+        <border_style>0</border_style>
+        <border_width>1</border_width>
+        <enabled>true</enabled>
+        <font>
+          <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+        </font>
+        <foreground_color>
+          <color red="192" green="192" blue="192" />
+        </foreground_color>
+        <group_name></group_name>
+        <height>177</height>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <mrf_evg_mxc_id>0</mrf_evg_mxc_id>
+        </macros>
+        <name>Linking Container</name>
+        <opi_file>MultiplexedCounter.opi</opi_file>
+        <resize_behaviour>1</resize_behaviour>
+        <rules />
+        <scale_options>
+          <width_scalable>true</width_scalable>
+          <height_scalable>true</height_scalable>
+          <keep_wh_ratio>false</keep_wh_ratio>
+        </scale_options>
+        <scripts />
+        <tooltip></tooltip>
+        <visible>true</visible>
+        <widget_type>Linking Container</widget_type>
+        <width>349</width>
+        <wuid>4a318208:14de1f4e024:-7736</wuid>
+        <x>6</x>
+        <y>6</y>
+      </widget>
+    </widget>
+    <widget typeId="org.csstudio.opibuilder.widgets.groupingContainer" version="1.0.0">
+      <actions hook="false" hook_all="false" />
+      <background_color>
+        <color red="240" green="240" blue="240" />
+      </background_color>
+      <border_color>
+        <color red="0" green="128" blue="255" />
+      </border_color>
+      <border_style>0</border_style>
+      <border_width>1</border_width>
+      <enabled>true</enabled>
+      <fc>false</fc>
+      <font>
+        <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      </font>
+      <foreground_color>
+        <color red="192" green="192" blue="192" />
+      </foreground_color>
+      <height>188</height>
+      <lock_children>false</lock_children>
+      <macros>
+        <include_parent_macros>true</include_parent_macros>
+      </macros>
+      <name>MXC 1</name>
+      <rules />
+      <scale_options>
+        <width_scalable>true</width_scalable>
+        <height_scalable>true</height_scalable>
+        <keep_wh_ratio>false</keep_wh_ratio>
+      </scale_options>
+      <scripts />
+      <show_scrollbar>true</show_scrollbar>
+      <tooltip></tooltip>
+      <transparent>true</transparent>
+      <visible>false</visible>
+      <widget_type>Grouping Container</widget_type>
+      <width>467</width>
+      <wuid>4a318208:14de1f4e024:-7723</wuid>
+      <x>1</x>
+      <y>1</y>
+      <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+        <actions hook="false" hook_all="false" />
+        <background_color>
+          <color red="240" green="240" blue="240" />
+        </background_color>
+        <border_color>
+          <color red="0" green="128" blue="255" />
+        </border_color>
+        <border_style>0</border_style>
+        <border_width>1</border_width>
+        <enabled>true</enabled>
+        <font>
+          <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+        </font>
+        <foreground_color>
+          <color red="192" green="192" blue="192" />
+        </foreground_color>
+        <group_name></group_name>
+        <height>147</height>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <mrf_evg_mxc_id>1</mrf_evg_mxc_id>
+        </macros>
+        <name>Linking Container</name>
+        <opi_file>MultiplexedCounter.opi</opi_file>
+        <resize_behaviour>1</resize_behaviour>
+        <rules />
+        <scale_options>
+          <width_scalable>true</width_scalable>
+          <height_scalable>true</height_scalable>
+          <keep_wh_ratio>false</keep_wh_ratio>
+        </scale_options>
+        <scripts />
+        <tooltip></tooltip>
+        <visible>true</visible>
+        <widget_type>Linking Container</widget_type>
+        <width>349</width>
+        <wuid>4a318208:14de1f4e024:-770f</wuid>
+        <x>6</x>
+        <y>6</y>
+      </widget>
+    </widget>
+    <widget typeId="org.csstudio.opibuilder.widgets.groupingContainer" version="1.0.0">
+      <actions hook="false" hook_all="false" />
+      <background_color>
+        <color red="240" green="240" blue="240" />
+      </background_color>
+      <border_color>
+        <color red="0" green="128" blue="255" />
+      </border_color>
+      <border_style>0</border_style>
+      <border_width>1</border_width>
+      <enabled>true</enabled>
+      <fc>false</fc>
+      <font>
+        <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      </font>
+      <foreground_color>
+        <color red="192" green="192" blue="192" />
+      </foreground_color>
+      <height>188</height>
+      <lock_children>false</lock_children>
+      <macros>
+        <include_parent_macros>true</include_parent_macros>
+      </macros>
+      <name>MXC 2</name>
+      <rules />
+      <scale_options>
+        <width_scalable>true</width_scalable>
+        <height_scalable>true</height_scalable>
+        <keep_wh_ratio>false</keep_wh_ratio>
+      </scale_options>
+      <scripts />
+      <show_scrollbar>true</show_scrollbar>
+      <tooltip></tooltip>
+      <transparent>true</transparent>
+      <visible>false</visible>
+      <widget_type>Grouping Container</widget_type>
+      <width>467</width>
+      <wuid>4a318208:14de1f4e024:-7722</wuid>
+      <x>1</x>
+      <y>1</y>
+      <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+        <actions hook="false" hook_all="false" />
+        <background_color>
+          <color red="240" green="240" blue="240" />
+        </background_color>
+        <border_color>
+          <color red="0" green="128" blue="255" />
+        </border_color>
+        <border_style>0</border_style>
+        <border_width>1</border_width>
+        <enabled>true</enabled>
+        <font>
+          <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+        </font>
+        <foreground_color>
+          <color red="192" green="192" blue="192" />
+        </foreground_color>
+        <group_name></group_name>
+        <height>147</height>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <mrf_evg_mxc_id>2</mrf_evg_mxc_id>
+        </macros>
+        <name>Linking Container</name>
+        <opi_file>MultiplexedCounter.opi</opi_file>
+        <resize_behaviour>1</resize_behaviour>
+        <rules />
+        <scale_options>
+          <width_scalable>true</width_scalable>
+          <height_scalable>true</height_scalable>
+          <keep_wh_ratio>false</keep_wh_ratio>
+        </scale_options>
+        <scripts />
+        <tooltip></tooltip>
+        <visible>true</visible>
+        <widget_type>Linking Container</widget_type>
+        <width>349</width>
+        <wuid>4a318208:14de1f4e024:-76da</wuid>
+        <x>6</x>
+        <y>6</y>
+      </widget>
+    </widget>
+    <widget typeId="org.csstudio.opibuilder.widgets.groupingContainer" version="1.0.0">
+      <actions hook="false" hook_all="false" />
+      <background_color>
+        <color red="240" green="240" blue="240" />
+      </background_color>
+      <border_color>
+        <color red="0" green="128" blue="255" />
+      </border_color>
+      <border_style>0</border_style>
+      <border_width>1</border_width>
+      <enabled>true</enabled>
+      <fc>false</fc>
+      <font>
+        <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      </font>
+      <foreground_color>
+        <color red="192" green="192" blue="192" />
+      </foreground_color>
+      <height>188</height>
+      <lock_children>false</lock_children>
+      <macros>
+        <include_parent_macros>true</include_parent_macros>
+      </macros>
+      <name>MXC 3</name>
+      <rules />
+      <scale_options>
+        <width_scalable>true</width_scalable>
+        <height_scalable>true</height_scalable>
+        <keep_wh_ratio>false</keep_wh_ratio>
+      </scale_options>
+      <scripts />
+      <show_scrollbar>true</show_scrollbar>
+      <tooltip></tooltip>
+      <transparent>true</transparent>
+      <visible>false</visible>
+      <widget_type>Grouping Container</widget_type>
+      <width>467</width>
+      <wuid>4a318208:14de1f4e024:-7721</wuid>
+      <x>1</x>
+      <y>1</y>
+      <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+        <actions hook="false" hook_all="false" />
+        <background_color>
+          <color red="240" green="240" blue="240" />
+        </background_color>
+        <border_color>
+          <color red="0" green="128" blue="255" />
+        </border_color>
+        <border_style>0</border_style>
+        <border_width>1</border_width>
+        <enabled>true</enabled>
+        <font>
+          <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+        </font>
+        <foreground_color>
+          <color red="192" green="192" blue="192" />
+        </foreground_color>
+        <group_name></group_name>
+        <height>147</height>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <mrf_evg_mxc_id>3</mrf_evg_mxc_id>
+        </macros>
+        <name>Linking Container</name>
+        <opi_file>MultiplexedCounter.opi</opi_file>
+        <resize_behaviour>1</resize_behaviour>
+        <rules />
+        <scale_options>
+          <width_scalable>true</width_scalable>
+          <height_scalable>true</height_scalable>
+          <keep_wh_ratio>false</keep_wh_ratio>
+        </scale_options>
+        <scripts />
+        <tooltip></tooltip>
+        <visible>true</visible>
+        <widget_type>Linking Container</widget_type>
+        <width>349</width>
+        <wuid>4a318208:14de1f4e024:-76a5</wuid>
+        <x>6</x>
+        <y>6</y>
+      </widget>
+    </widget>
+    <widget typeId="org.csstudio.opibuilder.widgets.groupingContainer" version="1.0.0">
+      <actions hook="false" hook_all="false" />
+      <background_color>
+        <color red="240" green="240" blue="240" />
+      </background_color>
+      <border_color>
+        <color red="0" green="128" blue="255" />
+      </border_color>
+      <border_style>0</border_style>
+      <border_width>1</border_width>
+      <enabled>true</enabled>
+      <fc>false</fc>
+      <font>
+        <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      </font>
+      <foreground_color>
+        <color red="192" green="192" blue="192" />
+      </foreground_color>
+      <height>188</height>
+      <lock_children>false</lock_children>
+      <macros>
+        <include_parent_macros>true</include_parent_macros>
+      </macros>
+      <name>MXC 4</name>
+      <rules />
+      <scale_options>
+        <width_scalable>true</width_scalable>
+        <height_scalable>true</height_scalable>
+        <keep_wh_ratio>false</keep_wh_ratio>
+      </scale_options>
+      <scripts />
+      <show_scrollbar>true</show_scrollbar>
+      <tooltip></tooltip>
+      <transparent>true</transparent>
+      <visible>false</visible>
+      <widget_type>Grouping Container</widget_type>
+      <width>467</width>
+      <wuid>4a318208:14de1f4e024:-7720</wuid>
+      <x>1</x>
+      <y>1</y>
+      <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+        <actions hook="false" hook_all="false" />
+        <background_color>
+          <color red="240" green="240" blue="240" />
+        </background_color>
+        <border_color>
+          <color red="0" green="128" blue="255" />
+        </border_color>
+        <border_style>0</border_style>
+        <border_width>1</border_width>
+        <enabled>true</enabled>
+        <font>
+          <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+        </font>
+        <foreground_color>
+          <color red="192" green="192" blue="192" />
+        </foreground_color>
+        <group_name></group_name>
+        <height>147</height>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <mrf_evg_mxc_id>4</mrf_evg_mxc_id>
+        </macros>
+        <name>Linking Container</name>
+        <opi_file>MultiplexedCounter.opi</opi_file>
+        <resize_behaviour>1</resize_behaviour>
+        <rules />
+        <scale_options>
+          <width_scalable>true</width_scalable>
+          <height_scalable>true</height_scalable>
+          <keep_wh_ratio>false</keep_wh_ratio>
+        </scale_options>
+        <scripts />
+        <tooltip></tooltip>
+        <visible>true</visible>
+        <widget_type>Linking Container</widget_type>
+        <width>349</width>
+        <wuid>4a318208:14de1f4e024:-7670</wuid>
+        <x>6</x>
+        <y>6</y>
+      </widget>
+    </widget>
+    <widget typeId="org.csstudio.opibuilder.widgets.groupingContainer" version="1.0.0">
+      <actions hook="false" hook_all="false" />
+      <background_color>
+        <color red="240" green="240" blue="240" />
+      </background_color>
+      <border_color>
+        <color red="0" green="128" blue="255" />
+      </border_color>
+      <border_style>0</border_style>
+      <border_width>1</border_width>
+      <enabled>true</enabled>
+      <fc>false</fc>
+      <font>
+        <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      </font>
+      <foreground_color>
+        <color red="192" green="192" blue="192" />
+      </foreground_color>
+      <height>188</height>
+      <lock_children>false</lock_children>
+      <macros>
+        <include_parent_macros>true</include_parent_macros>
+      </macros>
+      <name>MXC 5</name>
+      <rules />
+      <scale_options>
+        <width_scalable>true</width_scalable>
+        <height_scalable>true</height_scalable>
+        <keep_wh_ratio>false</keep_wh_ratio>
+      </scale_options>
+      <scripts />
+      <show_scrollbar>true</show_scrollbar>
+      <tooltip></tooltip>
+      <transparent>true</transparent>
+      <visible>false</visible>
+      <widget_type>Grouping Container</widget_type>
+      <width>467</width>
+      <wuid>4a318208:14de1f4e024:-771f</wuid>
+      <x>1</x>
+      <y>1</y>
+      <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+        <actions hook="false" hook_all="false" />
+        <background_color>
+          <color red="240" green="240" blue="240" />
+        </background_color>
+        <border_color>
+          <color red="0" green="128" blue="255" />
+        </border_color>
+        <border_style>0</border_style>
+        <border_width>1</border_width>
+        <enabled>true</enabled>
+        <font>
+          <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+        </font>
+        <foreground_color>
+          <color red="192" green="192" blue="192" />
+        </foreground_color>
+        <group_name></group_name>
+        <height>147</height>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <mrf_evg_mxc_id>5</mrf_evg_mxc_id>
+        </macros>
+        <name>Linking Container</name>
+        <opi_file>MultiplexedCounter.opi</opi_file>
+        <resize_behaviour>1</resize_behaviour>
+        <rules />
+        <scale_options>
+          <width_scalable>true</width_scalable>
+          <height_scalable>true</height_scalable>
+          <keep_wh_ratio>false</keep_wh_ratio>
+        </scale_options>
+        <scripts />
+        <tooltip></tooltip>
+        <visible>true</visible>
+        <widget_type>Linking Container</widget_type>
+        <width>349</width>
+        <wuid>4a318208:14de1f4e024:-763b</wuid>
+        <x>6</x>
+        <y>6</y>
+      </widget>
+    </widget>
+    <widget typeId="org.csstudio.opibuilder.widgets.groupingContainer" version="1.0.0">
+      <actions hook="false" hook_all="false" />
+      <background_color>
+        <color red="240" green="240" blue="240" />
+      </background_color>
+      <border_color>
+        <color red="0" green="128" blue="255" />
+      </border_color>
+      <border_style>0</border_style>
+      <border_width>1</border_width>
+      <enabled>true</enabled>
+      <fc>false</fc>
+      <font>
+        <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      </font>
+      <foreground_color>
+        <color red="192" green="192" blue="192" />
+      </foreground_color>
+      <height>188</height>
+      <lock_children>false</lock_children>
+      <macros>
+        <include_parent_macros>true</include_parent_macros>
+      </macros>
+      <name>MXC 6</name>
+      <rules />
+      <scale_options>
+        <width_scalable>true</width_scalable>
+        <height_scalable>true</height_scalable>
+        <keep_wh_ratio>false</keep_wh_ratio>
+      </scale_options>
+      <scripts />
+      <show_scrollbar>true</show_scrollbar>
+      <tooltip></tooltip>
+      <transparent>true</transparent>
+      <visible>false</visible>
+      <widget_type>Grouping Container</widget_type>
+      <width>467</width>
+      <wuid>4a318208:14de1f4e024:-771e</wuid>
+      <x>1</x>
+      <y>1</y>
+      <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+        <actions hook="false" hook_all="false" />
+        <background_color>
+          <color red="240" green="240" blue="240" />
+        </background_color>
+        <border_color>
+          <color red="0" green="128" blue="255" />
+        </border_color>
+        <border_style>0</border_style>
+        <border_width>1</border_width>
+        <enabled>true</enabled>
+        <font>
+          <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+        </font>
+        <foreground_color>
+          <color red="192" green="192" blue="192" />
+        </foreground_color>
+        <group_name></group_name>
+        <height>147</height>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <mrf_evg_mxc_id>6</mrf_evg_mxc_id>
+        </macros>
+        <name>Linking Container</name>
+        <opi_file>MultiplexedCounter.opi</opi_file>
+        <resize_behaviour>1</resize_behaviour>
+        <rules />
+        <scale_options>
+          <width_scalable>true</width_scalable>
+          <height_scalable>true</height_scalable>
+          <keep_wh_ratio>false</keep_wh_ratio>
+        </scale_options>
+        <scripts />
+        <tooltip></tooltip>
+        <visible>true</visible>
+        <widget_type>Linking Container</widget_type>
+        <width>349</width>
+        <wuid>4a318208:14de1f4e024:-7606</wuid>
+        <x>6</x>
+        <y>6</y>
+      </widget>
+    </widget>
+    <widget typeId="org.csstudio.opibuilder.widgets.groupingContainer" version="1.0.0">
+      <actions hook="false" hook_all="false" />
+      <background_color>
+        <color red="240" green="240" blue="240" />
+      </background_color>
+      <border_color>
+        <color red="0" green="128" blue="255" />
+      </border_color>
+      <border_style>0</border_style>
+      <border_width>1</border_width>
+      <enabled>true</enabled>
+      <fc>false</fc>
+      <font>
+        <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      </font>
+      <foreground_color>
+        <color red="192" green="192" blue="192" />
+      </foreground_color>
+      <height>188</height>
+      <lock_children>false</lock_children>
+      <macros>
+        <include_parent_macros>true</include_parent_macros>
+      </macros>
+      <name>MXC 7</name>
+      <rules />
+      <scale_options>
+        <width_scalable>true</width_scalable>
+        <height_scalable>true</height_scalable>
+        <keep_wh_ratio>false</keep_wh_ratio>
+      </scale_options>
+      <scripts />
+      <show_scrollbar>true</show_scrollbar>
+      <tooltip></tooltip>
+      <transparent>true</transparent>
+      <visible>false</visible>
+      <widget_type>Grouping Container</widget_type>
+      <width>467</width>
+      <wuid>4a318208:14de1f4e024:-771d</wuid>
+      <x>1</x>
+      <y>1</y>
+      <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+        <actions hook="false" hook_all="false" />
+        <background_color>
+          <color red="240" green="240" blue="240" />
+        </background_color>
+        <border_color>
+          <color red="0" green="128" blue="255" />
+        </border_color>
+        <border_style>0</border_style>
+        <border_width>1</border_width>
+        <enabled>true</enabled>
+        <font>
+          <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+        </font>
+        <foreground_color>
+          <color red="192" green="192" blue="192" />
+        </foreground_color>
+        <group_name></group_name>
+        <height>147</height>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <mrf_evg_mxc_id>7</mrf_evg_mxc_id>
+        </macros>
+        <name>Linking Container</name>
+        <opi_file>MultiplexedCounter.opi</opi_file>
+        <resize_behaviour>1</resize_behaviour>
+        <rules />
+        <scale_options>
+          <width_scalable>true</width_scalable>
+          <height_scalable>true</height_scalable>
+          <keep_wh_ratio>false</keep_wh_ratio>
+        </scale_options>
+        <scripts />
+        <tooltip></tooltip>
+        <visible>true</visible>
+        <widget_type>Linking Container</widget_type>
+        <width>349</width>
+        <wuid>4a318208:14de1f4e024:-75d1</wuid>
+        <x>6</x>
+        <y>6</y>
+      </widget>
+    </widget>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.ActionButton" version="2.0.0">
     <actions hook="false" hook_all="false">
       <action type="WRITE_PV">
         <pv_name>$(pv_name)</pv_name>
@@ -973,8 +927,48 @@ $(pv_value)</tooltip>
         <description>Reset all multiplexed counters</description>
       </action>
     </actions>
+    <alarm_pulsing>false</alarm_pulsing>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="240" green="240" blue="240" />
+    </background_color>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
     </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <height>25</height>
+    <image></image>
+    <name>Action Button_1</name>
+    <push_action_index>0</push_action_index>
+    <pv_name>$(mrf_evg_prefix)MXC:Reset.PROC</pv_name>
+    <pv_value />
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <style>0</style>
+    <text>$(actions)</text>
+    <toggle_button>false</toggle_button>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <visible>true</visible>
+    <widget_type>Action Button</widget_type>
+    <width>218</width>
+    <wuid>4a318208:14de1f4e024:-7911</wuid>
+    <x>18</x>
+    <y>288</y>
   </widget>
 </display>

@@ -10,7 +10,7 @@
   <background_color>
     <color red="240" green="240" blue="240" />
   </background_color>
-  <boy_version>5.1.0.201911281711</boy_version>
+  <boy_version>5.1.0.202009030828</boy_version>
   <foreground_color>
     <color red="192" green="192" blue="192" />
   </foreground_color>
@@ -53,7 +53,7 @@
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
-    <height>31</height>
+    <height>32</height>
     <items>
       <s>Pulse Generator 0</s>
       <s>Pulse Generator 1</s>
@@ -399,5 +399,74 @@ $(pv_value)</tooltip>
     <wuid>-3a15dff4:14e25e56121:-47da</wuid>
     <x>75</x>
     <y>12</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.TextInput" version="2.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <auto_size>false</auto_size>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color name="Text Input" red="255" green="255" blue="255" />
+    </background_color>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>3</border_style>
+    <border_width>1</border_width>
+    <confirm_message></confirm_message>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <format_type>0</format_type>
+    <height>20</height>
+    <horizontal_alignment>0</horizontal_alignment>
+    <limits_from_pv>false</limits_from_pv>
+    <maximum>1.7976931348623157E308</maximum>
+    <minimum>-1.7976931348623157E308</minimum>
+    <multiline_input>false</multiline_input>
+    <name>Text Input_1</name>
+    <precision>0</precision>
+    <precision_from_pv>true</precision_from_pv>
+    <pv_name>$(mrf_evr_output_prefix)$(mrf_evr_output_num):Description.VAL$ {"longString":true}</pv_name>
+    <pv_value />
+    <rotation_angle>0.0</rotation_angle>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts>
+      <path pathString="EmbeddedJs" checkConnect="true" sfe="false" seoe="false">
+        <scriptName>Show / hide</scriptName>
+        <scriptText><![CDATA[importPackage(Packages.org.csstudio.opibuilder.scriptUtil); 
+var pv0 = PVUtil.getDouble(pvs[0]);
+if(pv0 == 0)
+	widget.setPropertyValue("visible",false);
+else
+	widget.setPropertyValue("visible",true);
+]]></scriptText>
+        <pv trig="true">$(mrf_evr_output_prefix)$(mrf_evr_output_num):Installed</pv>
+      </path>
+    </scripts>
+    <selector_type>0</selector_type>
+    <show_units>true</show_units>
+    <style>0</style>
+    <text>#####</text>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <transparent>false</transparent>
+    <visible>true</visible>
+    <widget_type>Text Input</widget_type>
+    <width>235</width>
+    <wuid>4db6cca4:17a5211135d:-326b</wuid>
+    <x>216</x>
+    <y>13</y>
   </widget>
 </display>

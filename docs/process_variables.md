@@ -112,6 +112,10 @@ EVG
 <th>Description</th>
 </tr>
 <tr>
+<td>DBus:B#:Description</td>
+<td>Description for distributed bus bit #. # must be a number between 0 and 7. This PV has no equivalent register in the device. It is just intended to document the purpose of a specific distributed bus bit.</td>
+</tr>
+<tr>
 <td>DBus:B#:Map</td>
 <td>Mapping of distributed bus bit #. # must be a number between 0 and 7. The mapping can be 0 to disable this distributed bus bit, 1 to use external input #, 2 to use mutiplexed counter #, or 3 in order to forward the distributed bus bit state received from an upstream EVG or EVR.</td>
 </tr>
@@ -252,6 +256,10 @@ Replace # with 0 or 1 depending on the target sequence RAM.
 <tr>
 <th>Name</th>
 <th>Description</th>
+</tr>
+<tr>
+<td>Event:EvTrig#:Description</td>
+<td>Description for event trigger #. # must be a number between 0 and 7. This PV has no equivalent register in the device. It is just intended to document the purpose of a specific event trigger.</td>
 </tr>
 <tr>
 <td>Event:EvTrig#:Enabled</td>
@@ -409,6 +417,10 @@ which has to be replaced with the input-specific prefix.
 <tr>
 <th>Name</th>
 <th>Description</th>
+</tr>
+<tr>
+<td>In:Description</td>
+<td>Description for the input. This PV has no equivalent register in the device. It is just intended to document the purpose of a specific input.</td>
 </tr>
 <tr>
 <td>In:Installed</td>
@@ -572,6 +584,10 @@ a number in the range from 0 to 7.
 <th>Description</th>
 </tr>
 <tr>
+<td>MXC#:Description</td>
+<td>Description for the multiplexed counter. This PV has no equivalent register in the device. It is just intended to document the purpose of a specific multiplexed counter.</td>
+</tr>
+<tr>
 <td>MXC#:MapTo:EvTrig$</td>
 <td>Mutiplexed counter to event trigger mapping. If enabled (1), mutiplexed counter # triggers event trigger $. If disabled (0), there is no such mapping.</td>
 </tr>
@@ -610,6 +626,10 @@ which has to be replaced with the output-specific prefix.
 <tr>
 <th>Name</th>
 <th>Description</th>
+</tr>
+<tr>
+<td>Out:Description</td>
+<td>Description for the output. This PV has no equivalent register in the device. It is just intended to document the purpose of a specific output.</td>
 </tr>
 <tr>
 <td>Out:Installed</td>
@@ -1078,6 +1098,10 @@ available inputs depends on the form-factor and hardware revision.
 <td>Back event level enabled flag. If enabled (1), the backward event code is sent when the level of the input matches the level sensitivity. If disabled (0), the level of the input does not have an influence on whether a backward event is sent.</td>
 </tr>
 <tr>
+<td>In:Description</td>
+<td>Description for the input. This PV has no equivalent register in the device. It is just intended to document the purpose of a specific input.</td>
+</tr>
+<tr>
 <td>In:EdgeSensitivity</td>
 <td>Input edge sensitivity. If 0, the input is sensitive to a rising edge. If 1, the input is sensitive to a falling edge.</td>
 </tr>
@@ -1245,6 +1269,10 @@ which has to be replaced with the output-specific prefix.
 <th>Description</th>
 </tr>
 <tr>
+<td>Out:Description</td>
+<td>Description for the output. This PV has no equivalent register in the device. It is just intended to document the purpose of a specific output.</td>
+</tr>
+<tr>
 <td>Out:Installed</td>
 <td>Installed flag (read only). This flag is only available for universal outputs. The flag is 1 if the respective universal output module is installed and 0 if it is not installed. Please note that this information is not read from the hardware, but specified in the IOC startup configuration.</td>
 </tr>
@@ -1355,6 +1383,10 @@ pulse generator (starting at zero) in order to get the actual PV name.
 <td>Pulse delay (in event clock cycles).</td>
 </tr>
 <tr>
+<td>PulseGen#:Description</td>
+<td>Description for the pulse generator.This PV has no equivalent register in the device. It is just intended to document the purpose of a specific pulse generator.</td>
+</tr>
+<tr>
 <td>PulseGen#:Enabled</td>
 <td>Enabled flag. If 0, the pulse generator is disabled. If 1, it is enabled.</td>
 </tr>
@@ -1415,6 +1447,10 @@ prescaler (starting at zero) in order to get the actual PV name.
 <tr>
 <td>Prescaler#</td>
 <td>Divider used by prescaler #. The divider specifies the rate at which prescaler # runs. The rate is derived from the event clock rate. For example, at an event clock rate of 125 MHz, a divider of 5 would result in a prescaler that runs at 25 MHz.</td>
+</tr>
+<tr>
+<td>Prescaler#:Description</td>
+<td>Description for prescaler #. This PV has no equivalent register in the device. It is just intended to document the purpose of a specific prescaler.</td>
 </tr>
 </table>
 

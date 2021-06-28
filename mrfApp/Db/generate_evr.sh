@@ -64,6 +64,7 @@ fp_input() {
   if [ "$fp_input_can_read" = "true" ]; then
     cat "${db_dir}/evr-template-fp-input-read.inc.${extension}" | substitute_template_variables FP_INPUT_NUM="${fp_input_num}" FP_INPUT_ADDR="${fp_input_addr}"
   fi
+  description "\$(P)\$(R)FPIn${fp_input_num}:Description" "Description for front-panel input ${fp_input_num}"
 }
 
 fp_output() {
@@ -96,7 +97,7 @@ output() {
   if [ -n "${output_installed_macro}" ]; then
     cat "${db_dir}/evr-template-output-installed.inc.${extension}" | substitute_template_variables OUTPUT_NAME="${output_name}" OUTPUT_INSTALLED_MACRO="${output_installed_macro}" OUTPUT_INSTALLED_DESCRIPTION="${output_installed_description}"
   fi
-  
+  description "\$(P)\$(R)${output_name}:Description" "Description for ${output_description}"
 }
 
 prescaler() {
@@ -123,6 +124,7 @@ prescaler() {
       write_all_pvs+=("\$(P)\$(R)Prescaler${prescaler_num}:MapTo:TrigPulseGen${i}")
     done
   fi
+  description "\$(P)\$(R)Prescaler${prescaler_num}:Description" "Description for prescaler ${prescaler_num}"
   if [ "${mode}" = "records" ]; then
     fanout "\$(P)\$(R)Intrnl:WriteAll:Prescaler${prescaler_num}" "${write_all_pvs[@]}"
   fi
@@ -154,6 +156,7 @@ pulse_gen() {
   write_all_pvs+=("\$(P)\$(R)PulseGen${pulse_gen_num}:Delay")
   cat "${db_dir}/evr-template-pulse-gen-width-${pulse_gen_width_size}-bit.inc.${extension}" | substitute_template_variables PULSE_GEN_NUM="${pulse_gen_num}" PULSE_GEN_WIDTH_ADDR="${pulse_gen_width_addr}"
   write_all_pvs+=("\$(P)\$(R)PulseGen${pulse_gen_num}:Width")
+  description "\$(P)\$(R)PulseGen${pulse_gen_num}:Description" "Description for pulse gen. ${pulse_gen_num}"
   if [ "${mode}" = "records" ]; then
     fanout "\$(P)\$(R)Intrnl:WriteAll:PulseGen${pulse_gen_num}" "${write_all_pvs[@]}"
   fi

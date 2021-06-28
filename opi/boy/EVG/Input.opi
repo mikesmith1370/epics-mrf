@@ -1,949 +1,1025 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <display typeId="org.csstudio.opibuilder.Display" version="1.0.0">
-  <show_close_button>true</show_close_button>
-  <rules />
-  <wuid>4a318208:14de1f4e024:-791e</wuid>
-  <show_grid>true</show_grid>
-  <auto_zoom_to_fit_all>false</auto_zoom_to_fit_all>
-  <scripts />
-  <height>600</height>
-  <macros>
-    <include_parent_macros>true</include_parent_macros>
-  </macros>
-  <boy_version>3.2.16.20140409</boy_version>
-  <show_edit_range>true</show_edit_range>
-  <widget_type>Display</widget_type>
+  <actions hook="false" hook_all="false" />
   <auto_scale_widgets>
     <auto_scale_widgets>false</auto_scale_widgets>
     <min_width>-1</min_width>
     <min_height>-1</min_height>
   </auto_scale_widgets>
+  <auto_zoom_to_fit_all>false</auto_zoom_to_fit_all>
   <background_color>
     <color red="240" green="240" blue="240" />
   </background_color>
-  <width>800</width>
-  <x>-1</x>
-  <name></name>
-  <grid_space>6</grid_space>
-  <show_ruler>true</show_ruler>
-  <y>-1</y>
-  <snap_to_geometry>true</snap_to_geometry>
+  <boy_version>5.1.0.202009030828</boy_version>
   <foreground_color>
     <color red="192" green="192" blue="192" />
   </foreground_color>
-  <actions hook="false" hook_all="false" />
+  <grid_space>6</grid_space>
+  <height>600</height>
+  <macros>
+    <include_parent_macros>true</include_parent_macros>
+  </macros>
+  <name></name>
+  <rules />
+  <scripts />
+  <show_close_button>true</show_close_button>
+  <show_edit_range>true</show_edit_range>
+  <show_grid>true</show_grid>
+  <show_ruler>true</show_ruler>
+  <snap_to_geometry>true</snap_to_geometry>
+  <widget_type>Display</widget_type>
+  <width>800</width>
+  <wuid>4a318208:14de1f4e024:-791e</wuid>
+  <x>-1</x>
+  <y>-1</y>
   <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <rules />
-    <bit>0</bit>
-    <enabled>true</enabled>
-    <wuid>4a318208:14de1f4e024:-67cc</wuid>
-    <selected_color>
-      <color red="77" green="77" blue="77" />
-    </selected_color>
-    <pv_value />
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
     <auto_size>false</auto_size>
-    <scripts />
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <height>20</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>false</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:DBusB0</pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <label></label>
-    <widget_type>Check Box</widget_type>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
-    <width>20</width>
-    <x>41</x>
+    <bit>0</bit>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <height>20</height>
+    <label></label>
     <name>Check Box_18</name>
-    <y>12</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <rules />
-    <bit>0</bit>
-    <enabled>true</enabled>
-    <wuid>4a318208:14de1f4e024:-6544</wuid>
-    <selected_color>
-      <color red="77" green="77" blue="77" />
-    </selected_color>
+    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:DBusB0</pv_name>
     <pv_value />
-    <auto_size>false</auto_size>
-    <scripts />
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <height>20</height>
-    <border_width>1</border_width>
+    <rules />
     <scale_options>
       <width_scalable>true</width_scalable>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
+    <scripts />
+    <selected_color>
+      <color red="77" green="77" blue="77" />
+    </selected_color>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
     <visible>true</visible>
-    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:DBusB1</pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <label></label>
     <widget_type>Check Box</widget_type>
+    <width>20</width>
+    <wuid>4a318208:14de1f4e024:-67cc</wuid>
+    <x>41</x>
+    <y>12</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <auto_size>false</auto_size>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
-    <width>20</width>
-    <x>60</x>
+    <bit>0</bit>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <height>20</height>
+    <label></label>
     <name>Check Box_19</name>
-    <y>12</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <rules />
-    <bit>0</bit>
-    <enabled>true</enabled>
-    <wuid>4a318208:14de1f4e024:-653d</wuid>
-    <selected_color>
-      <color red="77" green="77" blue="77" />
-    </selected_color>
+    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:DBusB1</pv_name>
     <pv_value />
-    <auto_size>false</auto_size>
-    <scripts />
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <height>20</height>
-    <border_width>1</border_width>
+    <rules />
     <scale_options>
       <width_scalable>true</width_scalable>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
+    <scripts />
+    <selected_color>
+      <color red="77" green="77" blue="77" />
+    </selected_color>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
     <visible>true</visible>
-    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:DBusB2</pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <label></label>
     <widget_type>Check Box</widget_type>
+    <width>20</width>
+    <wuid>4a318208:14de1f4e024:-6544</wuid>
+    <x>60</x>
+    <y>12</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <auto_size>false</auto_size>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
-    <width>20</width>
-    <x>79</x>
+    <bit>0</bit>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <height>20</height>
+    <label></label>
     <name>Check Box_20</name>
-    <y>12</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <rules />
-    <bit>0</bit>
-    <enabled>true</enabled>
-    <wuid>4a318208:14de1f4e024:-6536</wuid>
-    <selected_color>
-      <color red="77" green="77" blue="77" />
-    </selected_color>
+    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:DBusB2</pv_name>
     <pv_value />
-    <auto_size>false</auto_size>
-    <scripts />
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <height>20</height>
-    <border_width>1</border_width>
+    <rules />
     <scale_options>
       <width_scalable>true</width_scalable>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
+    <scripts />
+    <selected_color>
+      <color red="77" green="77" blue="77" />
+    </selected_color>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
     <visible>true</visible>
-    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:DBusB3</pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <label></label>
     <widget_type>Check Box</widget_type>
+    <width>20</width>
+    <wuid>4a318208:14de1f4e024:-653d</wuid>
+    <x>79</x>
+    <y>12</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <auto_size>false</auto_size>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
-    <width>20</width>
-    <x>98</x>
+    <bit>0</bit>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <height>20</height>
+    <label></label>
     <name>Check Box_21</name>
-    <y>12</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <rules />
-    <bit>0</bit>
-    <enabled>true</enabled>
-    <wuid>4a318208:14de1f4e024:-652f</wuid>
-    <selected_color>
-      <color red="77" green="77" blue="77" />
-    </selected_color>
+    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:DBusB3</pv_name>
     <pv_value />
-    <auto_size>false</auto_size>
-    <scripts />
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <height>20</height>
-    <border_width>1</border_width>
+    <rules />
     <scale_options>
       <width_scalable>true</width_scalable>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
+    <scripts />
+    <selected_color>
+      <color red="77" green="77" blue="77" />
+    </selected_color>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
     <visible>true</visible>
-    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:DBusB4</pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <label></label>
     <widget_type>Check Box</widget_type>
+    <width>20</width>
+    <wuid>4a318208:14de1f4e024:-6536</wuid>
+    <x>98</x>
+    <y>12</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <auto_size>false</auto_size>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
-    <width>20</width>
-    <x>117</x>
+    <bit>0</bit>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <height>20</height>
+    <label></label>
     <name>Check Box_22</name>
-    <y>12</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <rules />
-    <bit>0</bit>
-    <enabled>true</enabled>
-    <wuid>4a318208:14de1f4e024:-6528</wuid>
-    <selected_color>
-      <color red="77" green="77" blue="77" />
-    </selected_color>
+    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:DBusB4</pv_name>
     <pv_value />
-    <auto_size>false</auto_size>
-    <scripts />
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <height>20</height>
-    <border_width>1</border_width>
+    <rules />
     <scale_options>
       <width_scalable>true</width_scalable>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
+    <scripts />
+    <selected_color>
+      <color red="77" green="77" blue="77" />
+    </selected_color>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
     <visible>true</visible>
-    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:DBusB5</pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <label></label>
     <widget_type>Check Box</widget_type>
+    <width>20</width>
+    <wuid>4a318208:14de1f4e024:-652f</wuid>
+    <x>117</x>
+    <y>12</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <auto_size>false</auto_size>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
-    <width>20</width>
-    <x>136</x>
+    <bit>0</bit>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <height>20</height>
+    <label></label>
     <name>Check Box_23</name>
-    <y>12</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <rules />
-    <bit>0</bit>
-    <enabled>true</enabled>
-    <wuid>4a318208:14de1f4e024:-6521</wuid>
-    <selected_color>
-      <color red="77" green="77" blue="77" />
-    </selected_color>
+    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:DBusB5</pv_name>
     <pv_value />
-    <auto_size>false</auto_size>
-    <scripts />
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <height>20</height>
-    <border_width>1</border_width>
+    <rules />
     <scale_options>
       <width_scalable>true</width_scalable>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
+    <scripts />
+    <selected_color>
+      <color red="77" green="77" blue="77" />
+    </selected_color>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
     <visible>true</visible>
-    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:DBusB6</pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <label></label>
     <widget_type>Check Box</widget_type>
+    <width>20</width>
+    <wuid>4a318208:14de1f4e024:-6528</wuid>
+    <x>136</x>
+    <y>12</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <auto_size>false</auto_size>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
-    <width>20</width>
-    <x>155</x>
+    <bit>0</bit>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <height>20</height>
+    <label></label>
     <name>Check Box_24</name>
-    <y>12</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <rules />
-    <bit>0</bit>
-    <enabled>true</enabled>
-    <wuid>4a318208:14de1f4e024:-64bb</wuid>
-    <selected_color>
-      <color red="77" green="77" blue="77" />
-    </selected_color>
+    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:DBusB6</pv_name>
     <pv_value />
-    <auto_size>false</auto_size>
-    <scripts />
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <height>20</height>
-    <border_width>1</border_width>
+    <rules />
     <scale_options>
       <width_scalable>true</width_scalable>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
+    <scripts />
+    <selected_color>
+      <color red="77" green="77" blue="77" />
+    </selected_color>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
     <visible>true</visible>
-    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:DBusB7</pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <label></label>
     <widget_type>Check Box</widget_type>
+    <width>20</width>
+    <wuid>4a318208:14de1f4e024:-6521</wuid>
+    <x>155</x>
+    <y>12</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <auto_size>false</auto_size>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
-    <width>20</width>
-    <x>174</x>
+    <bit>0</bit>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <height>20</height>
+    <label></label>
     <name>Check Box_25</name>
-    <y>12</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <rules />
-    <bit>0</bit>
-    <enabled>true</enabled>
-    <wuid>4a318208:14de1f4e024:-6479</wuid>
-    <selected_color>
-      <color red="77" green="77" blue="77" />
-    </selected_color>
+    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:DBusB7</pv_name>
     <pv_value />
-    <auto_size>false</auto_size>
-    <scripts />
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <height>20</height>
-    <border_width>1</border_width>
+    <rules />
     <scale_options>
       <width_scalable>true</width_scalable>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
+    <scripts />
+    <selected_color>
+      <color red="77" green="77" blue="77" />
+    </selected_color>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
     <visible>true</visible>
-    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:EvTrig0</pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <label></label>
     <widget_type>Check Box</widget_type>
+    <width>20</width>
+    <wuid>4a318208:14de1f4e024:-64bb</wuid>
+    <x>174</x>
+    <y>12</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <auto_size>false</auto_size>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
-    <width>20</width>
-    <x>204</x>
+    <bit>0</bit>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <height>20</height>
+    <label></label>
     <name>Check Box_26</name>
-    <y>12</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <rules />
-    <bit>0</bit>
-    <enabled>true</enabled>
-    <wuid>4a318208:14de1f4e024:-6478</wuid>
-    <selected_color>
-      <color red="77" green="77" blue="77" />
-    </selected_color>
+    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:EvTrig0</pv_name>
     <pv_value />
-    <auto_size>false</auto_size>
-    <scripts />
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <height>20</height>
-    <border_width>1</border_width>
+    <rules />
     <scale_options>
       <width_scalable>true</width_scalable>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
+    <scripts />
+    <selected_color>
+      <color red="77" green="77" blue="77" />
+    </selected_color>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
     <visible>true</visible>
-    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:EvTrig1</pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <label></label>
     <widget_type>Check Box</widget_type>
+    <width>20</width>
+    <wuid>4a318208:14de1f4e024:-6479</wuid>
+    <x>204</x>
+    <y>12</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <auto_size>false</auto_size>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
-    <width>20</width>
-    <x>223</x>
+    <bit>0</bit>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <height>20</height>
+    <label></label>
     <name>Check Box_27</name>
-    <y>12</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <rules />
-    <bit>0</bit>
-    <enabled>true</enabled>
-    <wuid>4a318208:14de1f4e024:-6477</wuid>
-    <selected_color>
-      <color red="77" green="77" blue="77" />
-    </selected_color>
+    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:EvTrig1</pv_name>
     <pv_value />
-    <auto_size>false</auto_size>
-    <scripts />
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <height>20</height>
-    <border_width>1</border_width>
+    <rules />
     <scale_options>
       <width_scalable>true</width_scalable>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
+    <scripts />
+    <selected_color>
+      <color red="77" green="77" blue="77" />
+    </selected_color>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
     <visible>true</visible>
-    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:EvTrig2</pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <label></label>
     <widget_type>Check Box</widget_type>
+    <width>20</width>
+    <wuid>4a318208:14de1f4e024:-6478</wuid>
+    <x>223</x>
+    <y>12</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <auto_size>false</auto_size>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
-    <width>20</width>
-    <x>242</x>
+    <bit>0</bit>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <height>20</height>
+    <label></label>
     <name>Check Box_28</name>
-    <y>12</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <rules />
-    <bit>0</bit>
-    <enabled>true</enabled>
-    <wuid>4a318208:14de1f4e024:-6476</wuid>
-    <selected_color>
-      <color red="77" green="77" blue="77" />
-    </selected_color>
+    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:EvTrig2</pv_name>
     <pv_value />
-    <auto_size>false</auto_size>
-    <scripts />
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <height>20</height>
-    <border_width>1</border_width>
+    <rules />
     <scale_options>
       <width_scalable>true</width_scalable>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
+    <scripts />
+    <selected_color>
+      <color red="77" green="77" blue="77" />
+    </selected_color>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
     <visible>true</visible>
-    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:EvTrig3</pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <label></label>
     <widget_type>Check Box</widget_type>
+    <width>20</width>
+    <wuid>4a318208:14de1f4e024:-6477</wuid>
+    <x>242</x>
+    <y>12</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <auto_size>false</auto_size>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
-    <width>20</width>
-    <x>261</x>
+    <bit>0</bit>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <height>20</height>
+    <label></label>
     <name>Check Box_29</name>
-    <y>12</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <rules />
-    <bit>0</bit>
-    <enabled>true</enabled>
-    <wuid>4a318208:14de1f4e024:-6475</wuid>
-    <selected_color>
-      <color red="77" green="77" blue="77" />
-    </selected_color>
+    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:EvTrig3</pv_name>
     <pv_value />
-    <auto_size>false</auto_size>
-    <scripts />
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <height>20</height>
-    <border_width>1</border_width>
+    <rules />
     <scale_options>
       <width_scalable>true</width_scalable>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
+    <scripts />
+    <selected_color>
+      <color red="77" green="77" blue="77" />
+    </selected_color>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
     <visible>true</visible>
-    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:EvTrig4</pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <label></label>
     <widget_type>Check Box</widget_type>
+    <width>20</width>
+    <wuid>4a318208:14de1f4e024:-6476</wuid>
+    <x>261</x>
+    <y>12</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <auto_size>false</auto_size>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
-    <width>20</width>
-    <x>280</x>
+    <bit>0</bit>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <height>20</height>
+    <label></label>
     <name>Check Box_30</name>
-    <y>12</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <rules />
-    <bit>0</bit>
-    <enabled>true</enabled>
-    <wuid>4a318208:14de1f4e024:-6474</wuid>
-    <selected_color>
-      <color red="77" green="77" blue="77" />
-    </selected_color>
+    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:EvTrig4</pv_name>
     <pv_value />
-    <auto_size>false</auto_size>
-    <scripts />
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <height>20</height>
-    <border_width>1</border_width>
+    <rules />
     <scale_options>
       <width_scalable>true</width_scalable>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
+    <scripts />
+    <selected_color>
+      <color red="77" green="77" blue="77" />
+    </selected_color>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
     <visible>true</visible>
-    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:EvTrig5</pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <label></label>
     <widget_type>Check Box</widget_type>
+    <width>20</width>
+    <wuid>4a318208:14de1f4e024:-6475</wuid>
+    <x>280</x>
+    <y>12</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <auto_size>false</auto_size>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
-    <width>20</width>
-    <x>299</x>
+    <bit>0</bit>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <height>20</height>
+    <label></label>
     <name>Check Box_31</name>
-    <y>12</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <rules />
-    <bit>0</bit>
-    <enabled>true</enabled>
-    <wuid>4a318208:14de1f4e024:-6473</wuid>
-    <selected_color>
-      <color red="77" green="77" blue="77" />
-    </selected_color>
+    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:EvTrig5</pv_name>
     <pv_value />
-    <auto_size>false</auto_size>
-    <scripts />
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <height>20</height>
-    <border_width>1</border_width>
+    <rules />
     <scale_options>
       <width_scalable>true</width_scalable>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
+    <scripts />
+    <selected_color>
+      <color red="77" green="77" blue="77" />
+    </selected_color>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
     <visible>true</visible>
-    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:EvTrig6</pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <label></label>
     <widget_type>Check Box</widget_type>
+    <width>20</width>
+    <wuid>4a318208:14de1f4e024:-6474</wuid>
+    <x>299</x>
+    <y>12</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <auto_size>false</auto_size>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
-    <width>20</width>
-    <x>318</x>
+    <bit>0</bit>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <height>20</height>
+    <label></label>
     <name>Check Box_32</name>
-    <y>12</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <rules />
-    <bit>0</bit>
-    <enabled>true</enabled>
-    <wuid>4a318208:14de1f4e024:-6472</wuid>
-    <selected_color>
-      <color red="77" green="77" blue="77" />
-    </selected_color>
+    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:EvTrig6</pv_name>
     <pv_value />
-    <auto_size>false</auto_size>
-    <scripts />
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <height>20</height>
-    <border_width>1</border_width>
+    <rules />
     <scale_options>
       <width_scalable>true</width_scalable>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
+    <scripts />
+    <selected_color>
+      <color red="77" green="77" blue="77" />
+    </selected_color>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
     <visible>true</visible>
-    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:EvTrig7</pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <label></label>
     <widget_type>Check Box</widget_type>
+    <width>20</width>
+    <wuid>4a318208:14de1f4e024:-6473</wuid>
+    <x>318</x>
+    <y>12</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <auto_size>false</auto_size>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
-    <width>20</width>
-    <x>337</x>
+    <bit>0</bit>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <height>20</height>
+    <label></label>
     <name>Check Box_33</name>
-    <y>12</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <rules />
-    <bit>0</bit>
-    <enabled>true</enabled>
-    <wuid>4a318208:14de1f4e024:-6445</wuid>
-    <selected_color>
-      <color red="77" green="77" blue="77" />
-    </selected_color>
+    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:EvTrig7</pv_name>
     <pv_value />
-    <auto_size>false</auto_size>
-    <scripts />
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <height>20</height>
-    <border_width>1</border_width>
+    <rules />
     <scale_options>
       <width_scalable>true</width_scalable>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
+    <scripts />
+    <selected_color>
+      <color red="77" green="77" blue="77" />
+    </selected_color>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
     <visible>true</visible>
-    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:ExtIRQ</pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <label></label>
     <widget_type>Check Box</widget_type>
+    <width>20</width>
+    <wuid>4a318208:14de1f4e024:-6472</wuid>
+    <x>337</x>
+    <y>12</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <auto_size>false</auto_size>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
-    <width>20</width>
-    <x>467</x>
-    <name>Check Box_36</name>
-    <y>12</y>
+    <bit>0</bit>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </font>
+    <height>20</height>
+    <label></label>
+    <name>Check Box_36</name>
+    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:ExtIRQ</pv_name>
+    <pv_value />
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>false</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <selected_color>
+      <color red="77" green="77" blue="77" />
+    </selected_color>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <visible>true</visible>
+    <widget_type>Check Box</widget_type>
+    <width>20</width>
+    <wuid>4a318208:14de1f4e024:-6445</wuid>
+    <x>467</x>
+    <y>12</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <border_style>0</border_style>
-    <tooltip></tooltip>
-    <horizontal_alignment>2</horizontal_alignment>
-    <rules />
-    <enabled>true</enabled>
-    <wuid>4a318208:14de1f4e024:-6423</wuid>
-    <transparent>true</transparent>
+    <actions hook="false" hook_all="false" />
     <auto_size>false</auto_size>
-    <text>$(mrf_evg_input_num)</text>
-    <scripts />
-    <height>20</height>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
     <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <height>20</height>
+    <horizontal_alignment>2</horizontal_alignment>
+    <name>Label</name>
+    <rules />
     <scale_options>
       <width_scalable>true</width_scalable>
       <height_scalable>true</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <visible>true</visible>
+    <scripts />
+    <text>$(mrf_evg_input_num)</text>
+    <tooltip></tooltip>
+    <transparent>true</transparent>
     <vertical_alignment>1</vertical_alignment>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
+    <visible>true</visible>
     <widget_type>Label</widget_type>
-    <wrap_words>false</wrap_words>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
     <width>23</width>
+    <wrap_words>false</wrap_words>
+    <wuid>4a318208:14de1f4e024:-6423</wuid>
     <x>13</x>
-    <name>Label</name>
     <y>12</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </font>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <rules />
-    <bit>0</bit>
-    <enabled>true</enabled>
-    <wuid>4a318208:14de1f4e024:-6456</wuid>
-    <selected_color>
-      <color red="77" green="77" blue="77" />
-    </selected_color>
-    <pv_value />
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
     <auto_size>false</auto_size>
-    <scripts />
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <height>20</height>
-    <border_width>1</border_width>
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>false</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <visible>true</visible>
-    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:SeqRAMTrig0</pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <label></label>
-    <widget_type>Check Box</widget_type>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
-    <width>20</width>
-    <x>380</x>
+    <bit>0</bit>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <height>20</height>
+    <label></label>
     <name>Check Box_34</name>
-    <y>12</y>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <actions hook="false" hook_all="false" />
-    <font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
-    </font>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
-    <border_style>0</border_style>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <rules />
-    <bit>0</bit>
-    <enabled>true</enabled>
-    <wuid>4a318208:14de1f4e024:-6455</wuid>
-    <selected_color>
-      <color red="77" green="77" blue="77" />
-    </selected_color>
+    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:SeqRAMTrig0</pv_name>
     <pv_value />
-    <auto_size>false</auto_size>
-    <scripts />
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <height>20</height>
-    <border_width>1</border_width>
+    <rules />
     <scale_options>
       <width_scalable>true</width_scalable>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
+    <scripts />
+    <selected_color>
+      <color red="77" green="77" blue="77" />
+    </selected_color>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
     <visible>true</visible>
-    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:SeqRAMTrig0</pv_name>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <label></label>
     <widget_type>Check Box</widget_type>
+    <width>20</width>
+    <wuid>4a318208:14de1f4e024:-6456</wuid>
+    <x>380</x>
+    <y>12</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.checkbox" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <auto_size>false</auto_size>
     <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
-    <width>20</width>
-    <x>399</x>
-    <name>Check Box_35</name>
-    <y>12</y>
+    <bit>0</bit>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
+    <height>20</height>
+    <label></label>
+    <name>Check Box_35</name>
+    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):MapTo:SeqRAMTrig0</pv_name>
+    <pv_value />
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>false</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <selected_color>
+      <color red="77" green="77" blue="77" />
+    </selected_color>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <visible>true</visible>
+    <widget_type>Check Box</widget_type>
+    <width>20</width>
+    <wuid>4a318208:14de1f4e024:-6455</wuid>
+    <x>399</x>
+    <y>12</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.TextInput" version="2.0.0">
     <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <auto_size>false</auto_size>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color name="Text Input" red="255" green="255" blue="255" />
+    </background_color>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>3</border_style>
+    <border_width>1</border_width>
+    <confirm_message></confirm_message>
+    <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Lucida Grande" height="13" style="0">Default</opifont.name>
+      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
     </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <format_type>0</format_type>
+    <height>20</height>
+    <horizontal_alignment>0</horizontal_alignment>
+    <limits_from_pv>false</limits_from_pv>
+    <maximum>1.7976931348623157E308</maximum>
+    <minimum>-1.7976931348623157E308</minimum>
+    <multiline_input>false</multiline_input>
+    <name>Text Input</name>
+    <precision>0</precision>
+    <precision_from_pv>true</precision_from_pv>
+    <pv_name>$(mrf_evg_input_prefix)$(mrf_evg_input_num):Description.VAL$ {"longString":true}</pv_name>
+    <pv_value />
+    <rotation_angle>0.0</rotation_angle>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <selector_type>0</selector_type>
+    <show_units>true</show_units>
+    <style>0</style>
+    <text>#####</text>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <transparent>false</transparent>
+    <visible>true</visible>
+    <widget_type>Text Input</widget_type>
+    <width>259</width>
+    <wuid>4db6cca4:17a5211135d:-62b9</wuid>
+    <x>510</x>
+    <y>12</y>
   </widget>
 </display>
