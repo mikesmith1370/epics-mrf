@@ -56,7 +56,7 @@
     </fg_gradient_color>
     <fill_level>0.0</fill_level>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <foreground_color>
@@ -103,7 +103,7 @@ $(pv_value)</tooltip>
     <border_width>1</border_width>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -147,7 +147,7 @@ $(pv_value)</tooltip>
     <confirm_message></confirm_message>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <foreground_color>
@@ -210,7 +210,7 @@ $(pv_value)</tooltip>
     <border_width>1</border_width>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <foreground_color>
@@ -254,7 +254,7 @@ $(pv_value)</tooltip>
     <border_width>1</border_width>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -298,7 +298,7 @@ $(pv_value)</tooltip>
     <confirm_message></confirm_message>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <foreground_color>
@@ -351,7 +351,7 @@ $(pv_value)</tooltip>
     <border_width>1</border_width>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -395,7 +395,7 @@ $(pv_value)</tooltip>
     <confirm_message></confirm_message>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <foreground_color>
@@ -411,7 +411,7 @@ $(pv_value)</tooltip>
     <name>Text Input_2</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(mrf_prefix)SFP$(mrf_sfp_num):Vendor:Name</pv_name>
+    <pv_name>$(mrf_prefix)SFP$(mrf_sfp_num):Vendor:PartNumber</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -448,7 +448,7 @@ $(pv_value)</tooltip>
     <border_width>1</border_width>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -492,7 +492,7 @@ $(pv_value)</tooltip>
     <confirm_message></confirm_message>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <foreground_color>
@@ -545,7 +545,7 @@ $(pv_value)</tooltip>
     <border_width>1</border_width>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -589,7 +589,7 @@ $(pv_value)</tooltip>
     <confirm_message></confirm_message>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <foreground_color>
@@ -642,7 +642,7 @@ $(pv_value)</tooltip>
     <border_width>1</border_width>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -686,7 +686,7 @@ $(pv_value)</tooltip>
     <confirm_message></confirm_message>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <foreground_color>
@@ -739,7 +739,7 @@ $(pv_value)</tooltip>
     <border_width>1</border_width>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -783,7 +783,7 @@ $(pv_value)</tooltip>
     <confirm_message></confirm_message>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <foreground_color>
@@ -836,7 +836,7 @@ $(pv_value)</tooltip>
     <border_width>1</border_width>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="13" style="1" pixels="false">Header 3</opifont.name>
+      <opifont.name fontName="Tahoma" height="17" style="1" pixels="false">Header 3</opifont.name>
     </font>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -887,7 +887,7 @@ $(pv_value)</tooltip>
     </fg_gradient_color>
     <fill_level>0.0</fill_level>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <foreground_color>
@@ -934,7 +934,7 @@ $(pv_value)</tooltip>
     <border_width>1</border_width>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="13" style="1" pixels="false">Header 3</opifont.name>
+      <opifont.name fontName="Tahoma" height="17" style="1" pixels="false">Header 3</opifont.name>
     </font>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -974,7 +974,7 @@ $(pv_value)</tooltip>
     <border_width>1</border_width>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -1018,7 +1018,7 @@ $(pv_value)</tooltip>
     <confirm_message></confirm_message>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <foreground_color>
@@ -1071,7 +1071,7 @@ $(pv_value)</tooltip>
     <border_width>1</border_width>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -1115,7 +1115,7 @@ $(pv_value)</tooltip>
     <confirm_message></confirm_message>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <foreground_color>
@@ -1168,7 +1168,7 @@ $(pv_value)</tooltip>
     <border_width>1</border_width>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -1212,7 +1212,7 @@ $(pv_value)</tooltip>
     <confirm_message></confirm_message>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <foreground_color>
@@ -1265,7 +1265,7 @@ $(pv_value)</tooltip>
     <border_width>1</border_width>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -1309,7 +1309,7 @@ $(pv_value)</tooltip>
     <confirm_message></confirm_message>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <foreground_color>
@@ -1362,7 +1362,7 @@ $(pv_value)</tooltip>
     <border_width>1</border_width>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -1406,7 +1406,7 @@ $(pv_value)</tooltip>
     <confirm_message></confirm_message>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <foreground_color>
@@ -1459,7 +1459,7 @@ $(pv_value)</tooltip>
     <border_width>1</border_width>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -1508,7 +1508,7 @@ $(pv_value)</tooltip>
     <effect_3d>true</effect_3d>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <foreground_color>
@@ -1557,7 +1557,7 @@ $(pv_value)</tooltip>
     <border_width>1</border_width>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -1606,7 +1606,7 @@ $(pv_value)</tooltip>
     <effect_3d>true</effect_3d>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <foreground_color>
@@ -1655,7 +1655,7 @@ $(pv_value)</tooltip>
     <border_width>1</border_width>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -1704,7 +1704,7 @@ $(pv_value)</tooltip>
     <effect_3d>true</effect_3d>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <foreground_color>
@@ -1753,7 +1753,7 @@ $(pv_value)</tooltip>
     <border_width>1</border_width>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <foreground_color>
       <color red="0" green="0" blue="0" />
@@ -1802,7 +1802,7 @@ $(pv_value)</tooltip>
     <effect_3d>true</effect_3d>
     <enabled>true</enabled>
     <font>
-      <opifont.name fontName="Ubuntu" height="9" style="0" pixels="false">Default</opifont.name>
+      <opifont.name fontName="Tahoma" height="12" style="0" pixels="false">Default</opifont.name>
     </font>
     <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
     <foreground_color>
